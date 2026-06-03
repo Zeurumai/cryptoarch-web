@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoArch Agent | IA Trading Bot | Alertas 24/7</title>
+    <meta name="description" content="Bot de trading con IA. Scoring 0-100, cartera virtual, alertas precisas. Activación inmediata. Prueba gratis 7 días.">
+    <meta name="keywords" content="bot trading cripto, alertas cripto, inteligencia artificial, scoring cripto, cartera virtual, cryptoarch agent">
+    <meta name="author" content="CryptoArch Agent">
+    <meta name="robots" content="index, follow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#F59E0B',
+                        dark: '#0F172A',
+                        darkLight: '#1E293B',
+                        success: '#10B981',
+                        accent: '#8B5CF6',
+                        criptoGreen: '#00F0B5',
+                        criptoBlue: '#00A3FF',
+                        fear: '#EF4444',
+                        greed: '#22C55E',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        @keyframes eyePulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: transparent; }
+            50% { box-shadow: 0 0 18px 4px rgba(59, 130, 246, 0.6); border-color: rgba(59, 130, 246, 0.8); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: transparent; }
+        }
+        @keyframes pulseSoft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-soft { animation: pulseSoft 3s ease-in-out infinite; }
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #F59E0B;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards, blink 0.75s step-end infinite;
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+            backdrop-filter: blur(10px);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 35px -8px rgba(0,0,0,0.4);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6, #3B82F6);
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(59,130,246,0.5);
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lang-selector {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .lang-selector:hover { border-color: #3B82F6; background: rgba(30, 41, 59, 0.95); }
+        .lang-active { color: #F59E0B; }
+        .lang-inactive { color: #94A3B8; cursor: pointer; }
+        .lang-inactive:hover { color: #E2E8F0; }
+        .floating-wa {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .logo-eye {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: eyePulse 6s infinite ease-in-out;
+            animation-delay: 2s;
+        }
+        .logo-eye:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px 5px rgba(245, 158, 11, 0.6);
+            border-color: #F59E0B;
+            animation: none;
+        }
+        /* Termómetro de miedo/avaricia */
+        .thermometer {
+            background: linear-gradient(90deg, #EF4444, #F59E0B, #10B981);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .thermometer-fill {
+            width: 0%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+        .gauge {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            position: relative;
+        }
+        .needle {
+            position: absolute;
+            top: -12px;
+            width: 4px;
+            height: 28px;
+            background: white;
+            border-radius: 4px;
+            transform: translateX(-50%);
+            transition: left 0.5s ease;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+        /* Heatmap */
+        .heatmap-cell {
+            transition: all 0.2s ease;
+            background-color: #1E293B;
+        }
+        .heatmap-cell.positive { background: #10B981; color: white; }
+        .heatmap-cell.negative { background: #EF4444; color: white; }
+        .heatmap-cell.neutral { background: #3B82F6; color: white; }
+        @media (max-width: 768px) {
+            .typewriter { white-space: normal; border-right: none; animation: none; width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-inter antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-dark/80 backdrop-blur-xl z-50 border-b border-gray-800/60">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="logo-eye w-11 h-11 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md border border-transparent">
+                    <i class="fa fa-eye text-white text-xl"></i>
+                </div>
+                <span class="font-bold text-xl text-white">CryptoArch<span class="text-secondary">Agent</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium text-sm">
+                <a href="#hero" data-es="Inicio" data-en="Home" class="text-gray-300 hover:text-white transition-all active">Inicio</a>
+                <a href="#features" data-es="Tecnología" data-en="Technology" class="text-gray-300 hover:text-white transition-all">Tecnología</a>
+                <a href="#results" data-es="Resultados" data-en="Results" class="text-gray-300 hover:text-white transition-all">Resultados</a>
+                <a href="#market-pulse" data-es="Mercado" data-en="Market" class="text-gray-300 hover:text-white transition-all">Mercado</a>
+                <a href="#pricing" data-es="Planes" data-en="Plans" class="text-gray-300 hover:text-white transition-all">Planes</a>
+                <a href="#testimonials" data-es="Testimonios" data-en="Testimonials" class="text-gray-300 hover:text-white transition-all">Testimonios</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="lang-selector flex items-center space-x-1">
+                    <span id="lang-es" class="lang-active cursor-pointer">ES</span>
+                    <span class="lang-separator text-gray-500">|</span>
+                    <span id="lang-en" class="lang-inactive cursor-pointer">EN</span>
+                </div>
+                <a href="https://t.me/Cryptozerumbot" class="btn-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20">
+                    <i class="fa fa-paper-plane mr-2"></i> <span data-es="Probar Gratis" data-en="Free Trial">Probar Gratis</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-36 pb-24 md:pt-44 md:pb-36 bg-gradient-to-b from-dark via-dark to-darkLight/20 relative overflow-hidden">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+            <div class="lg:w-3/5 text-center lg:text-left animate-fade-in-up">
+                <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6 animate-pulse-soft">
+                    🔥 <span data-es="EL ESTÁNDAR MÁS ALTO DEL MERCADO" data-en="THE HIGHEST MARKET STANDARD">EL ESTÁNDAR MÁS ALTO DEL MERCADO</span>
+                </div>
+                <h1 class="text-[clamp(2rem,5vw,4rem)] font-extrabold leading-tight mb-6">
+                    <span data-es="Domina el Mercado con" data-en="Master the Market with">Domina el Mercado con</span><br>
+                    <span class="text-secondary typewriter" data-es="Inteligencia Artificial Precisa" data-en="Precise Artificial Intelligence">Inteligencia Artificial Precisa</span>
+                </h1>
+                <p class="text-2xl text-secondary font-bold mb-6" data-es="Donde el análisis profesional se convierte en acción inmediata" data-en="Where professional analysis becomes immediate action">Donde el análisis profesional se convierte en acción inmediata</p>
+                <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    <span data-es="La única herramienta que te entrega calificaciones del 0 al 100 para cada oportunidad, análisis en 7 activos principales y gestión de riesgo automática." data-en="The only tool that delivers 0-100 ratings for every opportunity, analysis on 7 major assets, and automatic risk management.">La única herramienta que te entrega calificaciones del 0 al 100 para cada oportunidad, análisis en 7 activos principales y gestión de riesgo automática.</span>
+                    <span class="block mt-2 text-success font-medium"><span data-es="Activación automática en Telegram en menos de 60 segundos ⚡" data-en="Automatic activation on Telegram in less than 60 seconds ⚡">Activación automática en Telegram en menos de 60 segundos ⚡</span></span>
+                </p>
+                <div class="flex flex-wrap gap-5 justify-center lg:justify-start mb-10">
+                    <a href="#" id="openModalBtn" class="btn-primary text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/25 inline-block">
+                        🚀 <span data-es="COMENZAR PRUEBA GRATUITA 7 DÍAS" data-en="START 7-DAY FREE TRIAL">COMENZAR PRUEBA GRATUITA 7 DÍAS</span>
+                    </a>
+                    <a href="#pricing" class="bg-darkLight/80 border border-gray-700 hover:border-secondary/50 text-gray-200 px-8 py-4 rounded-xl font-medium text-lg transition-all hover:scale-105">
+                        <span data-es="Ver Planes y Precios" data-en="View Plans & Pricing">Ver Planes y Precios</span>
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-2/5 relative animate-fade-in-up">
+                <div class="bg-darkLight/90 backdrop-blur-sm p-4 rounded-2xl border border-gray-700 shadow-2xl animate-float">
+                    <img src="https://via.placeholder.com/400x600?text=CryptoArch+Agent+Panel" alt="Panel CryptoArch" class="rounded-xl w-full shadow-lg">
+                </div>
+                <div class="absolute -bottom-5 -left-5 bg-darkLight/90 backdrop-blur p-4 rounded-xl shadow-xl border border-gray-700/80">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                        <span class="text-sm font-bold text-gray-100"><span data-es="ARCH ACTIVO 99.9% ⚡" data-en="ARCH ACTIVE 99.9% ⚡">ARCH ACTIVO 99.9% ⚡</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador y Termómetro + Mapa de Calor -->
+    <section class="py-14 bg-gradient-to-r from-darkLight/30 to-darkLight/10 border-y border-gray-800/50">
+        <div class="container max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Contador de confianza -->
+                <div class="scroll-animate text-center md:text-left">
+                    <p class="text-gray-400 text-sm uppercase tracking-widest mb-3"><span data-es="CONFIANZA DEMOSTRADA POR MILES" data-en="TRUSTED BY THOUSANDS">CONFIANZA DEMOSTRADA POR MILES</span></p>
+                    <div class="text-6xl font-black text-secondary mb-3"><span id="userCounter">0</span><span>+</span></div>
+                    <p class="text-xl text-gray-300 mb-4"><span data-es="Traders ya operan con ventaja profesional" data-en="Traders already trade with professional advantage">Traders ya operan con ventaja profesional</span></p>
+                    <div class="w-full bg-darkLight rounded-full h-3 mb-2 shadow-inner"><div id="progressBar" class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full transition-all duration-1000" style="width: 0%;"></div></div>
+                    <div class="flex justify-center md:justify-start space-x-8 mt-6">
+                        <div><div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center"><i class="fa fa-star text-secondary text-2xl"></i></div><p class="font-bold mt-2">4.9/5</p></div>
+                        <div><div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center"><i class="fa fa-chart-line text-primary text-2xl"></i></div><p class="font-bold mt-2">+18.7%</p></div>
+                        <div><div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center"><i class="fa fa-bolt text-success text-2xl"></i></div><p class="font-bold mt-2">0.3s</p></div>
+                    </div>
+                </div>
+
+                <!-- Termómetro de Miedo / Avaricia -->
+                <div class="scroll-animate bg-darkLight/50 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-bold mb-2 text-center"><span data-es="Índice de Miedo / Avaricia" data-en="Fear / Greed Index">Índice de Miedo / Avaricia</span></h3>
+                    <p class="text-center text-sm text-gray-400 mb-4" data-es="Basado en sentimiento de mercado y volatilidad" data-en="Based on market sentiment and volatility">Basado en sentimiento de mercado y volatilidad</p>
+                    <div class="relative pt-4">
+                        <div class="thermometer h-6 w-full relative">
+                            <div id="thermometerFill" class="thermometer-fill"></div>
+                        </div>
+                        <div id="needle" class="needle" style="left: 50%;"></div>
+                        <div class="flex justify-between text-xs font-bold mt-2 px-1">
+                            <span class="text-fear">0</span>
+                            <span>25</span>
+                            <span>50</span>
+                            <span>75</span>
+                            <span class="text-greed">100</span>
+                        </div>
+                        <div class="text-center mt-4">
+                            <span id="fearGreedValue" class="text-3xl font-bold text-secondary">65</span>
+                            <span id="fearGreedLabel" class="ml-2 text-sm uppercase bg-primary/20 px-2 py-1 rounded">Avaricia moderada</span>
+                        </div>
+                        <p class="text-center text-xs text-gray-500 mt-2" data-es="Actualizado cada 30 segundos" data-en="Updated every 30 seconds">Actualizado cada 30 segundos ⏱️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa de Calor de Criptomonedas -->
+    <section id="market-pulse" class="py-16 bg-dark scroll-animate">
+        <div class="container max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white"><span data-es="Mapa de Calor en Tiempo Real" data-en="Real-Time Heatmap">Mapa de Calor en Tiempo Real</span></h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-es="Rendimiento de las principales criptomonedas (actualizado cada 30s)" data-en="Performance of top cryptocurrencies (updated every 30s)">Rendimiento de las principales criptomonedas (actualizado cada 30s)</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
+                <div id="heatmap-btc" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">BTC<br><span id="btc-change" class="text-sm">0%</span></div>
+                <div id="heatmap-eth" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">ETH<br><span id="eth-change" class="text-sm">0%</span></div>
+                <div id="heatmap-sol" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">SOL<br><span id="sol-change" class="text-sm">0%</span></div>
+                <div id="heatmap-xrp" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">XRP<br><span id="xrp-change" class="text-sm">0%</span></div>
+                <div id="heatmap-bnb" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">BNB<br><span id="bnb-change" class="text-sm">0%</span></div>
+                <div id="heatmap-link" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">LINK<br><span id="link-change" class="text-sm">0%</span></div>
+                <div id="heatmap-avax" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all">AVAX<br><span id="avax-change" class="text-sm">0%</span></div>
+            </div>
+            <p class="text-gray-500 text-sm mt-6"><i class="fa fa-sync-alt mr-1"></i> <span data-es="Datos simulados con tendencia realista" data-en="Simulated data with realistic trend">Datos simulados con tendencia realista</span></p>
+        </div>
+    </section>
+
+    <!-- Resultados (alertas reales) -->
+    <section id="results" class="py-20 bg-darkLight/20 scroll-animate">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white"><span data-es="Alertas Reales Enviadas Esta Semana" data-en="Real Alerts Sent This Week">Alertas Reales Enviadas Esta Semana</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-darkLight/60 p-4 rounded-2xl border border-gray-800 card-hover"><img src="https://via.placeholder.com/280x400?text=ALERTA+ETH" alt="ETH" class="rounded-xl w-full"><p class="text-lg font-bold text-white mt-3">📈 Ethereum (ETH) - <span data-es="Tendencia Alcista" data-en="Bullish Trend">Tendencia Alcista</span></p></div>
+                <div class="bg-darkLight/60 p-4 rounded-2xl border border-gray-800 card-hover"><img src="https://via.placeholder.com/280x400?text=ALERTA+SOL" alt="SOL" class="rounded-xl w-full"><p class="text-lg font-bold text-white mt-3">⚡ Solana (SOL) - <span data-es="Señal Fuerte" data-en="Strong Signal">Señal Fuerte</span></p></div>
+                <div class="bg-darkLight/60 p-4 rounded-2xl border border-gray-800 card-hover"><img src="https://via.placeholder.com/280x400?text=ALERTA+BNB" alt="BNB" class="rounded-xl w-full"><p class="text-lg font-bold text-white mt-3">🟡 BNB - <span data-es="Movimiento Confirmado" data-en="Confirmed Move">Movimiento Confirmado</span></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section id="features" class="py-20 bg-dark scroll-animate">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800 card-hover text-center"><i class="fa fa-brain text-primary text-4xl mb-4"></i><h3 class="text-xl font-bold mb-2"><span data-es="Scoring 0-100" data-en="0-100 Scoring">Scoring 0-100</span></h3><p class="text-gray-400"><span data-es="El único sistema con calificación numérica" data-en="The only system with numerical rating">El único sistema con calificación numérica</span></p></div>
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800 card-hover text-center"><i class="fa fa-shield-alt text-secondary text-4xl mb-4"></i><h3 class="text-xl font-bold mb-2"><span data-es="Cartera Virtual" data-en="Virtual Portfolio">Cartera Virtual</span></h3><p class="text-gray-400"><span data-es="Stop Loss y Take Profit automáticos" data-en="Automatic Stop Loss & Take Profit">Stop Loss y Take Profit automáticos</span></p></div>
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800 card-hover text-center"><i class="fa fa-rocket text-accent text-4xl mb-4"></i><h3 class="text-xl font-bold mb-2"><span data-es="Activación Inmediata" data-en="Instant Activation">Activación Inmediata</span></h3><p class="text-gray-400"><span data-es="En menos de 60 segundos" data-en="In less than 60 seconds">En menos de 60 segundos</span></p></div>
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800 card-hover text-center"><i class="fa fa-globe text-success text-4xl mb-4"></i><h3 class="text-xl font-bold mb-2"><span data-es="Multi-Idioma" data-en="Multi-Language">Multi-Idioma</span></h3><p class="text-gray-400"><span data-es="Español e Inglés" data-en="Spanish & English">Español e Inglés</span></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabla comparativa simplificada -->
+    <section class="py-20 bg-darkLight/20 scroll-animate">
+        <div class="container max-w-6xl mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white"><span data-es="Comparación real con la competencia" data-en="Real comparison vs competition">Comparación real con la competencia</span></h2>
+            <div class="overflow-x-auto rounded-2xl border border-gray-800 bg-darkLight/30">
+                <table class="w-full text-left">
+                    <thead><tr class="border-b border-gray-700"><th class="p-4"><span data-es="Característica" data-en="Feature">Característica</span></th><th class="p-4 text-center"><span data-es="CryptoArch Agent" data-en="CryptoArch Agent">CryptoArch Agent</span></th><th class="p-4 text-center"><span data-es="Competencia" data-en="Competition">Competencia</span></th> </tr></thead>
+                    <tbody>
+                        <tr><td class="p-4"><span data-es="Scoring 0-100" data-en="0-100 scoring">Scoring 0-100</span></td><td class="p-4 text-center text-success font-bold">✅ Exclusivo</td><td class="p-4 text-center text-danger">❌</td></tr>
+                        <tr><td class="p-4"><span data-es="Activación inmediata" data-en="Instant activation">Activación inmediata</span></td><td class="p-4 text-center text-success font-bold">✅ 60 segundos</td><td class="p-4 text-center text-danger">⏳ Horas/días</td></tr>
+                        <tr><td class="p-4"><span data-es="Cartera virtual" data-en="Virtual portfolio">Cartera virtual</span></td><td class="p-4 text-center text-success font-bold">✅ Incluida</td><td class="p-4 text-center text-danger">💰 Pago extra</td></tr>
+                        <tr><td class="p-4"><span data-es="Precio mensual" data-en="Monthly price">Precio mensual</span></td><td class="p-4 text-center text-success font-bold">$9.99</td><td class="p-4 text-center text-danger">$19.99 - $49.99</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planes -->
+    <section id="pricing" class="py-20 bg-dark scroll-animate">
+        <div class="container max-w-6xl mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white"><span data-es="Elige tu Plan" data-en="Choose Your Plan">Elige tu Plan</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-darkLight/40 rounded-2xl border border-gray-800 p-8 card-hover"><h3 class="text-2xl font-bold"><span data-es="Mensual" data-en="Monthly">Mensual</span></h3><div class="text-5xl font-black my-4">$9.99</div><a href="https://t.me/Cryptozerumbot" class="block w-full bg-gray-800 hover:bg-gray-700 py-3 rounded-xl"><span data-es="Activar" data-en="Activate">Activar</span></a></div>
+                <div class="bg-darkLight/40 rounded-2xl border border-gray-800 p-8 card-hover"><h3 class="text-2xl font-bold"><span data-es="Trimestral" data-en="Quarterly">Trimestral</span></h3><div class="text-5xl font-black my-4">$24.99</div><a href="https://t.me/Cryptozerumbot" class="block w-full bg-gray-800 hover:bg-gray-700 py-3 rounded-xl"><span data-es="Activar" data-en="Activate">Activar</span></a></div>
+                <div class="relative bg-gradient-to-b from-darkLight/60 to-darkLight/20 rounded-2xl border-2 border-secondary p-8 card-hover"><div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-secondary text-dark font-bold px-4 py-1 rounded-full text-sm">⭐ <span data-es="MEJOR VALOR" data-en="BEST VALUE">MEJOR VALOR</span></div><h3 class="text-2xl font-bold"><span data-es="Anual" data-en="Annual">Anual</span></h3><div class="text-5xl font-black text-secondary my-4">$79.99</div><a href="https://t.me/Cryptozerumbot" class="block w-full bg-gradient-to-r from-secondary to-amber-500 text-dark font-bold py-3 rounded-xl"><span data-es="Activar" data-en="Activate">Activar</span></a></div>
+            </div>
+            <div class="mt-16 max-w-3xl mx-auto bg-success/5 border border-success/20 rounded-2xl p-6"><p class="font-bold text-white"><i class="fa fa-shield-check mr-2 text-success"></i> <span data-es="Garantía de satisfacción 7 días" data-en="7-day satisfaction guarantee">Garantía de satisfacción 7 días</span></p><p class="text-gray-400 text-sm"><span data-es="Si no estás 100% conforme, te devolvemos tu dinero sin preguntas." data-en="If you're not 100% satisfied, we'll refund your money no questions asked.">Si no estás 100% conforme, te devolvemos tu dinero sin preguntas.</span></p></div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonials" class="py-20 bg-dark scroll-animate">
+        <div class="container max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white"><span data-es="Testimonios Reales" data-en="Real Testimonials">Testimonios Reales</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800"><p class="text-gray-300 italic mb-4">"<span data-es="El scoring 0-100 cambió mi forma de operar" data-en="The 0-100 scoring changed my trading">El scoring 0-100 cambió mi forma de operar</span>"</p><p class="font-bold">Carlos M.</p></div>
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800"><p class="text-gray-300 italic mb-4">"<span data-es="La cartera virtual me permitió aprender sin miedo" data-en="The virtual portfolio let me learn without fear">La cartera virtual me permitió aprender sin miedo</span>"</p><p class="font-bold">Ana R.</p></div>
+                <div class="bg-darkLight/50 p-6 rounded-2xl border border-gray-800"><p class="text-gray-300 italic mb-4">"<span data-es="Más barato y mejor que la competencia" data-en="Cheaper and better than the competition">Más barato y mejor que la competencia</span>"</p><p class="font-bold">Javier L.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arch -->
+    <section id="arch" class="py-20 bg-dark scroll-animate">
+        <div class="container max-w-5xl mx-auto px-4 text-center">
+            <img src="https://via.placeholder.com/200x200?text=ARCH" alt="Arch" class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-secondary">
+            <h2 class="text-3xl font-bold mb-2"><span data-es="Conoce a Arch" data-en="Meet Arch">Conoce a Arch</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto"><span data-es="Inteligencia Artificial entrenada para mercados financieros. Procesa millones de datos por segundo." data-en="Artificial Intelligence trained for financial markets. Processes millions of data per second.">Inteligencia Artificial entrenada para mercados financieros. Procesa millones de datos por segundo.</span></p>
+        </div>
+    </section>
+
+    <footer class="bg-dark pt-12 pb-6 border-t border-gray-800/60">
+        <div class="container max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://t.me/CryptoArchAgent" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://x.com/CryptoArchAgent" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://youtube.com/@CryptoArchAgent" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@cryptoarchagent" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-tiktok"></i></a>
+                <a href="https://instagram.com/cryptoarchagent" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 CryptoArch Agent. <span data-es="Todos los derechos reservados" data-en="All rights reserved">Todos los derechos reservados</span>.</p>
+        </div>
+    </footer>
+
+    <!-- Botones flotantes -->
+    <a href="https://wa.link/yvuxl0" target="_blank" class="floating-wa bg-success hover:bg-success/90 text-white p-3 rounded-full shadow-lg flex items-center justify-center">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Modal -->
+    <div id="licenseModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 modal opacity-0 invisible transition-all duration-300">
+        <div class="bg-darkLight rounded-2xl max-w-md w-full mx-4 p-6 border border-gray-700">
+            <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-white"><span data-es="Activar tu licencia" data-en="Activate your license">Activar tu licencia</span></h3><button id="closeModalBtn" class="text-gray-400 hover:text-white"><i class="fa fa-times text-xl"></i></button></div>
+            <p class="text-gray-300 mb-6"><span data-es="Abre Telegram, busca @Cryptozerumbot y escribe /start. Tu licencia se activará en segundos." data-en="Open Telegram, find @Cryptozerumbot and type /start. Your license will activate in seconds.">Abre Telegram, busca @Cryptozerumbot y escribe /start. Tu licencia se activará en segundos.</span></p>
+            <a href="https://t.me/Cryptozerumbot" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition block text-center"><span data-es="Ir a Telegram ahora" data-en="Go to Telegram now">Ir a Telegram ahora</span></a>
+        </div>
+    </div>
+
+    <script>
+        // Contador de usuarios
+        let count = 0, target = 5480;
+        const updateCounter = () => { if (count < target) { count += Math.ceil(target / 50); if (count > target) count = target; document.getElementById('userCounter').innerText = count; document.getElementById('progressBar').style.width = (count / target * 100) + '%'; setTimeout(updateCounter, 40); } };
+        updateCounter();
+
+        // Scroll animations
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+
+        // Modal
+        const modal = document.getElementById('licenseModal'), openBtn = document.getElementById('openModalBtn'), closeBtn = document.getElementById('closeModalBtn');
+        openBtn.addEventListener('click', (e) => { e.preventDefault(); modal.classList.remove('opacity-0', 'invisible'); });
+        closeBtn.addEventListener('click', () => { modal.classList.add('opacity-0', 'invisible'); });
+
+        // Idioma
+        const langEs = document.getElementById('lang-es'), langEn = document.getElementById('lang-en');
+        const translatables = document.querySelectorAll('[data-es]');
+        function setLanguage(lang) { translatables.forEach(el => { el.innerText = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en'); }); langEs.classList.toggle('lang-active', lang === 'es'); langEs.classList.toggle('lang-inactive', lang !== 'es'); langEn.classList.toggle('lang-active', lang === 'en'); langEn.classList.toggle('lang-inactive', lang !== 'en'); }
+        langEs.addEventListener('click', () => setLanguage('es')); langEn.addEventListener('click', () => setLanguage('en'));
+        setLanguage('es');
+
+        // ========== INTERACTIVIDAD: Termómetro y Heatmap ==========
+        // Datos simulados para miedo/avaricia (valor 0-100)
+        let fearGreedValue = 65;
+        function updateFearGreed() {
+            // Simula cambios aleatorios entre 20 y 80
+            fearGreedValue = Math.min(100, Math.max(0, fearGreedValue + (Math.random() * 8 - 4)));
+            fearGreedValue = Math.round(fearGreedValue);
+            document.getElementById('fearGreedValue').innerText = fearGreedValue;
+            const needle = document.getElementById('needle');
+            const leftPercent = (fearGreedValue / 100) * 100;
+            needle.style.left = leftPercent + '%';
+            // Relleno del termómetro: desde la derecha (miedo) hacia la izquierda
+            const fillPercent = 100 - leftPercent;
+            document.getElementById('thermometerFill').style.width = fillPercent + '%';
+            let label = '';
+            if (fearGreedValue < 25) label = 'Miedo extremo';
+            else if (fearGreedValue < 45) label = 'Miedo';
+            else if (fearGreedValue < 55) label = 'Neutral';
+            else if (fearGreedValue < 75) label = 'Avaricia';
+            else label = 'Avaricia extrema';
+            document.getElementById('fearGreedLabel').innerText = label;
+        }
+        updateFearGreed();
+        setInterval(updateFearGreed, 30000); // cada 30 segundos
+
+        // Heatmap: datos simulados de cambio porcentual para 7 monedas
+        const coins = ['btc', 'eth', 'sol', 'xrp', 'bnb', 'link', 'avax'];
+        function updateHeatmap() {
+            coins.forEach(coin => {
+                let change = (Math.random() * 12 - 4).toFixed(1); // entre -4% y +8%
+                change = parseFloat(change);
+                const span = document.getElementById(`${coin}-change`);
+                if (span) {
+                    span.innerText = (change > 0 ? '+' : '') + change + '%';
+                    const cell = document.getElementById(`heatmap-${coin}`);
+                    cell.classList.remove('positive', 'negative', 'neutral');
+                    if (change > 1.5) cell.classList.add('positive');
+                    else if (change < -1.5) cell.classList.add('negative');
+                    else cell.classList.add('neutral');
+                }
+            });
+        }
+        updateHeatmap();
+        setInterval(updateHeatmap, 30000);
+    </script>
+</body>
+</html>
