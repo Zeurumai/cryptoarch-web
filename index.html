@@ -155,7 +155,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* Estilo para el logotipo SVG */
         .logo-svg {
             width: 44px;
             height: 44px;
@@ -165,8 +164,6 @@
         }
         @media (max-width: 768px) {
             .typewriter { white-space: normal; border-right: none; animation: none; width: 100%; }
-            .hero-content { flex-direction: column; text-align: center; }
-            .badge-container { justify-content: center; margin-top: 1.5rem; }
         }
     </style>
 </head>
@@ -236,13 +233,13 @@
         </div>
     </nav>
 
-    <!-- Hero Section con espaciado mejorado y badge reposicionado -->
-    <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20 relative overflow-hidden">
+    <!-- Hero Section con imagen flotante y badge separado -->
+    <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20">
         <div class="container max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <!-- Texto principal -->
                 <div class="lg:w-3/5 text-center lg:text-left">
-                    <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6 animate-pulse-soft">
+                    <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
                         🔥 EL ESTÁNDAR MÁS ALTO DEL MERCADO
                     </div>
                     <h1 class="text-[clamp(2rem,5vw,4rem)] font-extrabold leading-tight mb-4">
@@ -270,8 +267,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Badge "ARCH ACTIVO 99.9%" reposicionado (fuera de la imagen) -->
-            <div class="flex justify-center mt-8">
+            <!-- Badge "ARCH ACTIVO 99.9%" debajo de la imagen, bien separado -->
+            <div class="flex justify-center mt-10">
                 <div class="bg-darkLight/90 backdrop-blur p-3 rounded-xl shadow-lg border border-gray-700/80 inline-flex items-center space-x-3">
                     <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
                     <span class="text-sm font-bold text-gray-100">ARCH ACTIVO 99.9% ⚡</span>
@@ -280,7 +277,7 @@
         </div>
     </section>
 
-    <!-- Contador y Termómetro (sin cambios) -->
+    <!-- Contador y Termómetro -->
     <section class="py-14 bg-gradient-to-r from-darkLight/30 to-darkLight/10 border-y border-gray-800/50">
         <div class="container max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-10">
@@ -331,9 +328,6 @@
         </div>
     </section>
 
-    <!-- Las secciones restantes (Resultados, Características, Tabla, Planes, Testimonios, Arch, Footer) se mantienen igual -->
-    <!-- Por brevedad, se incluyen igual que en el código anterior, pero sin cambios -->
-
     <!-- Resultados -->
     <section id="results" class="py-20 bg-darkLight/20 scroll-animate">
         <div class="container max-w-7xl mx-auto px-4 md:px-6 text-center">
@@ -357,7 +351,6 @@
         </div>
     </section>
 
-    <!-- Tabla comparativa y Planes (igual que antes) -->
     <section class="py-20 bg-darkLight/20 scroll-animate">
         <div class="container max-w-6xl mx-auto px-4 md:px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">Comparación real con la competencia</h2>
@@ -419,12 +412,12 @@
         </div>
     </footer>
 
-    <!-- Botón flotante WhatsApp -->
+    <!-- Botón flotante WhatsApp (reemplaza TU_CODIGO) -->
     <a href="https://wa.link/TU_CODIGO" target="_blank" class="floating-wa bg-success hover:bg-success/90 text-white p-3 rounded-full shadow-lg flex items-center justify-center">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
-    <!-- Modales (igual que antes) -->
+    <!-- Modales -->
     <div id="licenseModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 modal opacity-0 invisible transition-all duration-300">
         <div class="bg-darkLight rounded-2xl max-w-md w-full mx-4 p-6 border border-gray-700">
             <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-white">Activar tu licencia</h3><button id="closeModalBtn" class="text-gray-400 hover:text-white"><i class="fa fa-times text-xl"></i></button></div>
@@ -447,7 +440,6 @@
     </div>
 
     <script>
-        // (El script es el mismo que el del código anterior, sin cambios)
         let count = 0, target = 5480;
         const updateCounter = () => {
             if (count < target) {
@@ -463,7 +455,9 @@
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
 
-        const modal = document.getElementById('licenseModal'); const openBtn = document.getElementById('openModalBtn'); const closeBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('licenseModal');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
         if (openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); modal.classList.remove('opacity-0', 'invisible'); });
         if (closeBtn) closeBtn.addEventListener('click', () => { modal.classList.add('opacity-0', 'invisible'); });
 
@@ -496,8 +490,10 @@
                         else cellElem.classList.add('neutral');
                     }
                 });
-                const icon = document.getElementById('updateIcon'); const status = document.getElementById('updateStatus');
-                if (icon) icon.classList.add('fa-spin'); if (status) status.innerText = 'Actualizado hace un momento';
+                const icon = document.getElementById('updateIcon');
+                const status = document.getElementById('updateStatus');
+                if (icon) icon.classList.add('fa-spin');
+                if (status) status.innerText = 'Actualizado hace un momento';
                 setTimeout(() => { if (icon) icon.classList.remove('fa-spin'); if (status) status.innerText = 'Actualizando...'; }, 2000);
             } catch (error) { console.error(error); const status = document.getElementById('updateStatus'); if (status) status.innerText = 'Error al actualizar'; }
         }
@@ -531,7 +527,9 @@
             const modalMarketCap = document.getElementById('modalMarketCap');
             const modalLastUpdated = document.getElementById('modalLastUpdated');
             modalTitle.innerText = `${coinSymbol} (${coinId.charAt(0).toUpperCase() + coinId.slice(1)})`;
-            modalPrice.innerText = 'Cargando...'; modalChange.innerText = '--'; modalMarketCap.innerText = 'Cargando...';
+            modalPrice.innerText = 'Cargando...';
+            modalChange.innerText = '--';
+            modalMarketCap.innerText = 'Cargando...';
             modalDiv.classList.remove('opacity-0', 'invisible');
             try {
                 const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd&include_market_cap=true&include_24hr_change=true&include_last_updated_at=true`;
