@@ -46,23 +46,8 @@
         @keyframes blink {
             50% { border-color: transparent; }
         }
-        @keyframes eyePulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: transparent; }
-            50% { box-shadow: 0 0 18px 4px rgba(59, 130, 246, 0.6); border-color: rgba(59, 130, 246, 0.8); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: transparent; }
-        }
-        @keyframes pulseSoft {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
         .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
         .animate-float { animation: float 4s ease-in-out infinite; }
-        .animate-pulse-soft { animation: pulseSoft 3s ease-in-out infinite; }
         .typewriter {
             overflow: hidden;
             white-space: nowrap;
@@ -167,6 +152,27 @@
         }
         @media (max-width: 768px) {
             .typewriter { white-space: normal; border-right: none; animation: none; width: 100%; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-badge { position: relative; margin-top: 1rem; }
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .logo-eye {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            box-shadow: 0 0 12px rgba(59,130,246,0.3);
+        }
+        .logo-eye i {
+            font-size: 1.5rem;
+            color: white;
         }
     </style>
 </head>
@@ -176,8 +182,8 @@
     <nav class="fixed w-full bg-dark/80 backdrop-blur-xl z-50 border-b border-gray-800/60">
         <div class="container max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md border border-transparent logo-eye">
-                    <i class="fa fa-eye text-white text-xl"></i>
+                <div class="logo-eye">
+                    <i class="fa fa-eye"></i>
                 </div>
                 <span class="font-bold text-xl text-white">CryptoArch<span class="text-secondary">Agent</span></span>
             </a>
@@ -202,39 +208,44 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="pt-44 pb-24 md:pt-56 md:pb-36 bg-gradient-to-b from-dark via-dark to-darkLight/20 relative overflow-hidden">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center gap-16 relative z-10">
-            <div class="lg:w-3/5 text-center lg:text-left animate-fade-in-up">
-                <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6 animate-pulse-soft">
-                    🔥 EL ESTÁNDAR MÁS ALTO DEL MERCADO
+    <!-- Hero Section con espaciado mejorado -->
+    <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20 relative overflow-hidden">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Texto principal -->
+                <div class="lg:w-3/5 text-center lg:text-left">
+                    <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6 animate-pulse-soft">
+                        🔥 EL ESTÁNDAR MÁS ALTO DEL MERCADO
+                    </div>
+                    <h1 class="text-[clamp(2rem,5vw,4rem)] font-extrabold leading-tight mb-4">
+                        Domina el Mercado con<br>
+                        <span class="text-secondary typewriter">Inteligencia Artificial Precisa</span>
+                    </h1>
+                    <p class="text-xl text-secondary font-semibold mb-4">Donde el análisis profesional se convierte en acción inmediata</p>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        La única herramienta que te entrega calificaciones del 0 al 100 para cada oportunidad, análisis en 7 activos principales y gestión de riesgo automática.
+                        <span class="block mt-2 text-success font-medium">Activación automática en Telegram en menos de 60 segundos ⚡</span>
+                    </p>
+                    <div class="flex flex-wrap gap-5 justify-center lg:justify-start mb-10">
+                        <a href="#" id="openModalBtn" class="btn-primary text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/25 inline-block">
+                            🚀 COMENZAR PRUEBA GRATUITA 7 DÍAS
+                        </a>
+                        <a href="#pricing" class="bg-darkLight/80 border border-gray-700 hover:border-secondary/50 text-gray-200 px-8 py-4 rounded-xl font-medium text-lg transition-all hover:scale-105">
+                            Ver Planes y Precios
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-[clamp(2rem,5vw,4rem)] font-extrabold leading-tight mb-6">
-                    Domina el Mercado con<br>
-                    <span class="text-secondary typewriter">Inteligencia Artificial Precisa</span>
-                </h1>
-                <p class="text-2xl text-secondary font-bold mb-6">Donde el análisis profesional se convierte en acción inmediata</p>
-                <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    La única herramienta que te entrega calificaciones del 0 al 100 para cada oportunidad, análisis en 7 activos principales y gestión de riesgo automática.
-                    <span class="block mt-2 text-success font-medium">Activación automática en Telegram en menos de 60 segundos ⚡</span>
-                </p>
-                <div class="flex flex-wrap gap-5 justify-center lg:justify-start mb-10">
-                    <a href="#" id="openModalBtn" class="btn-primary text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/25 inline-block">
-                        🚀 COMENZAR PRUEBA GRATUITA 7 DÍAS
-                    </a>
-                    <a href="#pricing" class="bg-darkLight/80 border border-gray-700 hover:border-secondary/50 text-gray-200 px-8 py-4 rounded-xl font-medium text-lg transition-all hover:scale-105">
-                        Ver Planes y Precios
-                    </a>
-                </div>
-            </div>
-            <div class="lg:w-2/5 relative animate-fade-in-up">
-                <div class="bg-darkLight/90 backdrop-blur-sm p-4 rounded-2xl border border-gray-700 shadow-2xl animate-float">
-                    <img src="https://via.placeholder.com/400x600?text=CryptoArch+Agent+Panel" alt="Panel CryptoArch" class="rounded-xl w-full shadow-lg">
-                </div>
-                <div class="absolute -bottom-5 -left-5 bg-darkLight/90 backdrop-blur p-4 rounded-xl shadow-xl border border-gray-700/80">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                        <span class="text-sm font-bold text-gray-100">ARCH ACTIVO 99.9% ⚡</span>
+                <!-- Imagen flotante -->
+                <div class="lg:w-2/5 relative">
+                    <div class="bg-darkLight/90 backdrop-blur-sm p-4 rounded-2xl border border-gray-700 shadow-2xl animate-float">
+                        <img src="https://via.placeholder.com/400x600?text=CryptoArch+Agent+Panel" alt="Panel CryptoArch" class="rounded-xl w-full shadow-lg">
+                    </div>
+                    <!-- Badge "ARCH ACTIVO 99.9%" reposicionado más abajo y fuera de la imagen flotante -->
+                    <div class="mt-6 flex justify-center">
+                        <div class="bg-darkLight/90 backdrop-blur p-3 rounded-xl shadow-lg border border-gray-700/80 inline-flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                            <span class="text-sm font-bold text-gray-100">ARCH ACTIVO 99.9% ⚡</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,7 +282,7 @@
         </div>
     </section>
 
-    <!-- Mapa de Calor en Tiempo Real -->
+    <!-- Mapa de Calor -->
     <section id="market-pulse" class="py-16 bg-dark scroll-animate">
         <div class="container max-w-5xl mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Mapa de Calor <span class="text-secondary">en Tiempo Real</span></h2>
@@ -280,19 +291,19 @@
                 <i class="fa fa-sync-alt" id="updateIcon"></i> <span id="updateStatus">Actualizando...</span>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
-                <div id="heatmap-btc" data-coin-id="bitcoin" data-coin-symbol="BTC" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">BTC<br><span id="btc-change" class="text-sm">--%</span></div>
-                <div id="heatmap-eth" data-coin-id="ethereum" data-coin-symbol="ETH" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">ETH<br><span id="eth-change" class="text-sm">--%</span></div>
-                <div id="heatmap-sol" data-coin-id="solana" data-coin-symbol="SOL" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">SOL<br><span id="sol-change" class="text-sm">--%</span></div>
-                <div id="heatmap-xrp" data-coin-id="ripple" data-coin-symbol="XRP" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">XRP<br><span id="xrp-change" class="text-sm">--%</span></div>
-                <div id="heatmap-bnb" data-coin-id="binancecoin" data-coin-symbol="BNB" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">BNB<br><span id="bnb-change" class="text-sm">--%</span></div>
-                <div id="heatmap-link" data-coin-id="chainlink" data-coin-symbol="LINK" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">LINK<br><span id="link-change" class="text-sm">--%</span></div>
-                <div id="heatmap-avax" data-coin-id="avalanche-2" data-coin-symbol="AVAX" class="heatmap-cell p-4 rounded-xl text-center font-bold transition-all cursor-pointer">AVAX<br><span id="avax-change" class="text-sm">--%</span></div>
+                <div id="heatmap-btc" data-coin-id="bitcoin" data-coin-symbol="BTC" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">BTC<br><span id="btc-change" class="text-sm">--%</span></div>
+                <div id="heatmap-eth" data-coin-id="ethereum" data-coin-symbol="ETH" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">ETH<br><span id="eth-change" class="text-sm">--%</span></div>
+                <div id="heatmap-sol" data-coin-id="solana" data-coin-symbol="SOL" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">SOL<br><span id="sol-change" class="text-sm">--%</span></div>
+                <div id="heatmap-xrp" data-coin-id="ripple" data-coin-symbol="XRP" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">XRP<br><span id="xrp-change" class="text-sm">--%</span></div>
+                <div id="heatmap-bnb" data-coin-id="binancecoin" data-coin-symbol="BNB" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">BNB<br><span id="bnb-change" class="text-sm">--%</span></div>
+                <div id="heatmap-link" data-coin-id="chainlink" data-coin-symbol="LINK" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">LINK<br><span id="link-change" class="text-sm">--%</span></div>
+                <div id="heatmap-avax" data-coin-id="avalanche-2" data-coin-symbol="AVAX" class="heatmap-cell p-4 rounded-xl text-center font-bold cursor-pointer">AVAX<br><span id="avax-change" class="text-sm">--%</span></div>
             </div>
             <p class="text-gray-500 text-sm mt-6"><i class="fa fa-database mr-1"></i> Datos en vivo desde CoinGecko</p>
         </div>
     </section>
 
-    <!-- Resultados (Alertas Reales) -->
+    <!-- Resultados y resto de secciones (no modificadas, pero se mantienen) -->
     <section id="results" class="py-20 bg-darkLight/20 scroll-animate">
         <div class="container max-w-7xl mx-auto px-4 md:px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Alertas Reales Enviadas Esta Semana</h2>
@@ -304,7 +315,6 @@
         </div>
     </section>
 
-    <!-- Características -->
     <section id="features" class="py-20 bg-dark scroll-animate">
         <div class="container max-w-7xl mx-auto px-4 md:px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -316,7 +326,7 @@
         </div>
     </section>
 
-    <!-- Tabla comparativa simplificada -->
+    <!-- Tabla comparativa y planes (sin cambios, ya estaban bien) -->
     <section class="py-20 bg-darkLight/20 scroll-animate">
         <div class="container max-w-6xl mx-auto px-4 md:px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">Comparación real con la competencia</h2>
@@ -334,7 +344,6 @@
         </div>
     </section>
 
-    <!-- Planes -->
     <section id="pricing" class="py-20 bg-dark scroll-animate">
         <div class="container max-w-6xl mx-auto px-4 md:px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white">Elige tu Plan</h2>
@@ -347,7 +356,6 @@
         </div>
     </section>
 
-    <!-- Testimonios -->
     <section id="testimonials" class="py-20 bg-dark scroll-animate">
         <div class="container max-w-6xl mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white">Testimonios Reales</h2>
@@ -359,7 +367,6 @@
         </div>
     </section>
 
-    <!-- Conoce a Arch -->
     <section id="arch" class="py-20 bg-dark scroll-animate">
         <div class="container max-w-5xl mx-auto px-4 text-center">
             <img src="https://via.placeholder.com/200x200?text=ARCH" alt="Arch" class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-secondary">
@@ -368,7 +375,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-dark pt-12 pb-6 border-t border-gray-800/60">
         <div class="container max-w-7xl mx-auto px-4 text-center">
             <div class="flex justify-center space-x-6 mb-6">
@@ -387,7 +393,7 @@
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
-    <!-- Modal Licencia -->
+    <!-- Modales -->
     <div id="licenseModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 modal opacity-0 invisible transition-all duration-300">
         <div class="bg-darkLight rounded-2xl max-w-md w-full mx-4 p-6 border border-gray-700">
             <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-white">Activar tu licencia</h3><button id="closeModalBtn" class="text-gray-400 hover:text-white"><i class="fa fa-times text-xl"></i></button></div>
@@ -396,7 +402,6 @@
         </div>
     </div>
 
-    <!-- Modal Detalle Cripto -->
     <div id="cryptoModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 modal opacity-0 invisible transition-all duration-300">
         <div class="modal-content bg-darkLight rounded-2xl p-6 border border-gray-700 shadow-2xl mx-4">
             <div class="flex justify-between items-center mb-4"><h3 id="modalCoinTitle" class="text-2xl font-bold text-white">Bitcoin (BTC)</h3><button id="closeModalBtn2" class="text-gray-400 hover:text-white text-2xl"><i class="fa fa-times"></i></button></div>
@@ -411,10 +416,16 @@
     </div>
 
     <script>
-        // Contador de usuarios
+        // Contador
         let count = 0, target = 5480;
         const updateCounter = () => {
-            if (count < target) { count += Math.ceil(target / 50); if (count > target) count = target; document.getElementById('userCounter').innerText = count; document.getElementById('progressBar').style.width = (count / target * 100) + '%'; setTimeout(updateCounter, 40); }
+            if (count < target) {
+                count += Math.ceil(target / 50);
+                if (count > target) count = target;
+                document.getElementById('userCounter').innerText = count;
+                document.getElementById('progressBar').style.width = (count / target * 100) + '%';
+                setTimeout(updateCounter, 40);
+            }
         };
         updateCounter();
 
@@ -427,7 +438,7 @@
         if (openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); modal.classList.remove('opacity-0', 'invisible'); });
         if (closeBtn) closeBtn.addEventListener('click', () => { modal.classList.add('opacity-0', 'invisible'); });
 
-        // Mapa de Calor en tiempo real (CoinGecko)
+        // Mapa de Calor
         const coins = [
             { id: 'bitcoin', symbol: 'BTC', changeId: 'btc-change', heatmapId: 'heatmap-btc' },
             { id: 'ethereum', symbol: 'ETH', changeId: 'eth-change', heatmapId: 'heatmap-eth' },
