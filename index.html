@@ -155,7 +155,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* Logotipo con ojo (funciona siempre) */
         .logo-eye {
             display: flex;
             align-items: center;
@@ -170,14 +169,26 @@
             font-size: 1.5rem;
             color: white;
         }
+        /* Badge superior derecho */
+        .top-badge {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(4px);
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
         @media (max-width: 768px) {
             .typewriter { white-space: normal; border-right: none; animation: none; width: 100%; }
+            .top-badge { font-size: 0.6rem; padding: 0.2rem 0.5rem; }
         }
     </style>
 </head>
 <body class="bg-dark text-gray-200 font-inter antialiased">
 
-    <!-- Navegación con logotipo de ojo (visible) -->
+    <!-- Navegación con logotipo y badge superior derecho -->
     <nav class="fixed w-full bg-dark/80 backdrop-blur-xl z-50 border-b border-gray-800/60">
         <div class="container max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
@@ -203,15 +214,19 @@
                 <a href="https://t.me/Cryptozerumbot" class="btn-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20">
                     <i class="fa fa-paper-plane mr-2"></i> Probar Gratis
                 </a>
+                <!-- Badge "ARCH ACTIVO 99.9%" movido aquí (superior derecha) -->
+                <div class="top-badge flex items-center space-x-2 ml-2">
+                    <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                    <span class="text-gray-200">ARCH ACTIVO 99.9% ⚡</span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section con espaciado ajustado (menos padding superior) -->
+    <!-- Hero Section (sin "Panel CryptoArch", texto corregido) -->
     <section id="hero" class="pt-32 pb-20 md:pt-44 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20">
         <div class="container max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
-                <!-- Texto principal -->
                 <div class="lg:w-3/5 text-center lg:text-left">
                     <div class="inline-block bg-primary/10 border border-primary/20 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
                         🔥 EL ESTÁNDAR MÁS ALTO DEL MERCADO
@@ -234,24 +249,16 @@
                         </a>
                     </div>
                 </div>
-                <!-- Imagen flotante -->
                 <div class="lg:w-2/5 relative">
                     <div class="bg-darkLight/90 backdrop-blur-sm p-4 rounded-2xl border border-gray-700 shadow-2xl animate-float">
                         <img src="https://via.placeholder.com/400x600?text=CryptoArch+Agent+Panel" alt="Panel CryptoArch" class="rounded-xl w-full shadow-lg">
                     </div>
                 </div>
             </div>
-            <!-- Badge "ARCH ACTIVO 99.9%" justo debajo de la imagen, con poco margen -->
-            <div class="flex justify-center mt-6">
-                <div class="bg-darkLight/90 backdrop-blur p-3 rounded-xl shadow-lg border border-gray-700/80 inline-flex items-center space-x-3">
-                    <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                    <span class="text-sm font-bold text-gray-100">ARCH ACTIVO 99.9% ⚡</span>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Contador y Termómetro (sin cambios) -->
+    <!-- Contador y Termómetro -->
     <section class="py-14 bg-gradient-to-r from-darkLight/30 to-darkLight/10 border-y border-gray-800/50">
         <div class="container max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-10">
@@ -330,7 +337,7 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">Comparación real con la competencia</h2>
             <div class="overflow-x-auto rounded-2xl border border-gray-800 bg-darkLight/30">
                 <table class="w-full text-left">
-                    <thead><tr class="border-b border-gray-700"><th class="p-4">Característica</th><th class="p-4 text-center">CryptoArch Agent</th><th class="p-4 text-center">Competencia</th> </table></thead>
+                    <thead><tr class="border-b border-gray-700"><th class="p-4">Característica</th><th class="p-4 text-center">CryptoArch Agent</th><th class="p-4 text-center">Competencia</th> <tr></thead>
                     <tbody>
                         <tr class="border-b border-gray-800/50"><td class="p-4">Scoring 0-100</td><td class="p-4 text-center text-success font-bold">✅ Exclusivo</td><td class="p-4 text-center text-danger">❌</td></tr>
                         <tr class="border-b border-gray-800/50"><td class="p-4">Activación inmediata</td><td class="p-4 text-center text-success font-bold">✅ 60 segundos</td><td class="p-4 text-center text-danger">⏳ Horas/días</td></tr>
