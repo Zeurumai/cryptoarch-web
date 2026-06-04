@@ -155,12 +155,20 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .logo-svg {
+        /* Logotipo con ojo (funciona siempre) */
+        .logo-eye {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 44px;
             height: 44px;
-            display: block;
             border-radius: 12px;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
             box-shadow: 0 0 12px rgba(59,130,246,0.3);
+        }
+        .logo-eye i {
+            font-size: 1.5rem;
+            color: white;
         }
         @media (max-width: 768px) {
             .typewriter { white-space: normal; border-right: none; animation: none; width: 100%; }
@@ -169,47 +177,13 @@
 </head>
 <body class="bg-dark text-gray-200 font-inter antialiased">
 
-    <!-- Navegación con LOGOTIPO SVG PERSONALIZADO -->
+    <!-- Navegación con logotipo de ojo (visible) -->
     <nav class="fixed w-full bg-dark/80 backdrop-blur-xl z-50 border-b border-gray-800/60">
         <div class="container max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
-                <!-- SVG del logotipo (el diseño de Dola) -->
-                <svg class="logo-svg" width="44" height="44" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#F9E07A" />
-                            <stop offset="40%" stop-color="#D4AF37" />
-                            <stop offset="100%" stop-color="#B8860B" />
-                        </linearGradient>
-                        <linearGradient id="eyeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#87CEFA" />
-                            <stop offset="50%" stop-color="#1E90FF" />
-                            <stop offset="100%" stop-color="#000080" />
-                        </linearGradient>
-                        <linearGradient id="candleGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#98FB98" />
-                            <stop offset="100%" stop-color="#008000" />
-                        </linearGradient>
-                    </defs>
-                    <rect width="512" height="512" fill="#0F1E29" rx="12"/>
-                    <circle cx="256" cy="256" r="215" fill="none" stroke="url(#goldRing)" stroke-width="14" opacity="0.95"/>
-                    <path d="M256,110 Q370,150 370,256 L370,400 Q370,412 358,412 L154,412 Q142,412 142,400 L142,256 Q142,150 256,110 Z" fill="none" stroke="url(#goldRing)" stroke-width="11" opacity="0.95"/>
-                    <circle cx="256" cy="222" r="58" fill="#FFFFFF"/>
-                    <circle cx="256" cy="222" r="44" fill="url(#eyeGradient)"/>
-                    <circle cx="256" cy="222" r="19" fill="#000000"/>
-                    <circle cx="241" cy="207" r="7" fill="#FFFFFF" opacity="0.9"/>
-                    <g transform="translate(145, 325)">
-                        <path d="M0,75 L22,55 L44,65 L66,35 L88,45 L110,15 L132,25 L154,5 L176,15 L198,-5 L220,5 L242,-15 L264,-5 L286,-25 L308,-15 L330,-35" stroke="#32CD32" stroke-width="1.8" fill="none"/>
-                        <rect x="16" y="48" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="58" y="28" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="100" y="8" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="142" y="-2" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="184" y="-12" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="226" y="-22" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="268" y="-32" width="10" height="19" fill="url(#candleGreen)"/>
-                        <rect x="310" y="-42" width="10" height="19" fill="url(#candleGreen)"/>
-                    </g>
-                </svg>
+                <div class="logo-eye">
+                    <i class="fa fa-eye"></i>
+                </div>
                 <span class="font-bold text-xl text-white">CryptoArch<span class="text-secondary">Agent</span></span>
             </a>
             <div class="hidden md:flex space-x-8 font-medium text-sm">
@@ -233,8 +207,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section con imagen flotante y badge separado -->
-    <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20">
+    <!-- Hero Section con espaciado ajustado (menos padding superior) -->
+    <section id="hero" class="pt-32 pb-20 md:pt-44 md:pb-28 bg-gradient-to-b from-dark via-dark to-darkLight/20">
         <div class="container max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <!-- Texto principal -->
@@ -267,8 +241,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Badge "ARCH ACTIVO 99.9%" debajo de la imagen, bien separado -->
-            <div class="flex justify-center mt-10">
+            <!-- Badge "ARCH ACTIVO 99.9%" justo debajo de la imagen, con poco margen -->
+            <div class="flex justify-center mt-6">
                 <div class="bg-darkLight/90 backdrop-blur p-3 rounded-xl shadow-lg border border-gray-700/80 inline-flex items-center space-x-3">
                     <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
                     <span class="text-sm font-bold text-gray-100">ARCH ACTIVO 99.9% ⚡</span>
@@ -277,7 +251,7 @@
         </div>
     </section>
 
-    <!-- Contador y Termómetro -->
+    <!-- Contador y Termómetro (sin cambios) -->
     <section class="py-14 bg-gradient-to-r from-darkLight/30 to-darkLight/10 border-y border-gray-800/50">
         <div class="container max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-10">
@@ -413,7 +387,7 @@
     </footer>
 
     <!-- Botón flotante WhatsApp (reemplaza TU_CODIGO) -->
-    <a href="https://wa.link/TU_CODIGO" target="_blank" class="floating-wa bg-success hover:bg-success/90 text-white p-3 rounded-full shadow-lg flex items-center justify-center">
+    <a href="https://wa.link/yvuxl0" target="_blank" class="floating-wa bg-success hover:bg-success/90 text-white p-3 rounded-full shadow-lg flex items-center justify-center">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
