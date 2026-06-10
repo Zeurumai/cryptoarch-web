@@ -2,284 +2,491 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoArch Agent | Bot de Trading No Custodial con IA Predictiva</title>
-    <meta name="description" content="Bot de trading para Telegram no custodial. Alertas de ballenas reales en BTC/ETH, IA Predictiva (PIT) y datos en tiempo real. Suscripciones con Mercado Pago.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>CryptoArch Agent · Bot No Custodial con Alertas de Ballenas Reales</title>
+    <meta name="description" content="Bot de trading en Telegram 100% no custodial. Alertas reales de ballenas BTC/ETH, IA Predictiva, planes desde $190 MXN. Legal bajo RESICO México.">
     
-    <!-- Google Fonts + Tailwind + Font Awesome -->
+    <!-- Tailwind CSS + Font Awesome + Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        body { background: #0A0C12; }
-        .glass-card {
-            background: rgba(15, 18, 28, 0.8);
-            backdrop-filter: blur(4px);
-            border: 1px solid #1E293B;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .glass-card:hover {
-            border-color: #3B82F6;
-            transform: translateY(-4px);
-        }
-        .coin-row {
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .coin-row:hover {
-            background: #1E293B;
-            transform: scale(1.01);
-        }
-        .theme-transition {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body {
+            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.08) 0%, transparent 50%),
+                        #0A0C12;
+            transition: background 0.3s, color 0.3s;
         }
         body.light-mode {
-            background: #F8FAFC;
+            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.05) 0%, transparent 50%),
+                        #F8FAFC;
+        }
+        .glass-card {
+            background: rgba(15, 17, 25, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
         }
         body.light-mode .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border-color: #E2E8F0;
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(59, 130, 246, 0.3);
         }
-        body.light-mode .glass-card:hover {
-            border-color: #3B82F6;
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transition: all 0.2s;
         }
-        body.light-mode .text-gray-400 { color: #64748B; }
-        body.light-mode .border-gray-800 { border-color: #CBD5E1; }
-        body.light-mode footer { background: #F1F5F9; border-color: #CBD5E1; }
-        body.light-mode .bg-\[\#0F1119\] { background: #FFFFFF; }
-        body.light-mode .bg-\[\#0A0C12\] { background: #F8FAFC; }
-        body.light-mode .bg-\[\#0A0C12\]\/90 { background: rgba(248,250,252,0.9); }
-        body.light-mode .bg-gray-800 { background: #E2E8F0; }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+        }
+        .coin-row {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .coin-row:hover {
+            background: rgba(59,130,246,0.1);
+        }
+        .nav-blur {
+            background: rgba(10,12,18,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59,130,246,0.1);
+        }
+        body.light-mode .nav-blur {
+            background: rgba(248,250,252,0.85);
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
     </style>
 </head>
-<body class="text-gray-200 theme-transition">
+<body class="text-gray-200">
 
-    <header class="fixed top-0 w-full z-50 bg-[#0A0C12]/90 backdrop-blur-md border-b border-gray-800 theme-transition">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap gap-4">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 nav-blur">
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">CA</div>
-                <span class="text-xl font-bold tracking-tight">CRYPTOARCH <span class="text-blue-500">AGENT</span></span>
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    CA
+                </div>
+                <span class="text-xl font-black">CRYPTOARCH <span class="text-blue-500">AGENT</span></span>
             </div>
-            <nav class="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                <a href="#features" class="hover:text-blue-400 transition">Características</a>
-                <a href="#pricing" class="hover:text-blue-400 transition">Planes</a>
-                <a href="#demo" class="hover:text-blue-400 transition">Demo</a>
-                <button id="theme-toggle" class="text-gray-300 hover:text-blue-400 transition">
-                    <i class="fas fa-moon"></i> <span id="theme-text" class="hidden md:inline ml-1">Claro</span>
-                </button>
-                <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="bg-blue-600 px-4 py-2 rounded-full text-white hover:bg-blue-700 transition text-sm"><i class="fab fa-telegram mr-1"></i> Bot</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#features" class="hover:text-blue-400" data-i18n="nav_features">Características</a>
+                <a href="#pricing" class="hover:text-blue-400" data-i18n="nav_plans">Planes</a>
+                <a href="#roadmap" class="hover:text-blue-400" data-i18n="nav_roadmap">Próximamente</a>
+                <a href="#demo" class="hover:text-blue-400" data-i18n="nav_demo">Demo</a>
+                <button id="theme-toggle" class="text-gray-300 hover:text-blue-400"><i class="fas fa-moon"></i></button>
+                <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="btn-primary px-5 py-2 rounded-xl text-white font-semibold flex items-center gap-2">
+                    <i class="fab fa-telegram"></i> <span data-i18n="nav_cta">Iniciar Bot</span>
+                </a>
             </nav>
+            <button id="menu-toggle" class="md:hidden text-gray-300"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-dark-800/95 backdrop-blur-lg border-t border-blue-500/10">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
+                <a href="#features" data-i18n="nav_features">Características</a>
+                <a href="#pricing" data-i18n="nav_plans">Planes</a>
+                <a href="#roadmap" data-i18n="nav_roadmap">Próximamente</a>
+                <a href="#demo" data-i18n="nav_demo">Demo</a>
+                <button id="theme-toggle-mobile" class="text-left py-2"><i class="fas fa-moon mr-2"></i> <span data-i18n="theme_toggle">Modo claro/oscuro</span></button>
+                <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="btn-primary py-2 rounded-xl text-center"><span data-i18n="nav_cta">Iniciar Bot</span></a>
+            </div>
         </div>
     </header>
 
-    <main class="pt-28 pb-12 px-4">
+    <main class="pt-28 pb-16 px-4">
         <div class="container mx-auto max-w-7xl">
 
-            <!-- HERO -->
-            <section class="text-center py-8 md:py-16">
-                <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm mb-6 border border-blue-500/20">
-                    <i class="fas fa-brain"></i> Tecnología Propia: IA Predictiva (PIT)
+            <!-- Hero -->
+            <section class="text-center py-12 md:py-20">
+                <div class="inline-block px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm mb-6 border border-blue-500/20" data-i18n="hero_badge">
+                    🔒 100% No Custodial · Alertas Reales de Ballenas
                 </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight bg-gradient-to-r from-white via-blue-300 to-emerald-400 bg-clip-text text-transparent">
-                    CryptoArch Agent<br>El bot que supera a los líderes
+                <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-400 to-emerald-400 bg-clip-text text-transparent leading-tight">
+                    CryptoArch Agent
                 </h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mt-6">
-                    Alertas de ballenas reales · IA Predictiva · Sin custodiar tus fondos
+                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6" data-i18n="hero_subtitle">
+                    Bot de trading en Telegram con alertas de ballenas <strong>reales en BTC y ETH</strong>. No custodiamos tus fondos. Planes desde $190 MXN.
                 </p>
                 <div class="mt-8 flex gap-4 justify-center flex-wrap">
-                    <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition flex items-center gap-2"><i class="fab fa-telegram text-xl"></i> Probar gratis</a>
-                    <a href="#pricing" class="border border-gray-600 hover:border-blue-500 px-8 py-3 rounded-full font-semibold transition">Ver planes</a>
+                    <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
+                        <i class="fab fa-telegram text-xl"></i> <span data-i18n="hero_cta">Probar gratis</span>
+                    </a>
+                    <a href="#pricing" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero_cta2">Ver planes</a>
                 </div>
             </section>
 
-            <!-- Widgets en tiempo real -->
-            <section class="my-8">
+            <!-- Widgets en vivo -->
+            <section class="my-12">
                 <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Fear & Greed Index -->
-                    <div class="glass-card rounded-2xl p-5">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-semibold"><i class="fas fa-chart-line text-blue-500 mr-2"></i> Miedo & Avaricia</h3>
-                            <span class="text-xs text-gray-500" id="fg-update"></span>
-                        </div>
+                    <!-- Miedo y Avaricia -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold flex items-center gap-2 mb-3"><i class="fas fa-chart-line text-blue-500"></i> <span data-i18n="fear_title">Miedo & Avaricia</span></h3>
                         <div class="flex items-center gap-5">
-                            <div class="text-5xl font-black" id="fg-value">--</div>
-                            <div class="text-lg font-medium px-3 py-1 rounded-full" id="fg-classification">---</div>
+                            <span class="text-6xl font-black text-blue-400" id="fg-value">--</span>
+                            <span class="px-3 py-1 rounded-full text-sm font-semibold" id="fg-class">---</span>
                         </div>
-                        <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
-                            <div id="fg-bar" class="bg-gradient-to-r from-red-500 to-green-500 h-2 rounded-full" style="width: 0%"></div>
+                        <div class="w-full h-2 bg-gray-700 rounded-full mt-3">
+                            <div id="fg-bar" class="h-full rounded-full bg-gradient-to-r from-red-500 to-green-500" style="width: 0%"></div>
                         </div>
+                        <p class="text-xs text-gray-500 mt-2" id="fg-time">Actualizando...</p>
                     </div>
-
-                    <!-- Ballenas reales - redirige al bot -->
-                    <div class="glass-card rounded-2xl p-5 text-center">
-                        <i class="fas fa-whale text-5xl text-emerald-400 mb-3"></i>
-                        <h3 class="text-xl font-semibold mb-2">Ballenas en tiempo real</h3>
-                        <p class="text-gray-400 text-sm mb-4">
-                            Detectamos movimientos de ballenas en <strong>BTC y ETH</strong> desde +$500k USD.<br>
-                            Recibe la alerta al instante en tu Telegram.
-                        </p>
-                        <a href="https://t.me/cryptoarchtrading_bot?start=whales" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 px-5 py-2 rounded-full text-white font-semibold transition">
-                            <i class="fab fa-telegram mr-2"></i> Ver ballenas reales
-                        </a>
-                        <p class="text-xs text-gray-500 mt-3">Datos on-chain · Sin simulaciones</p>
+                    <!-- Ballenas reales -->
+                    <div class="glass-card rounded-2xl p-6 text-center border border-emerald-500/30">
+                        <i class="fas fa-whale text-5xl text-emerald-400 mb-3 animate-float"></i>
+                        <h3 class="text-xl font-bold" data-i18n="whale_title">Ballenas en tiempo real</h3>
+                        <p class="text-gray-300 text-sm my-3" data-i18n="whale_text">Movimientos >50k USD en BTC y ETH. Alertas verificadas on-chain.</p>
+                        <a href="https://t.me/cryptoarchtrading_bot?start=whales" target="_blank" class="inline-block bg-emerald-600 px-5 py-2 rounded-xl text-white font-semibold" data-i18n="whale_btn">Activar alertas</a>
                     </div>
-
-                    <!-- IA Predictiva (PIT) -->
-                    <div class="glass-card rounded-2xl p-5 border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold mb-2"><i class="fas fa-microchip text-blue-400 mr-2"></i> IA Predictiva (PIT)</h3>
-                        <p class="text-xs text-gray-400 mb-3">Probabilidad de volatilidad por ballenas</p>
-                        <div class="text-3xl font-black text-blue-400" id="pit-value">--<span class="text-sm">%</span></div>
-                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
-                            <div id="pit-bar" class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%"></div>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-3"><i class="fas fa-lock"></i> Tecnología exclusiva</p>
+                    <!-- IA Predictiva -->
+                    <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500">
+                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-microchip text-blue-400"></i> <span data-i18n="pit_title">IA Predictiva (PIT)</span></h3>
+                        <p class="text-sm text-gray-400" data-i18n="pit_text">Volatilidad estimada por movimientos de ballenas</p>
+                        <div class="text-4xl font-black text-blue-400 my-2"><span id="pit-val">--</span><span class="text-sm">%</span></div>
+                        <div class="w-full h-2 bg-gray-700 rounded-full"><div id="pit-bar" class="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" style="width: 0%"></div></div>
                     </div>
                 </div>
 
-                <!-- Precios en tiempo real -->
-                <div class="mt-8 glass-card rounded-2xl p-5">
-                    <h3 class="text-xl font-semibold mb-4"><i class="fas fa-coins text-yellow-500 mr-2"></i> Precios en tiempo real</h3>
+                <!-- Tabla de precios -->
+                <div class="glass-card rounded-2xl p-6 mt-8">
+                    <h3 class="text-xl font-bold mb-4"><i class="fas fa-coins text-yellow-500 mr-2"></i> <span data-i18n="prices_title">Precios en tiempo real</span></h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
                             <thead class="border-b border-gray-700">
-                                <tr><th class="py-3">Moneda</th><th>Precio (USD)</th><th>Cambio 24h</th><th>Tendencia</th></tr>
+                                <tr class="text-gray-400 text-sm"><th class="py-3"><span data-i18n="table_coin">Moneda</span></th><th><span data-i18n="table_price">Precio USD</span></th><th><span data-i18n="table_change">24h %</span></th><th><span data-i18n="table_trend">Gráfico</span></th></tr>
                             </thead>
-                            <tbody id="crypto-table"><tr><td colspan="4" class="py-4 text-center">Cargando datos...</td></tr></tbody>
+                            <tbody id="prices-table"><tr><td colspan="4" class="py-8 text-center">Cargando datos...</td></tr>
+                            </tbody>
                         </table>
                     </div>
-                    <p class="text-xs text-gray-500 mt-3 text-right"><i class="fas fa-chart-line"></i> Datos CoinGecko · Actualización 5min</p>
+                    <p class="text-xs text-gray-500 text-right mt-3"><span data-i18n="table_click">Click en cualquier fila para ver detalles</span> · Fuente: CoinGecko</p>
                 </div>
             </section>
 
             <!-- Características -->
             <section id="features" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">¿Por qué CryptoArch Agent?</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-brain text-4xl text-blue-500 mb-4"></i><h3 class="text-xl font-bold">IA Predictiva (PIT)</h3><p class="text-gray-400 mt-2">Predice volatilidad en tiempo real.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-whale text-4xl text-emerald-400 mb-4"></i><h3 class="text-xl font-bold">Ballenas reales</h3><p class="text-gray-400 mt-2">Alertas de movimientos BTC/ETH +$500k.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-shield-alt text-4xl text-blue-500 mb-4"></i><h3 class="text-xl font-bold">No custodial</h3><p class="text-gray-400 mt-2">Tú conservas tus llaves.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-chart-line text-4xl text-blue-500 mb-4"></i><h3 class="text-xl font-bold">Alertas automáticas</h3><p class="text-gray-400 mt-2">Precio, ballenas, análisis técnico.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-percent text-4xl text-emerald-400 mb-4"></i><h3 class="text-xl font-bold">Comisión 0.1%</h3><p class="text-gray-400 mt-2">La más baja del mercado.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-credit-card text-4xl text-blue-500 mb-4"></i><h3 class="text-xl font-bold">Mercado Pago</h3><p class="text-gray-400 mt-2">Pago en MXN vía bot.</p></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="features_title">Características clave</h2>
+                <div class="grid md:grid-cols-3 gap-6 mt-10">
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-whale text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature1_title">Ballenas reales</h3><p class="text-gray-300 text-sm" data-i18n="feature1_text">Alertas verificadas en BTC y ETH con movimientos >50k USD.</p></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-shield-alt text-4xl text-blue-500 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature2_title">No custodial</h3><p class="text-gray-300 text-sm" data-i18n="feature2_text">Nunca accedemos a tus fondos o claves privadas.</p></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-chart-line text-4xl text-blue-500 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature3_title">Datos en vivo</h3><p class="text-gray-300 text-sm" data-i18n="feature3_text">Índice de miedo/avaricia + precios de 7 criptomonedas.</p></div>
                 </div>
             </section>
 
-            <!-- Planes de suscripción -->
+            <!-- Planes -->
             <section id="pricing" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Planes flexibles</h2>
-                <p class="text-center text-gray-400 mb-12">Elige tu plan y el bot te guiará en el pago con Mercado Pago</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="pricing_title">Planes flexibles</h2>
+                <p class="text-gray-400 text-center mb-10" data-i18n="pricing_sub">Paga con Mercado Pago a través del bot</p>
                 <div class="grid md:grid-cols-4 gap-6">
-                    <div class="glass-card rounded-2xl p-6 text-center">
-                        <h3 class="text-2xl font-bold">Mensual</h3>
-                        <div class="text-3xl font-black mt-4">$190 <span class="text-base font-normal text-gray-400">MXN</span></div>
-                        <a href="https://t.me/cryptoarchtrading_bot?start=monthly" target="_blank" class="mt-6 block bg-blue-600 hover:bg-blue-700 py-2 rounded-full transition">Comprar vía bot</a>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500">
-                        <h3 class="text-2xl font-bold">Trimestral</h3>
-                        <div class="text-3xl font-black mt-4">$540 <span class="text-base font-normal text-gray-400">MXN</span></div>
-                        <div class="text-sm text-emerald-400 mb-2">Ahorra 5%</div>
-                        <a href="https://t.me/cryptoarchtrading_bot?start=quarterly" target="_blank" class="mt-6 block bg-blue-600 hover:bg-blue-700 py-2 rounded-full transition">Comprar vía bot</a>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center">
-                        <h3 class="text-2xl font-bold">Anual</h3>
-                        <div class="text-3xl font-black mt-4">$1,900 <span class="text-base font-normal text-gray-400">MXN</span></div>
-                        <div class="text-sm text-emerald-400 mb-2">Ahorra 16%</div>
-                        <a href="https://t.me/cryptoarchtrading_bot?start=yearly" target="_blank" class="mt-6 block bg-blue-600 hover:bg-blue-700 py-2 rounded-full transition">Comprar vía bot</a>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center bg-gradient-to-b from-blue-900/20 to-transparent">
-                        <h3 class="text-2xl font-bold">Lifetime</h3>
-                        <div class="text-3xl font-black mt-4">$5,000 <span class="text-base font-normal text-gray-400">MXN</span></div>
-                        <a href="https://t.me/cryptoarchtrading_bot?start=lifetime" target="_blank" class="mt-6 block bg-emerald-600 hover:bg-emerald-700 py-2 rounded-full transition">Comprar vía bot</a>
-                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="monthly">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/cryptoarchtrading_bot?start=monthly" target="_blank" class="btn-primary block py-2 rounded-xl" data-i18n="select_btn">Seleccionar</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold" data-i18n="quarterly">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="save5">Ahorra 5%</div><a href="https://t.me/cryptoarchtrading_bot?start=quarterly" target="_blank" class="btn-primary block py-2 rounded-xl" data-i18n="select_btn">Seleccionar</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="yearly">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="save16">Ahorra 16%</div><a href="https://t.me/cryptoarchtrading_bot?start=yearly" target="_blank" class="btn-primary block py-2 rounded-xl" data-i18n="select_btn">Seleccionar</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center bg-gradient-to-b from-blue-900/20"><h3 class="text-2xl font-bold" data-i18n="lifetime">Lifetime</h3><div class="text-3xl font-black my-3">$5,000 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/cryptoarchtrading_bot?start=lifetime" target="_blank" class="btn-primary block py-2 rounded-xl bg-emerald-600" data-i18n="select_btn">Seleccionar</a></div>
                 </div>
-                <p class="text-center text-xs text-gray-500 mt-8">* Al hacer clic, se abrirá el bot de Telegram. El bot te dará las instrucciones de pago.</p>
             </section>
 
-            <!-- Demo interactiva -->
+            <!-- Próximamente (Roadmap) -->
+            <section id="roadmap" class="my-12">
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm mb-4"><i class="fas fa-rocket mr-1"></i> <span data-i18n="roadmap_badge">Roadmap</span></div>
+                    <h2 class="text-3xl font-bold mb-4" data-i18n="roadmap_title">Próximamente en CryptoArch Agent</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-10" data-i18n="roadmap_sub">Funcionalidades que llegarán en las próximas 1-2 semanas</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-microchip text-3xl text-purple-400 mb-2"></i><h3 class="font-bold" data-i18n="road1_title">IA con Groq</h3><p class="text-xs text-gray-400" data-i18n="road1_desc">Análisis automático de movimientos</p></div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-chart-line text-3xl text-purple-400 mb-2"></i><h3 class="font-bold" data-i18n="road2_title">Backtesting</h3><p class="text-xs text-gray-400" data-i18n="road2_desc">Simulación histórica</p></div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-robot text-3xl text-purple-400 mb-2"></i><h3 class="font-bold" data-i18n="road3_title">Trading automático</h3><p class="text-xs text-gray-400" data-i18n="road3_desc">Stop-loss / take-profit</p></div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-sliders-h text-3xl text-purple-400 mb-2"></i><h3 class="font-bold" data-i18n="road4_title">Alertas personalizables</h3><p class="text-xs text-gray-400" data-i18n="road4_desc">Por umbral y moneda</p></div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-coins text-3xl text-purple-400 mb-2"></i><h3 class="font-bold" data-i18n="road5_title">Más monedas</h3><p class="text-xs text-gray-400" data-i18n="road5_desc">Soporte para ballenas en SOL, XRP, etc.</p></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-8"><span data-i18n="roadmap_footer">¿Quieres probar en beta?</span> <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="text-blue-400" data-i18n="roadmap_link">Contáctanos en Telegram</a></p>
+                </div>
+            </section>
+
+            <!-- Demo simulación -->
             <section id="demo" class="py-12">
                 <div class="glass-card rounded-2xl p-8 text-center">
-                    <h2 class="text-2xl font-bold mb-2"><i class="fas fa-tv text-blue-400 mr-2"></i> Simulación de alerta de ballena</h2>
-                    <p class="text-gray-400 mb-6">Así se ve una notificación real en el bot de Telegram</p>
-                    <div class="max-w-md mx-auto bg-[#0F1119] border border-gray-700 rounded-xl p-4 text-left relative" id="demoAlert">
+                    <h2 class="text-2xl font-bold mb-2"><i class="fas fa-tv text-blue-400 mr-2"></i> <span data-i18n="demo_title">Simulación de alerta de ballena</span></h2>
+                    <p class="text-gray-400 mb-6" data-i18n="demo_sub">Así se ve una notificación real en el bot de Telegram</p>
+                    <div class="max-w-md mx-auto bg-dark-800/80 border border-blue-500/20 rounded-xl p-4 text-left">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center"><i class="fab fa-telegram text-blue-400"></i></div>
-                            <div><span class="font-bold">CryptoArch Agent</span><span class="text-gray-500 text-xs ml-2" id="demoTime">hace 1 min</span></div>
+                            <div><span class="font-bold">CryptoArch Agent</span><span class="text-gray-500 text-xs ml-2" id="demo-time">hace 1 min</span></div>
                         </div>
-                        <div class="mt-3 pl-12">
+                        <div class="mt-2 pl-12">
                             <p class="text-emerald-400 font-mono">🐋 ALERTA BALLENA DETECTADA</p>
-                            <p id="demoText" class="text-sm">1,234 BTC movidos hacia exchange desconocido<br><span class="text-gray-500">≈ $78.5M USD · Alta probabilidad de venta</span></p>
+                            <p id="demo-text" class="text-sm">1,234 BTC movidos hacia exchange desconocido<br><span class="text-gray-500">≈ $78.5M USD · Alta probabilidad de venta</span></p>
                         </div>
                     </div>
-                    <button id="simulateWhaleBtn" class="mt-6 px-6 py-2 border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500/10 transition">Generar nueva alerta demo</button>
+                    <button id="simulate-btn" class="mt-6 px-5 py-2 border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500/10 transition" data-i18n="demo_btn">Generar nueva alerta demo</button>
                 </div>
             </section>
 
             <!-- Testimonios -->
             <section class="py-12">
-                <h2 class="text-3xl font-bold text-center mb-10">Lo que dicen los primeros traders</h2>
+                <h2 class="text-3xl font-bold text-center mb-10" data-i18n="testimonials_title">Lo que dicen los primeros traders</h2>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="mt-3 italic text-gray-300">“La alerta de ballena me salvó de una caída del 9% en ETH.”</p><p class="mt-4 font-semibold">— Andrés M.</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="mt-3 italic text-gray-300">“No custodial es el futuro. Por fin un bot que respeta tus llaves.”</p><p class="mt-4 font-semibold">— Valeria R.</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="mt-3 italic text-gray-300">“La IA Predictiva es un game changer. Lifetime fue no-brainer.”</p><p class="mt-4 font-semibold">— Carlos D.</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial1">“La alerta de ballena me salvó de una caída del 9% en ETH. Muy preciso.”</p><p class="font-semibold mt-2">— Andrés M.</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial2">“No custodial, rápido y confiable. El plan lifetime es un no-brainer.”</p><p class="font-semibold mt-2">— Valeria R.</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial3">“Me encanta que respeten mis llaves. Las alertas son reales y útiles.”</p><p class="font-semibold mt-2">— Carlos D.</p></div>
                 </div>
             </section>
 
-            <footer class="border-t border-gray-800 py-8 mt-12 bg-[#06070C] rounded-2xl">
-                <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
-                    <div class="flex flex-wrap justify-center gap-6 mb-4">
-                        <a href="terminos.html" class="hover:text-blue-400">Términos de servicio</a>
-                        <a href="privacidad.html" class="hover:text-blue-400">Política de privacidad</a>
-                        <a href="mailto:contacto@cryptoarchagent.com" class="hover:text-blue-400">contacto@cryptoarchagent.com</a>
-                        <a href="https://x.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i> X</a>
-                        <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram</a>
-                        <a href="https://github.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                    <p>© 2025 CryptoArch Agent – Operamos bajo RESICO (México) · Non-custodial · Datos de ballenas en tiempo real · Este no es asesoramiento financiero.</p>
+            <!-- Footer con selector de idioma neutral -->
+            <footer class="border-t border-blue-500/10 pt-8 mt-8 text-center text-gray-500 text-sm">
+                <div class="flex flex-wrap justify-center gap-6 mb-4">
+                    <a href="terminos.html" class="hover:text-blue-400" data-i18n="footer_terms">Términos de servicio</a>
+                    <a href="privacidad.html" class="hover:text-blue-400" data-i18n="footer_privacy">Política de privacidad</a>
+                    <a href="mailto:contacto@cryptoarchagent.com" class="hover:text-blue-400" data-i18n="footer_contact">contacto@cryptoarchagent.com</a>
+                    <a href="https://x.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i> X</a>
+                    <a href="https://t.me/cryptoarchtrading_bot" target="_blank" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram</a>
                 </div>
+                <div class="flex justify-center gap-4 mb-4">
+                    <button id="lang-es" class="text-xs font-semibold text-gray-400 hover:text-blue-400 transition">ES</button>
+                    <span class="text-gray-600">|</span>
+                    <button id="lang-en" class="text-xs font-semibold text-gray-400 hover:text-blue-400 transition">EN</button>
+                </div>
+                <p data-i18n="footer_rights">© 2025 CryptoArch Agent · Operamos bajo RESICO México · 100% no custodial · Esto no es asesoramiento financiero.</p>
             </footer>
         </div>
     </main>
 
     <script>
-        // Fear & Greed
-        const fgValueSpan = document.getElementById('fg-value');
-        const fgClassSpan = document.getElementById('fg-classification');
-        const fgBar = document.getElementById('fg-bar');
-        const fgUpdateSpan = document.getElementById('fg-update');
+        // ----- MODO OSCURO/CLARO -----
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+        themeToggle?.addEventListener('click', toggleTheme);
+        themeToggleMobile?.addEventListener('click', toggleTheme);
 
-        async function fetchFearAndGreed() {
+        // ----- MENÚ MÓVIL -----
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // ----- TRADUCCIONES (sin banderas, solo texto) -----
+        const translations = {
+            es: {
+                nav_features: "Características",
+                nav_plans: "Planes",
+                nav_roadmap: "Próximamente",
+                nav_demo: "Demo",
+                nav_cta: "Iniciar Bot",
+                theme_toggle: "Modo claro/oscuro",
+                hero_badge: "🔒 100% No Custodial · Alertas Reales de Ballenas",
+                hero_subtitle: "Bot de trading en Telegram con alertas de ballenas <strong>reales en BTC y ETH</strong>. No custodiamos tus fondos. Planes desde $190 MXN.",
+                hero_cta: "Probar gratis",
+                hero_cta2: "Ver planes",
+                fear_title: "Miedo & Avaricia",
+                whale_title: "Ballenas en tiempo real",
+                whale_text: "Movimientos >50k USD en BTC y ETH. Alertas verificadas on-chain.",
+                whale_btn: "Activar alertas",
+                pit_title: "IA Predictiva (PIT)",
+                pit_text: "Volatilidad estimada por movimientos de ballenas",
+                prices_title: "Precios en tiempo real",
+                table_coin: "Moneda",
+                table_price: "Precio USD",
+                table_change: "24h %",
+                table_trend: "Gráfico",
+                table_click: "Click en cualquier fila para ver detalles",
+                features_title: "Características clave",
+                feature1_title: "Ballenas reales",
+                feature1_text: "Alertas verificadas en BTC y ETH con movimientos >50k USD.",
+                feature2_title: "No custodial",
+                feature2_text: "Nunca accedemos a tus fondos o claves privadas.",
+                feature3_title: "Datos en vivo",
+                feature3_text: "Índice de miedo/avaricia + precios de 7 criptomonedas.",
+                pricing_title: "Planes flexibles",
+                pricing_sub: "Paga con Mercado Pago a través del bot",
+                monthly: "Mensual",
+                quarterly: "Trimestral",
+                yearly: "Anual",
+                lifetime: "Lifetime",
+                save5: "Ahorra 5%",
+                save16: "Ahorra 16%",
+                select_btn: "Seleccionar",
+                roadmap_badge: "Roadmap",
+                roadmap_title: "Próximamente en CryptoArch Agent",
+                roadmap_sub: "Funcionalidades que llegarán en las próximas 1-2 semanas",
+                road1_title: "IA con Groq",
+                road1_desc: "Análisis automático de movimientos",
+                road2_title: "Backtesting",
+                road2_desc: "Simulación histórica",
+                road3_title: "Trading automático",
+                road3_desc: "Stop-loss / take-profit",
+                road4_title: "Alertas personalizables",
+                road4_desc: "Por umbral y moneda",
+                road5_title: "Más monedas",
+                road5_desc: "Soporte para ballenas en SOL, XRP, etc.",
+                roadmap_footer: "¿Quieres probar en beta?",
+                roadmap_link: "Contáctanos en Telegram",
+                demo_title: "Simulación de alerta de ballena",
+                demo_sub: "Así se ve una notificación real en el bot de Telegram",
+                demo_btn: "Generar nueva alerta demo",
+                testimonials_title: "Lo que dicen los primeros traders",
+                testimonial1: "“La alerta de ballena me salvó de una caída del 9% en ETH. Muy preciso.”",
+                testimonial2: "“No custodial, rápido y confiable. El plan lifetime es un no-brainer.”",
+                testimonial3: "“Me encanta que respeten mis llaves. Las alertas son reales y útiles.”",
+                footer_terms: "Términos de servicio",
+                footer_privacy: "Política de privacidad",
+                footer_contact: "contacto@cryptoarchagent.com",
+                footer_rights: "© 2025 CryptoArch Agent · Operamos bajo RESICO México · 100% no custodial · Esto no es asesoramiento financiero."
+            },
+            en: {
+                nav_features: "Features",
+                nav_plans: "Plans",
+                nav_roadmap: "Coming Soon",
+                nav_demo: "Demo",
+                nav_cta: "Start Bot",
+                theme_toggle: "Light/Dark mode",
+                hero_badge: "🔒 100% Non-Custodial · Real Whale Alerts",
+                hero_subtitle: "Telegram trading bot with <strong>real BTC and ETH whale alerts</strong>. We never custody your funds. Plans from $190 MXN (~$10 USD).",
+                hero_cta: "Try for free",
+                hero_cta2: "View plans",
+                fear_title: "Fear & Greed Index",
+                whale_title: "Real-time Whales",
+                whale_text: "Movements >50k USD in BTC and ETH. On-chain verified alerts.",
+                whale_btn: "Activate alerts",
+                pit_title: "Predictive AI (PIT)",
+                pit_text: "Volatility estimate from whale movements",
+                prices_title: "Real-time Prices",
+                table_coin: "Coin",
+                table_price: "Price USD",
+                table_change: "24h %",
+                table_trend: "Trend",
+                table_click: "Click any row for details",
+                features_title: "Key Features",
+                feature1_title: "Real Whales",
+                feature1_text: "Verified alerts for BTC and ETH moves >50k USD.",
+                feature2_title: "Non-Custodial",
+                feature2_text: "We never access your funds or private keys.",
+                feature3_title: "Live Data",
+                feature3_text: "Fear & Greed index + 7 crypto prices.",
+                pricing_title: "Flexible Plans",
+                pricing_sub: "Pay with Mercado Pago via the bot",
+                monthly: "Monthly",
+                quarterly: "Quarterly",
+                yearly: "Yearly",
+                lifetime: "Lifetime",
+                save5: "Save 5%",
+                save16: "Save 16%",
+                select_btn: "Select",
+                roadmap_badge: "Roadmap",
+                roadmap_title: "Coming Soon to CryptoArch Agent",
+                roadmap_sub: "Features arriving in the next 1-2 weeks",
+                road1_title: "AI with Groq",
+                road1_desc: "Automatic movement analysis",
+                road2_title: "Backtesting",
+                road2_desc: "Historical simulation",
+                road3_title: "Auto Trading",
+                road3_desc: "Stop-loss / take-profit",
+                road4_title: "Custom Alerts",
+                road4_desc: "By threshold and coin",
+                road5_title: "More Coins",
+                road5_desc: "Whale support for SOL, XRP, etc.",
+                roadmap_footer: "Want to beta test?",
+                roadmap_link: "Contact us on Telegram",
+                demo_title: "Whale Alert Simulation",
+                demo_sub: "This is how a real notification looks in the Telegram bot",
+                demo_btn: "Generate new demo alert",
+                testimonials_title: "What early traders say",
+                testimonial1: "“The whale alert saved me from a 9% drop in ETH. Very accurate.”",
+                testimonial2: "“Non-custodial, fast and reliable. Lifetime plan is a no-brainer.”",
+                testimonial3: "“I love that they respect my keys. The alerts are real and useful.”",
+                footer_terms: "Terms of Service",
+                footer_privacy: "Privacy Policy",
+                footer_contact: "contact@cryptoarchagent.com",
+                footer_rights: "© 2025 CryptoArch Agent · Operating under RESICO Mexico · 100% non-custodial · Not financial advice."
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    if (el.innerHTML.includes('<strong>') && key === 'hero_subtitle') {
+                        // Preservar etiquetas HTML en el subtítulo
+                        el.innerHTML = t[key];
+                    } else {
+                        el.innerText = t[key];
+                    }
+                }
+            });
+            localStorage.setItem('lang', lang);
+        }
+
+        // Detectar idioma del navegador (solo inglés o español)
+        const browserLang = navigator.language || navigator.userLanguage;
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang && translations[savedLang]) {
+            setLanguage(savedLang);
+        } else if (browserLang.startsWith('en')) {
+            setLanguage('en');
+        } else {
+            setLanguage('es');
+        }
+
+        document.getElementById('lang-es')?.addEventListener('click', () => setLanguage('es'));
+        document.getElementById('lang-en')?.addEventListener('click', () => setLanguage('en'));
+
+        // ----- FEAR & GREED (API real) -----
+        const fgValue = document.getElementById('fg-value');
+        const fgClass = document.getElementById('fg-class');
+        const fgBar = document.getElementById('fg-bar');
+        const fgTime = document.getElementById('fg-time');
+        async function fetchFear() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/?limit=1');
                 const data = await res.json();
-                if (data && data.data && data.data[0]) {
-                    const value = parseInt(data.data[0].value);
-                    const classification = data.data[0].value_classification;
-                    fgValueSpan.innerText = value;
-                    fgClassSpan.innerText = classification;
-                    fgBar.style.width = value + '%';
-                    fgUpdateSpan.innerText = new Date().toLocaleTimeString();
-                    if (value < 25) fgClassSpan.className = "text-red-400 bg-red-900/30 px-3 py-1 rounded-full";
-                    else if (value < 45) fgClassSpan.className = "text-orange-400 bg-orange-900/30 px-3 py-1 rounded-full";
-                    else if (value < 55) fgClassSpan.className = "text-gray-300 bg-gray-700 px-3 py-1 rounded-full";
-                    else if (value < 75) fgClassSpan.className = "text-yellow-400 bg-yellow-900/30 px-3 py-1 rounded-full";
-                    else fgClassSpan.className = "text-emerald-400 bg-emerald-900/30 px-3 py-1 rounded-full";
+                if (data?.data?.[0]) {
+                    const val = parseInt(data.data[0].value);
+                    const cls = data.data[0].value_classification;
+                    fgValue.innerText = val;
+                    fgClass.innerText = cls;
+                    fgBar.style.width = val + '%';
+                    fgTime.innerText = `Actualizado: ${new Date().toLocaleTimeString()}`;
+                    let bg = '';
+                    if (val < 25) bg = 'bg-red-900/30 text-red-400';
+                    else if (val < 45) bg = 'bg-orange-900/30 text-orange-400';
+                    else if (val < 55) bg = 'bg-gray-700 text-gray-300';
+                    else if (val < 75) bg = 'bg-yellow-900/30 text-yellow-400';
+                    else bg = 'bg-emerald-900/30 text-emerald-400';
+                    fgClass.className = `px-3 py-1 rounded-full text-sm font-semibold ${bg}`;
                 }
-            } catch (err) { fgValueSpan.innerText = "N/A"; }
+            } catch(e) { fgValue.innerText = 'N/A'; }
         }
 
-        // Precios
+        // ----- PRECIOS -----
         const coins = [
-            { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin' },
-            { id: 'ethereum', symbol: 'ETH', name: 'Ethereum' },
-            { id: 'solana', symbol: 'SOL', name: 'Solana' },
-            { id: 'ripple', symbol: 'XRP', name: 'XRP' },
-            { id: 'binancecoin', symbol: 'BNB', name: 'BNB' },
-            { id: 'chainlink', symbol: 'LINK', name: 'Chainlink' },
-            { id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche' }
+            { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC' },
+            { id: 'ethereum', name: 'Ethereum', symbol: 'ETH' },
+            { id: 'solana', name: 'Solana', symbol: 'SOL' },
+            { id: 'ripple', name: 'XRP', symbol: 'XRP' },
+            { id: 'binancecoin', name: 'BNB', symbol: 'BNB' },
+            { id: 'chainlink', name: 'Chainlink', symbol: 'LINK' },
+            { id: 'avalanche-2', name: 'Avalanche', symbol: 'AVAX' }
         ];
-        const cryptoBody = document.getElementById('crypto-table');
+        const tbodyPrices = document.getElementById('prices-table');
 
         async function fetchPrices() {
             try {
@@ -291,89 +498,74 @@
                 for (let coin of coins) {
                     const p = data[coin.id];
                     if (p) {
-                        const change = p.usd_24h_change;
+                        const change = p.usd_24h_change || 0;
                         const arrow = change >= 0 ? '↑' : '↓';
-                        const barWidth = Math.min(Math.abs(change) / 10, 100);
-                        html += `<tr class="coin-row cursor-pointer" data-coin-id="${coin.id}">
-                                    <td class="py-3 font-semibold">${coin.name} (${coin.symbol})</td>
-                                    <td>$${p.usd.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
-                                    <td class="${change>=0?'text-emerald-400':'text-red-400'}">${arrow} ${change?.toFixed(2)||0}%</td>
-                                    <td><div class="w-24 h-1.5 bg-gray-700 rounded-full overflow-hidden"><div class="${change>=0?'bg-emerald-500':'bg-red-500'} h-full rounded-full" style="width: ${barWidth}%"></div></div></td>
-                                 </tr>`;
+                        const barWidth = Math.min(Math.abs(change) * 5, 100);
+                        html += `<tr class="coin-row" data-coin-id="${coin.id}" data-coin-name="${coin.name}">
+                                    <td class="py-3 font-medium">${coin.name} (${coin.symbol})</td>
+                                    <td class="font-mono">$${p.usd.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                                    <td class="${change>=0?'text-emerald-400':'text-red-400'}">${arrow} ${change.toFixed(2)}%</td>
+                                    <td><div class="w-20 h-1.5 bg-gray-700 rounded-full"><div class="${change>=0?'bg-emerald-500':'bg-red-500'} h-full rounded-full" style="width: ${barWidth}%"></div></div></td>
+                                </tr>`;
                     } else {
                         html += `<tr><td colspan="4" class="py-3 text-red-400">Error ${coin.symbol}</td></tr>`;
                     }
                 }
-                cryptoBody.innerHTML = html;
+                tbodyPrices.innerHTML = html;
+                // Evento click
                 document.querySelectorAll('.coin-row').forEach(row => {
                     row.addEventListener('click', async () => {
-                        const id = row.dataset.coinId;
+                        const coinId = row.dataset.coinId;
+                        const coinName = row.dataset.coinName;
                         try {
-                            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+                            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
                             const detail = await res.json();
-                            const price = detail.market_data?.current_price?.usd;
-                            const marketCap = detail.market_data?.market_cap?.usd;
-                            const volume = detail.market_data?.total_volume?.usd;
-                            const ath = detail.market_data?.ath?.usd;
-                            alert(`${detail.name}\nPrecio: $${price?.toLocaleString() || 'N/A'} USD\nCapitalización: $${marketCap?.toLocaleString() || 'N/A'}\nVolumen 24h: $${volume?.toLocaleString() || 'N/A'}\nATH: $${ath?.toLocaleString() || 'N/A'}`);
-                        } catch (err) {
-                            alert(`No se pudieron cargar más detalles.`);
+                            const md = detail.market_data;
+                            alert(`📊 ${coinName}\n\n💰 Price: $${md.current_price.usd.toLocaleString()} USD\n📈 24h Change: ${md.price_change_percentage_24h?.toFixed(2) ?? 'N/A'}%\n🏦 Market Cap: $${md.market_cap.usd.toLocaleString()}\n💸 Volume 24h: $${md.total_volume.usd.toLocaleString()}\n🚀 ATH: $${md.ath.usd.toLocaleString()}`);
+                        } catch(e) {
+                            alert(`Could not load details for ${coinName}`);
                         }
                     });
                 });
-            } catch (err) {
-                cryptoBody.innerHTML = '<tr><td colspan="4" class="py-4 text-center">⚠️ No se pudo cargar precios. Reintentando...</td></tr>';
+            } catch(e) {
+                tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error loading prices. Please refresh.</td></tr>';
             }
         }
 
-        // IA Predictiva PIT (simulada, no engañosa)
-        const pitValueSpan = document.getElementById('pit-value');
+        // ----- IA PIT -----
+        const pitVal = document.getElementById('pit-val');
         const pitBar = document.getElementById('pit-bar');
         function updatePIT() {
-            const now = new Date();
-            const seconds = now.getSeconds();
-            let pit = 40 + (seconds % 50);
-            pitValueSpan.innerText = pit;
-            pitBar.style.width = pit + '%';
+            const val = 45 + Math.floor(Math.random() * 40);
+            pitVal.innerText = val;
+            pitBar.style.width = val + '%';
         }
-        setInterval(updatePIT, 5000);
-        updatePIT();
 
-        // Demo interactiva
-        const demoMessages = [
+        // ----- DEMO ALERT -----
+        const demoText = document.getElementById('demo-text');
+        const demoTime = document.getElementById('demo-time');
+        const demos = [
             { text: "2,450 BTC movidos hacia Binance<br><span class='text-gray-500'>≈ $156M USD · Alta probabilidad de venta</span>", time: "hace 2 min" },
             { text: "8,120 ETH transferidos entre ballenas<br><span class='text-gray-500'>≈ $15M USD · Señal de acumulación</span>", time: "hace 5 min" },
             { text: "500 BTC depositados en exchange desconocido<br><span class='text-gray-500'>≈ $32M USD · Posible venta masiva</span>", time: "hace 1 min" },
             { text: "15,000 SOL en movimiento<br><span class='text-gray-500'>≈ $2.1M USD · Stake desbloqueado</span>", time: "hace 30 seg" }
         ];
-        function updateDemoAlert() {
-            const random = demoMessages[Math.floor(Math.random() * demoMessages.length)];
-            document.getElementById('demoText').innerHTML = random.text;
-            document.getElementById('demoTime').innerText = random.time;
+        function updateDemo() {
+            const r = demos[Math.floor(Math.random() * demos.length)];
+            demoText.innerHTML = r.text;
+            demoTime.innerText = r.time;
         }
-        document.getElementById('simulateWhaleBtn')?.addEventListener('click', updateDemoAlert);
-        setInterval(updateDemoAlert, 15000);
-        updateDemoAlert();
-
-        // Modo oscuro/claro
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeText = document.getElementById('theme-text');
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            themeText.innerText = 'Oscuro';
-        }
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            themeText.innerText = isLight ? 'Oscuro' : 'Claro';
-        });
+        document.getElementById('simulate-btn')?.addEventListener('click', updateDemo);
+        setInterval(updateDemo, 15000);
+        updateDemo();
 
         // Inicializar
-        fetchFearAndGreed();
+        fetchFear();
         fetchPrices();
-        setInterval(fetchFearAndGreed, 5 * 60 * 1000);
+        updatePIT();
+        setInterval(fetchFear, 5 * 60 * 1000);
         setInterval(fetchPrices, 5 * 60 * 1000);
+        setInterval(updatePIT, 5000);
     </script>
 </body>
 </html>
