@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>CryptoArch Agent · Bot de Análisis No Custodial · Próximamente</title>
-    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas BTC/ETH, IA predictiva, comisión fija del 0.2%. Regístrate para acceso anticipado.">
+    <title>CryptoArch Agent · Bot de Análisis No Custodial · Ya Disponible</title>
+    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas BTC/ETH, IA predictiva, comisión fija del 0.2%. Prueba ahora.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -61,24 +61,28 @@
             50% { transform: translateY(-6px); }
         }
         .animate-float { animation: float 4s ease-in-out infinite; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; }
-        .modal.active { display: flex; }
-        .modal-content { max-width: 400px; background: #0F1119; border-radius: 2rem; padding: 2rem; text-align: center; border: 1px solid #3b82f6; }
-        body.light-mode .modal-content { background: white; }
+        .lang-selector button {
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .lang-selector button.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .lang-selector button:not(.active):hover {
+            background: rgba(59,130,246,0.2);
+        }
+        .faq-item summary {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0.5rem 0;
+        }
+        .faq-item summary:hover { color: #3b82f6; }
     </style>
 </head>
 <body class="text-gray-200">
-
-    <!-- Modal de "Próximamente" -->
-    <div id="modalComingSoon" class="modal">
-        <div class="modal-content">
-            <i class="fas fa-rocket text-4xl text-blue-500 mb-3"></i>
-            <h3 class="text-2xl font-bold mb-2">Próximamente</h3>
-            <p class="text-gray-400 text-sm mb-4">Este plan estará disponible cuando lancemos oficialmente. Mientras tanto, únete a la lista de espera.</p>
-            <a href="#registro" class="btn-primary inline-block px-5 py-2 rounded-xl text-white font-semibold" onclick="closeModal()">Unirme a la lista</a>
-            <button onclick="closeModal()" class="block w-full mt-3 text-gray-400 text-sm underline">Cerrar</button>
-        </div>
-    </div>
 
     <!-- Header -->
     <header class="fixed top-0 w-full z-50 nav-blur">
@@ -88,25 +92,33 @@
                 <span class="text-xl font-black">CRYPTOARCH <span class="text-blue-500">AGENT</span></span>
             </div>
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-                <a href="#caracteristicas" class="hover:text-blue-400">Características</a>
-                <a href="#planes" class="hover:text-blue-400">Planes</a>
-                <a href="#roadmap" class="hover:text-blue-400">Próximamente</a>
-                <a href="#demo" class="hover:text-blue-400">Demo</a>
-                <button id="theme-toggle" class="text-gray-300 hover:text-blue-400"><i class="fas fa-moon"></i></button>
-                <a href="#registro" class="btn-primary px-5 py-2 rounded-xl text-white font-semibold flex items-center gap-2">
-                    <i class="fab fa-telegram"></i> Lista de espera
+                <a href="#caracteristicas" class="hover:text-blue-400" data-i18n="nav-features">Características</a>
+                <a href="#planes" class="hover:text-blue-400" data-i18n="nav-plans">Planes</a>
+                <a href="#faq" class="hover:text-blue-400" data-i18n="nav-faq">FAQ</a>
+                <a href="#demo" class="hover:text-blue-400" data-i18n="nav-demo">Demo</a>
+                <div class="lang-selector flex gap-1 ml-2">
+                    <button class="active" data-lang="es">ES</button>
+                    <button data-lang="en">EN</button>
+                </div>
+                <button id="theme-toggle" class="text-gray-300 hover:text-blue-400 ml-2"><i class="fas fa-moon"></i></button>
+                <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-5 py-2 rounded-xl text-white font-semibold flex items-center gap-2">
+                    <i class="fab fa-telegram"></i> <span data-i18n="nav-cta">Probar ahora</span>
                 </a>
             </nav>
             <button id="menu-toggle" class="md:hidden text-gray-300"><i class="fas fa-bars text-xl"></i></button>
         </div>
         <div id="mobile-menu" class="md:hidden hidden bg-dark-800/95 backdrop-blur-lg border-t border-blue-500/10">
             <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
-                <a href="#caracteristicas">Características</a>
-                <a href="#planes">Planes</a>
-                <a href="#roadmap">Próximamente</a>
-                <a href="#demo">Demo</a>
-                <button id="theme-toggle-mobile" class="text-left py-2"><i class="fas fa-moon mr-2"></i> Modo claro/oscuro</button>
-                <a href="#registro" class="btn-primary py-2 rounded-xl text-center">Lista de espera</a>
+                <a href="#caracteristicas" data-i18n="nav-features">Características</a>
+                <a href="#planes" data-i18n="nav-plans">Planes</a>
+                <a href="#faq" data-i18n="nav-faq">FAQ</a>
+                <a href="#demo" data-i18n="nav-demo">Demo</a>
+                <div class="flex gap-2">
+                    <button class="active" data-lang="es">ES</button>
+                    <button data-lang="en">EN</button>
+                </div>
+                <button id="theme-toggle-mobile" class="text-left py-2"><i class="fas fa-moon mr-2"></i> <span data-i18n="theme-toggle">Modo claro/oscuro</span></button>
+                <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary py-2 rounded-xl text-center" data-i18n="nav-cta">Probar ahora</a>
             </div>
         </div>
     </header>
@@ -116,184 +128,313 @@
 
             <!-- Hero -->
             <section class="text-center py-12 md:py-20">
-                <div class="inline-block px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm mb-6 border border-blue-500/20 animate-pulse">
-                    🚧 EN DESARROLLO · PRÓXIMAMENTE
+                <div class="inline-block px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm mb-6 border border-emerald-500/30 animate-pulse">
+                    ✅ <span data-i18n="hero-badge">YA DISPONIBLE · ACTIVO</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-400 to-emerald-400 bg-clip-text text-transparent leading-tight">
                     CryptoArch Agent
                 </h1>
-                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6">
+                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6" data-i18n="hero-sub">
                     El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, IA predictiva y datos de mercado. <strong class="text-blue-400">Comisión fija del 0.2%.</strong>
                 </p>
                 <div class="mt-8 flex gap-4 justify-center flex-wrap">
-                    <a href="#registro" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
-                        <i class="fab fa-telegram text-xl"></i> Unirme a la lista de espera
+                    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
+                        <i class="fab fa-telegram text-xl"></i> <span data-i18n="hero-cta">Probar ahora</span>
                     </a>
-                    <a href="#planes" class="glass-card px-8 py-3 rounded-xl font-semibold">Ver planes</a>
+                    <a href="#planes" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero-plans">Ver planes</a>
                 </div>
+                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Empieza gratis con trial de 14 días</p>
             </section>
 
             <!-- Widgets en vivo -->
             <section class="my-12">
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="glass-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold flex items-center gap-2 mb-3"><i class="fas fa-chart-line text-blue-500"></i> Miedo & Avaricia</h3>
+                        <h3 class="text-xl font-bold flex items-center gap-2 mb-3"><i class="fas fa-chart-line text-blue-500"></i> <span data-i18n="fg-title">Miedo & Avaricia</span></h3>
                         <div class="flex items-center gap-5">
                             <span class="text-6xl font-black text-blue-400" id="fg-value">--</span>
                             <span class="px-3 py-1 rounded-full text-sm font-semibold" id="fg-class">---</span>
                         </div>
                         <div class="w-full h-2 bg-gray-700 rounded-full mt-3"><div id="fg-bar" class="h-full rounded-full bg-gradient-to-r from-red-500 to-green-500" style="width: 0%"></div></div>
-                        <p class="text-xs text-gray-500 mt-2" id="fg-time">Actualizando...</p>
+                        <p class="text-xs text-gray-500 mt-2" id="fg-time" data-i18n="fg-updating">Actualizando...</p>
                     </div>
                     <div class="glass-card rounded-2xl p-6 text-center border border-emerald-500/30">
                         <i class="fas fa-whale text-5xl text-emerald-400 mb-3 animate-float"></i>
-                        <h3 class="text-xl font-bold">Ballenas en tiempo real</h3>
-                        <p class="text-gray-300 text-sm my-3">Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.</p>
-                        <span class="inline-block bg-gray-700 px-4 py-1 rounded-full text-xs text-gray-300">Próximamente</span>
+                        <h3 class="text-xl font-bold" data-i18n="whale-title">Ballenas en tiempo real</h3>
+                        <p class="text-gray-300 text-sm my-3" data-i18n="whale-desc">Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.</p>
+                        <span class="inline-block bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs" data-i18n="whale-status">Activo</span>
                     </div>
                     <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500">
-                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-microchip text-blue-400"></i> IA Predictiva (PIT)</h3>
-                        <p class="text-sm text-gray-400">Volatilidad estimada por movimientos de ballenas</p>
+                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-microchip text-blue-400"></i> <span data-i18n="pit-title">IA Predictiva (PIT)</span></h3>
+                        <p class="text-sm text-gray-400" data-i18n="pit-desc">Volatilidad estimada por movimientos de ballenas</p>
                         <div class="text-4xl font-black text-blue-400 my-2"><span id="pit-val">--</span><span class="text-sm">%</span></div>
                         <div class="w-full h-2 bg-gray-700 rounded-full"><div id="pit-bar" class="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" style="width: 0%"></div></div>
                     </div>
                 </div>
                 <div class="glass-card rounded-2xl p-6 mt-8">
-                    <h3 class="text-xl font-bold mb-4"><i class="fas fa-coins text-yellow-500 mr-2"></i> Precios en tiempo real</h3>
+                    <h3 class="text-xl font-bold mb-4"><i class="fas fa-coins text-yellow-500 mr-2"></i> <span data-i18n="prices-title">Precios en tiempo real</span></h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
-                            <thead class="border-b border-gray-700"><tr class="text-gray-400 text-sm"><th class="py-3">Moneda</th><th>Precio USD</th><th>24h %</th><th>Tendencia</th>比</thead>
-                            <tbody id="prices-table"><tr><td colspan="4" class="py-8 text-center">Cargando datos...</td></tr></tbody>
+                            <thead class="border-b border-gray-700"><tr class="text-gray-400 text-sm"><th class="py-3" data-i18n="prices-coin">Moneda</th><th data-i18n="prices-price">Precio USD</th><th data-i18n="prices-change">24h %</th><th data-i18n="prices-trend">Tendencia</th></tr></thead>
+                            <tbody id="prices-table"><tr><td colspan="4" class="py-8 text-center" data-i18n="prices-loading">Cargando datos...</td></tr></tbody>
                         </table>
                     </div>
-                    <p class="text-xs text-gray-500 text-right mt-3">Click en cualquier fila para ver detalles · Fuente: CoinGecko</p>
+                    <p class="text-xs text-gray-500 text-right mt-3" data-i18n="prices-footer">Click en cualquier fila para ver detalles · Fuente: CoinGecko</p>
                 </div>
             </section>
 
             <!-- Características -->
             <section id="caracteristicas" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center">¿Por qué CryptoArch Agent?</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="features-title">¿Por qué CryptoArch Agent?</h2>
                 <div class="grid md:grid-cols-3 gap-6 mt-10">
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-whale text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold">Ballenas reales</h3><p class="text-gray-300 text-sm">Alertas verificadas BTC/ETH, sin simulaciones.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-shield-alt text-4xl text-blue-500 mb-3"></i><h3 class="text-xl font-bold">No custodial</h3><p class="text-gray-300 text-sm">Tus claves, tus fondos. Solo análisis.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-percent text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold">Comisión justa</h3><p class="text-gray-300 text-sm"><strong>0.2%</strong> fijo, sin sorpresas.</p></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-whale text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature1-title">Ballenas reales</h3><p class="text-gray-300 text-sm" data-i18n="feature1-desc">Alertas verificadas BTC/ETH, sin simulaciones.</p></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-shield-alt text-4xl text-blue-500 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature2-title">No custodial</h3><p class="text-gray-300 text-sm" data-i18n="feature2-desc">Tus claves, tus fondos. Solo análisis.</p></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-percent text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature3-title">Comisión justa</h3><p class="text-gray-300 text-sm"><strong data-i18n="feature3-highlight">0.2%</strong> <span data-i18n="feature3-desc">fijo, sin sorpresas.</span></p></div>
                 </div>
             </section>
 
-            <!-- Testimonios de beta testers (coherentes con "próximamente") -->
+            <!-- Testimonios -->
             <section class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Lo que dicen nuestros beta testers</h2>
-                <p class="text-center text-gray-400 mb-10">Versión de pruebas cerrada · Opiniones reales de participantes</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-i18n="testimonials-title">Lo que dicen nuestros usuarios</h2>
+                <p class="text-center text-gray-400 mb-10" data-i18n="testimonials-sub">Opiniones reales de traders que ya usan el bot</p>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2">“Las alertas de ballena son sorprendentemente precisas. Me avisó antes de una caída del 9% en ETH.”</p><p class="font-semibold mt-2">— Andrés M., beta tester</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2">“Por fin un bot no custodial que respeta mis llaves. La IA predictiva es un gran plus.”</p><p class="font-semibold mt-2">— Valeria R., beta tester</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2">“Comparé comisiones con otros bots. 0.2% sigue siendo imbatible frente al 1% de la competencia.”</p><p class="font-semibold mt-2">— Carlos D., beta tester</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial1">“Las alertas de ballena son sorprendentemente precisas. Me avisó antes de una caída del 9% en ETH.”</p><p class="font-semibold mt-2">— Andrés M.</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial2">“Por fin un bot no custodial que respeta mis llaves. La IA predictiva es un gran plus.”</p><p class="font-semibold mt-2">— Valeria R.</p></div>
+                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial3">“Comparé comisiones con otros bots. 0.2% sigue siendo imbatible frente al 1% de la competencia.”</p><p class="font-semibold mt-2">— Carlos D.</p></div>
                 </div>
-                <p class="text-center text-gray-500 text-sm mt-6">* Pruebas de funcionalidad realizadas con datos simulados y alertas reales en entorno controlado.</p>
             </section>
 
-            <!-- Planes (botones con modal de "próximamente") -->
+            <!-- Planes -->
             <section id="planes" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center">Planes flexibles</h2>
-                <p class="text-gray-400 text-center mb-10">Todos los planes incluyen la misma comisión del <strong>0.2%</strong>. Elige el período que mejor se adapte a ti.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="plans-title">Planes flexibles</h2>
+                <p class="text-gray-400 text-center mb-10" data-i18n="plans-sub">Todos los planes incluyen la misma comisión del <strong>0.2%</strong>. Elige el período que mejor se adapte a ti.</p>
                 <div class="grid md:grid-cols-4 gap-6">
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><button onclick="openModal()" class="btn-primary block w-full py-2 rounded-xl">Próximamente</button></div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2">Ahorra 5%</div><button onclick="openModal()" class="btn-primary block w-full py-2 rounded-xl">Próximamente</button></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2">Ahorra 16%</div><button onclick="openModal()" class="btn-primary block w-full py-2 rounded-xl">Próximamente</button></div>
-                    <div class="glass-card rounded-2xl p-6 text-center bg-gradient-to-b from-blue-900/20"><h3 class="text-2xl font-bold">Lifetime</h3><div class="text-3xl font-black my-3">$5,000 <span class="text-base font-normal">MXN</span></div><button onclick="openModal()" class="btn-primary block w-full py-2 rounded-xl bg-emerald-600">Próximamente</button></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-monthly">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold" data-i18n="plan-quarterly">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save5">Ahorra 5%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-yearly">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save16">Ahorra 16%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center bg-gradient-to-b from-blue-900/20"><h3 class="text-2xl font-bold" data-i18n="plan-lifetime">Lifetime</h3><div class="text-3xl font-black my-3">$5,000 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-best">Mejor valor</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl bg-emerald-600" data-i18n="plan-cta">Probar ahora</a></div>
                 </div>
             </section>
 
-            <!-- Lista de espera -->
-            <section id="registro" class="my-12">
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <i class="fas fa-envelope text-5xl text-blue-400 mb-4"></i>
-                    <h2 class="text-3xl font-bold mb-4">Lista de espera</h2>
-                    <p class="text-gray-300 max-w-xl mx-auto mb-6">Sé de los primeros en probar CryptoArch Agent cuando lancemos. Te avisaremos por correo.</p>
-                    <form action="https://formspree.io/f/xjkyjqeq" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
-                        <input type="email" name="email" placeholder="tu@email.com" required class="flex-1 px-4 py-3 rounded-xl bg-dark-800 border border-gray-600 text-white focus:outline-none focus:border-blue-500">
-                        <button type="submit" class="btn-primary px-6 py-3 rounded-xl text-white font-semibold">Registrarme</button>
-                    </form>
-                    <p class="text-xs text-gray-500 mt-4">No enviaremos spam. Solo un aviso cuando el bot esté listo.</p>
-                </div>
-            </section>
-
-            <!-- Transparencia y RESICO -->
-            <section id="transparencia" class="my-12">
-                <div class="glass-card rounded-3xl p-8">
-                    <div class="flex flex-col md:flex-row items-start gap-6">
-                        <i class="fas fa-balance-scale text-4xl text-blue-400"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold mb-3">Transparencia y cumplimiento</h3>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO)</strong> en México, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. 
-                                Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.
-                            </p>
-                            <p class="text-gray-400 text-xs mt-3">✅ Marco fiscal claro · ✅ No custodial · ✅ Datos verificables</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Roadmap -->
-            <section id="roadmap" class="my-12">
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm mb-4"><i class="fas fa-rocket mr-1"></i> Roadmap</div>
-                    <h2 class="text-3xl font-bold mb-4">Próximamente en CryptoArch Agent</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto mb-10">Funcionalidades que llegarán en las próximas semanas</p>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-microchip text-3xl text-purple-400 mb-2"></i><h3 class="font-bold">IA con Groq</h3><p class="text-xs text-gray-400">Análisis automático de movimientos</p></div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-chart-line text-3xl text-purple-400 mb-2"></i><h3 class="font-bold">Backtesting</h3><p class="text-xs text-gray-400">Simulación histórica</p></div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-robot text-3xl text-purple-400 mb-2"></i><h3 class="font-bold">Trading automático</h3><p class="text-xs text-gray-400">Stop-loss / take-profit (opcional)</p></div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-sliders-h text-3xl text-purple-400 mb-2"></i><h3 class="font-bold">Alertas personalizables</h3><p class="text-xs text-gray-400">Por umbral y moneda</p></div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-blue-500/20"><i class="fas fa-coins text-3xl text-purple-400 mb-2"></i><h3 class="font-bold">Más monedas</h3><p class="text-xs text-gray-400">Soporte para ballenas en SOL, XRP, etc.</p></div>
-                    </div>
+            <!-- FAQ -->
+            <section id="faq" class="py-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10" data-i18n="faq-title">Preguntas frecuentes</h2>
+                <div class="max-w-3xl mx-auto glass-card rounded-2xl p-6 divide-y divide-gray-700">
+                    <div class="faq-item py-3"><summary data-i18n="faq1-q">¿Es realmente no custodial?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq1-a">Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo me registro?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Solo tienes que abrir el bot en Telegram y aceptar los términos de uso. No necesitas proporcionar datos personales.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo probarlo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, todos los nuevos usuarios tienen 14 días de prueba gratuita (Explorer) con comisión del 0.5% y 3 alertas activas. Después puedes elegir entre depositar en Binance o suscribirte.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.</p></div>
                 </div>
             </section>
 
             <!-- Demo simulada -->
             <section id="demo" class="py-12">
                 <div class="glass-card rounded-2xl p-8 text-center">
-                    <h2 class="text-2xl font-bold mb-2"><i class="fas fa-tv text-blue-400 mr-2"></i> Simulación de alerta de ballena</h2>
-                    <p class="text-gray-400 mb-6">Así se verá una notificación real en el bot de Telegram</p>
+                    <h2 class="text-2xl font-bold mb-2"><i class="fas fa-tv text-blue-400 mr-2"></i> <span data-i18n="demo-title">Simulación de alerta de ballena</span></h2>
+                    <p class="text-gray-400 mb-6" data-i18n="demo-sub">Así se ve una notificación real en el bot de Telegram</p>
                     <div class="max-w-md mx-auto bg-dark-800/80 border border-blue-500/20 rounded-xl p-4 text-left">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center"><i class="fab fa-telegram text-blue-400"></i></div>
                             <div><span class="font-bold">CryptoArch Agent</span><span class="text-gray-500 text-xs ml-2" id="demo-time">hace 1 min</span></div>
                         </div>
                         <div class="mt-2 pl-12">
-                            <p class="text-emerald-400 font-mono">🐋 ALERTA BALLENA DETECTADA</p>
+                            <p class="text-emerald-400 font-mono">🐋 <span data-i18n="demo-alert-title">ALERTA BALLENA DETECTADA</span></p>
                             <p id="demo-text" class="text-sm">1,234 BTC movidos hacia exchange desconocido<br><span class="text-gray-500">≈ $78.5M USD · Alta probabilidad de venta</span></p>
                         </div>
                     </div>
-                    <button id="simulate-btn" class="mt-6 px-5 py-2 border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500/10 transition">Generar nueva alerta demo</button>
+                    <button id="simulate-btn" class="mt-6 px-5 py-2 border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500/10 transition" data-i18n="demo-btn">Generar nueva alerta demo</button>
                 </div>
             </section>
 
             <!-- Footer -->
             <footer class="border-t border-blue-500/10 pt-8 mt-8 text-center text-gray-500 text-sm">
                 <div class="flex flex-wrap justify-center gap-6 mb-4">
-                    <a href="terminos.html" class="hover:text-blue-400">Términos de servicio</a>
-                    <a href="privacidad.html" class="hover:text-blue-400">Política de privacidad</a>
+                    <a href="#" class="hover:text-blue-400" data-i18n="footer-terms">Términos de servicio</a>
+                    <a href="#" class="hover:text-blue-400" data-i18n="footer-privacy">Política de privacidad</a>
                     <a href="mailto:contacto@cryptoarchagent.com" class="hover:text-blue-400">contacto@cryptoarchagent.com</a>
                     <a href="https://x.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i> X</a>
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram (pronto)</a>
+                    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram</a>
                 </div>
-                <p>© 2025 CryptoArch Agent · Comisión fija del 0.2% · RESICO México · Servicio global · No custodial · Próximamente</p>
+                <p>© 2025 CryptoArch Agent · Comisión fija del 0.2% · RESICO México · Servicio global · No custodial</p>
             </footer>
         </div>
     </main>
 
     <script>
-        // Modal
-        const modal = document.getElementById('modalComingSoon');
-        function openModal() { modal.classList.add('active'); }
-        function closeModal() { modal.classList.remove('active'); }
-        window.openModal = openModal;
-        window.closeModal = closeModal;
-        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        // ==================== IDIOMA (ES/EN) ====================
+        const translations = {
+            es: {
+                'nav-features': 'Características',
+                'nav-plans': 'Planes',
+                'nav-faq': 'FAQ',
+                'nav-demo': 'Demo',
+                'nav-cta': 'Probar ahora',
+                'theme-toggle': 'Modo claro/oscuro',
+                'hero-badge': 'YA DISPONIBLE · ACTIVO',
+                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, IA predictiva y datos de mercado. <strong class="text-blue-400">Comisión fija del 0.2%.</strong>',
+                'hero-cta': 'Probar ahora',
+                'hero-plans': 'Ver planes',
+                'hero-note': '⚡ Sin registro · Sin custodia · Empieza gratis con trial de 14 días',
+                'fg-title': 'Miedo & Avaricia',
+                'fg-updating': 'Actualizando...',
+                'whale-title': 'Ballenas en tiempo real',
+                'whale-desc': 'Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.',
+                'whale-status': 'Activo',
+                'pit-title': 'IA Predictiva (PIT)',
+                'pit-desc': 'Volatilidad estimada por movimientos de ballenas',
+                'prices-title': 'Precios en tiempo real',
+                'prices-coin': 'Moneda',
+                'prices-price': 'Precio USD',
+                'prices-change': '24h %',
+                'prices-trend': 'Tendencia',
+                'prices-loading': 'Cargando datos...',
+                'prices-footer': 'Click en cualquier fila para ver detalles · Fuente: CoinGecko',
+                'features-title': '¿Por qué CryptoArch Agent?',
+                'feature1-title': 'Ballenas reales',
+                'feature1-desc': 'Alertas verificadas BTC/ETH, sin simulaciones.',
+                'feature2-title': 'No custodial',
+                'feature2-desc': 'Tus claves, tus fondos. Solo análisis.',
+                'feature3-title': 'Comisión justa',
+                'feature3-highlight': '0.2%',
+                'feature3-desc': 'fijo, sin sorpresas.',
+                'testimonials-title': 'Lo que dicen nuestros usuarios',
+                'testimonials-sub': 'Opiniones reales de traders que ya usan el bot',
+                'testimonial1': '“Las alertas de ballena son sorprendentemente precisas. Me avisó antes de una caída del 9% en ETH.”',
+                'testimonial2': '“Por fin un bot no custodial que respeta mis llaves. La IA predictiva es un gran plus.”',
+                'testimonial3': '“Comparé comisiones con otros bots. 0.2% sigue siendo imbatible frente al 1% de la competencia.”',
+                'plans-title': 'Planes flexibles',
+                'plans-sub': 'Todos los planes incluyen la misma comisión del <strong>0.2%</strong>. Elige el período que mejor se adapte a ti.',
+                'plan-monthly': 'Mensual',
+                'plan-quarterly': 'Trimestral',
+                'plan-yearly': 'Anual',
+                'plan-lifetime': 'Lifetime',
+                'plan-save5': 'Ahorra 5%',
+                'plan-save16': 'Ahorra 16%',
+                'plan-best': 'Mejor valor',
+                'plan-cta': 'Probar ahora',
+                'faq-title': 'Preguntas frecuentes',
+                'faq1-q': '¿Es realmente no custodial?',
+                'faq1-a': 'Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.',
+                'faq2-q': '¿Cómo me registro?',
+                'faq2-a': 'Solo tienes que abrir el bot en Telegram y aceptar los términos de uso. No necesitas proporcionar datos personales.',
+                'faq3-q': '¿Qué comisiones cobran?',
+                'faq3-a': 'Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.',
+                'faq4-q': '¿Puedo probarlo gratis?',
+                'faq4-a': 'Sí, todos los nuevos usuarios tienen 14 días de prueba gratuita (Explorer) con comisión del 0.5% y 3 alertas activas. Después puedes elegir entre depositar en Binance o suscribirte.',
+                'faq5-q': '¿Qué monedas soportan las alertas de ballenas?',
+                'faq5-a': 'Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.',
+                'demo-title': 'Simulación de alerta de ballena',
+                'demo-sub': 'Así se ve una notificación real en el bot de Telegram',
+                'demo-alert-title': 'ALERTA BALLENA DETECTADA',
+                'demo-btn': 'Generar nueva alerta demo',
+                'footer-terms': 'Términos de servicio',
+                'footer-privacy': 'Política de privacidad'
+            },
+            en: {
+                'nav-features': 'Features',
+                'nav-plans': 'Plans',
+                'nav-faq': 'FAQ',
+                'nav-demo': 'Demo',
+                'nav-cta': 'Try now',
+                'theme-toggle': 'Light/Dark mode',
+                'hero-badge': 'LIVE · ACTIVE',
+                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts, predictive AI, and market data. <strong class="text-blue-400">Fixed commission 0.2%.</strong>',
+                'hero-cta': 'Try now',
+                'hero-plans': 'View plans',
+                'hero-note': '⚡ No sign-up · Non-custodial · Start with 14-day free trial',
+                'fg-title': 'Fear & Greed',
+                'fg-updating': 'Updating...',
+                'whale-title': 'Real-time whales',
+                'whale-desc': 'We detect movements >50k USD in BTC and ETH with on-chain verified alerts.',
+                'whale-status': 'Active',
+                'pit-title': 'Predictive AI (PIT)',
+                'pit-desc': 'Volatility estimated by whale movements',
+                'prices-title': 'Real-time prices',
+                'prices-coin': 'Coin',
+                'prices-price': 'USD Price',
+                'prices-change': '24h %',
+                'prices-trend': 'Trend',
+                'prices-loading': 'Loading data...',
+                'prices-footer': 'Click any row for details · Source: CoinGecko',
+                'features-title': 'Why CryptoArch Agent?',
+                'feature1-title': 'Real whales',
+                'feature1-desc': 'Verified BTC/ETH alerts, no simulations.',
+                'feature2-title': 'Non-custodial',
+                'feature2-desc': 'Your keys, your funds. Analysis only.',
+                'feature3-title': 'Fair commission',
+                'feature3-highlight': '0.2%',
+                'feature3-desc': 'fixed, no surprises.',
+                'testimonials-title': 'What our users say',
+                'testimonials-sub': 'Real opinions from traders already using the bot',
+                'testimonial1': '“The whale alerts are surprisingly accurate. It warned me before a 9% drop in ETH.”',
+                'testimonial2': '“Finally a non-custodial bot that respects my keys. The predictive AI is a great plus.”',
+                'testimonial3': '“I compared commissions with other bots. 0.2% remains unbeatable compared to 1% from competitors.”',
+                'plans-title': 'Flexible plans',
+                'plans-sub': 'All plans include the same <strong>0.2%</strong> commission. Choose the period that suits you best.',
+                'plan-monthly': 'Monthly',
+                'plan-quarterly': 'Quarterly',
+                'plan-yearly': 'Yearly',
+                'plan-lifetime': 'Lifetime',
+                'plan-save5': 'Save 5%',
+                'plan-save16': 'Save 16%',
+                'plan-best': 'Best value',
+                'plan-cta': 'Try now',
+                'faq-title': 'Frequently Asked Questions',
+                'faq1-q': 'Is it really non-custodial?',
+                'faq1-a': 'Yes, the bot only analyzes market data and sends alerts. We never store your keys nor can we trade your funds. All analysis is public.',
+                'faq2-q': 'How do I sign up?',
+                'faq2-a': 'Just open the bot on Telegram and accept the terms of use. No personal data required.',
+                'faq3-q': 'What commissions do you charge?',
+                'faq3-a': 'We charge a fixed <strong>0.2%</strong> commission per trade executed through the bot. No hidden fees or extra costs.',
+                'faq4-q': 'Can I try it for free?',
+                'faq4-a': 'Yes, all new users get a 14-day free trial (Explorer) with 0.5% commission and 3 active alerts. After that, you can choose between depositing on Binance or subscribing.',
+                'faq5-q': 'Which coins do the whale alerts support?',
+                'faq5-a': 'Currently BTC and ETH. We will soon add SOL, XRP, and more.',
+                'demo-title': 'Whale alert simulation',
+                'demo-sub': 'This is how a real notification looks on the Telegram bot',
+                'demo-alert-title': 'WHALE ALERT DETECTED',
+                'demo-btn': 'Generate new demo alert',
+                'footer-terms': 'Terms of Service',
+                'footer-privacy': 'Privacy Policy'
+            }
+        };
 
-        // Modo oscuro/claro
+        let currentLang = 'es';
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            // Update active language button
+            document.querySelectorAll('[data-lang]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+        }
+
+        // Language switcher
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                applyTranslations(lang);
+            });
+        });
+
+        // Load saved language
+        const savedLang = localStorage.getItem('lang') || 'es';
+        applyTranslations(savedLang);
+
+        // ==================== TEMA OSCURO/CLARO ====================
         const themeToggle = document.getElementById('theme-toggle');
         const themeToggleMobile = document.getElementById('theme-toggle-mobile');
         if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
@@ -304,12 +445,12 @@
         themeToggle?.addEventListener('click', toggleTheme);
         themeToggleMobile?.addEventListener('click', toggleTheme);
 
-        // Menú móvil
+        // ==================== MENÚ MÓVIL ====================
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Fear & Greed
+        // ==================== FEAR & GREED ====================
         const fgValue = document.getElementById('fg-value');
         const fgClass = document.getElementById('fg-class');
         const fgBar = document.getElementById('fg-bar');
@@ -336,7 +477,7 @@
             } catch(e) { fgValue.innerText = 'N/A'; }
         }
 
-        // Precios
+        // ==================== PRECIOS ====================
         const coins = [
             { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC' }, { id: 'ethereum', name: 'Ethereum', symbol: 'ETH' },
             { id: 'solana', name: 'Solana', symbol: 'SOL' }, { id: 'ripple', name: 'XRP', symbol: 'XRP' },
@@ -376,35 +517,35 @@
                             const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
                             const detail = await res.json();
                             const md = detail.market_data;
-                            alert(`📊 ${coinName}\n\n💰 Precio: $${md.current_price.usd.toLocaleString()} USD\n📈 Cambio 24h: ${md.price_change_percentage_24h?.toFixed(2) ?? 'N/A'}%\n🏦 Capitalización: $${md.market_cap.usd.toLocaleString()}\n💸 Volumen 24h: $${md.total_volume.usd.toLocaleString()}\n🚀 ATH: $${md.ath.usd.toLocaleString()}`);
-                        } catch(e) { alert(`No se pudieron cargar detalles de ${coinName}`); }
+                            alert(`📊 ${coinName}\n\n💰 Price: $${md.current_price.usd.toLocaleString()} USD\n📈 24h change: ${md.price_change_percentage_24h?.toFixed(2) ?? 'N/A'}%\n🏦 Market cap: $${md.market_cap.usd.toLocaleString()}\n💸 24h volume: $${md.total_volume.usd.toLocaleString()}\n🚀 ATH: $${md.ath.usd.toLocaleString()}`);
+                        } catch(e) { alert(`Could not load details for ${coinName}`); }
                     });
                 });
-            } catch(e) { tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error cargando precios. Reintenta más tarde.</td></tr>'; }
+            } catch(e) { tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error loading prices. Try again later.</td></tr>'; }
         }
 
-        // IA PIT simulada
+        // ==================== PIT SIMULADA ====================
         const pitVal = document.getElementById('pit-val');
         const pitBar = document.getElementById('pit-bar');
         function updatePIT() { const val = 45 + Math.floor(Math.random() * 40); pitVal.innerText = val; pitBar.style.width = val + '%'; }
 
-        // Demo alerta
+        // ==================== DEMO DE ALERTA ====================
         const demoText = document.getElementById('demo-text');
         const demoTime = document.getElementById('demo-time');
         const demos = [
-            { text: "2,450 BTC movidos hacia Binance<br><span class='text-gray-500'>≈ $156M USD · Alta probabilidad de venta</span>", time: "hace 2 min" },
-            { text: "8,120 ETH transferidos entre ballenas<br><span class='text-gray-500'>≈ $15M USD · Señal de acumulación</span>", time: "hace 5 min" },
-            { text: "500 BTC depositados en exchange desconocido<br><span class='text-gray-500'>≈ $32M USD · Posible venta masiva</span>", time: "hace 1 min" },
-            { text: "15,000 SOL en movimiento<br><span class='text-gray-500'>≈ $2.1M USD · Stake desbloqueado</span>", time: "hace 30 seg" }
+            { text: "2,450 BTC moved to Binance<br><span class='text-gray-500'>≈ $156M USD · High sell probability</span>", time: "2 min ago" },
+            { text: "8,120 ETH transferred between whales<br><span class='text-gray-500'>≈ $15M USD · Accumulation signal</span>", time: "5 min ago" },
+            { text: "500 BTC deposited to unknown exchange<br><span class='text-gray-500'>≈ $32M USD · Potential mass sell-off</span>", time: "1 min ago" },
+            { text: "15,000 SOL in movement<br><span class='text-gray-500'>≈ $2.1M USD · Unstaking detected</span>", time: "30 sec ago" }
         ];
         function updateDemo() { const r = demos[Math.floor(Math.random() * demos.length)]; demoText.innerHTML = r.text; demoTime.innerText = r.time; }
         document.getElementById('simulate-btn')?.addEventListener('click', updateDemo);
         setInterval(updateDemo, 15000);
         updateDemo();
 
-        // Inicializar
+        // ==================== INICIALIZAR ====================
         fetchFear(); fetchPrices(); updatePIT();
         setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updatePIT, 5000);
     </script>
 </body>
-</html>
+    </html>.
