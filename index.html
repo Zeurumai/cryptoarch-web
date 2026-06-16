@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>CryptoArch Agent · Bot de Análisis No Custodial · Ya Disponible</title>
-    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas BTC/ETH, IA predictiva, comisión fija del 0.2%. Prueba ahora.">
+    <title>CryptoArch Agent · Bot de Análisis No Custodial · Activo</title>
+    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas BTC/ETH, comisión fija del 0.2%, 14 días gratis. Prueba ahora.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -80,6 +80,17 @@
             padding: 0.5rem 0;
         }
         .faq-item summary:hover { color: #3b82f6; }
+        .level-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .level-explorer { background: rgba(59,130,246,0.2); color: #93c5fd; }
+        .level-trader { background: rgba(251,191,36,0.2); color: #fcd34d; }
+        .level-pro { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+        .level-elite { background: rgba(139,92,246,0.2); color: #c4b5fd; }
     </style>
 </head>
 <body class="text-gray-200">
@@ -94,8 +105,8 @@
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="#caracteristicas" class="hover:text-blue-400" data-i18n="nav-features">Características</a>
                 <a href="#planes" class="hover:text-blue-400" data-i18n="nav-plans">Planes</a>
+                <a href="#depositos" class="hover:text-blue-400" data-i18n="nav-deposits">Depósitos</a>
                 <a href="#faq" class="hover:text-blue-400" data-i18n="nav-faq">FAQ</a>
-                <a href="#demo" class="hover:text-blue-400" data-i18n="nav-demo">Demo</a>
                 <div class="lang-selector flex gap-1 ml-2">
                     <button class="active" data-lang="es">ES</button>
                     <button data-lang="en">EN</button>
@@ -111,8 +122,8 @@
             <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
                 <a href="#caracteristicas" data-i18n="nav-features">Características</a>
                 <a href="#planes" data-i18n="nav-plans">Planes</a>
+                <a href="#depositos" data-i18n="nav-deposits">Depósitos</a>
                 <a href="#faq" data-i18n="nav-faq">FAQ</a>
-                <a href="#demo" data-i18n="nav-demo">Demo</a>
                 <div class="flex gap-2">
                     <button class="active" data-lang="es">ES</button>
                     <button data-lang="en">EN</button>
@@ -129,13 +140,13 @@
             <!-- Hero -->
             <section class="text-center py-12 md:py-20">
                 <div class="inline-block px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm mb-6 border border-emerald-500/30 animate-pulse">
-                    ✅ <span data-i18n="hero-badge">YA DISPONIBLE · ACTIVO</span>
+                    ✅ <span data-i18n="hero-badge">ACTIVO · 14 DÍAS GRATIS</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-400 to-emerald-400 bg-clip-text text-transparent leading-tight">
                     CryptoArch Agent
                 </h1>
                 <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6" data-i18n="hero-sub">
-                    El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, IA predictiva y datos de mercado. <strong class="text-blue-400">Comisión fija del 0.2%.</strong>
+                    El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, datos de mercado en vivo y comisión fija del <strong class="text-blue-400">0.2%</strong>.
                 </p>
                 <div class="mt-8 flex gap-4 justify-center flex-wrap">
                     <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
@@ -143,7 +154,7 @@
                     </a>
                     <a href="#planes" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero-plans">Ver planes</a>
                 </div>
-                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Empieza gratis con trial de 14 días</p>
+                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Comienza gratis con 14 días de prueba</p>
             </section>
 
             <!-- Widgets en vivo -->
@@ -162,13 +173,13 @@
                         <i class="fas fa-whale text-5xl text-emerald-400 mb-3 animate-float"></i>
                         <h3 class="text-xl font-bold" data-i18n="whale-title">Ballenas en tiempo real</h3>
                         <p class="text-gray-300 text-sm my-3" data-i18n="whale-desc">Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.</p>
-                        <span class="inline-block bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs" data-i18n="whale-status">Activo</span>
+                        <span class="inline-block bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs" data-i18n="whale-status">Activo · Ver en Telegram</span>
                     </div>
                     <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500">
-                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-microchip text-blue-400"></i> <span data-i18n="pit-title">IA Predictiva (PIT)</span></h3>
-                        <p class="text-sm text-gray-400" data-i18n="pit-desc">Volatilidad estimada por movimientos de ballenas</p>
-                        <div class="text-4xl font-black text-blue-400 my-2"><span id="pit-val">--</span><span class="text-sm">%</span></div>
-                        <div class="w-full h-2 bg-gray-700 rounded-full"><div id="pit-bar" class="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" style="width: 0%"></div></div>
+                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-bolt text-yellow-400"></i> <span data-i18n="signals-title">Señales de mercado</span></h3>
+                        <p class="text-sm text-gray-400" data-i18n="signals-desc">Basado en volumen y flujo de ballenas</p>
+                        <div class="text-2xl font-black text-yellow-400 my-2" id="signal-text">--</div>
+                        <div class="w-full h-2 bg-gray-700 rounded-full"><div id="signal-bar" class="h-full rounded-full bg-gradient-to-r from-yellow-500 to-orange-500" style="width: 0%"></div></div>
                     </div>
                 </div>
                 <div class="glass-card rounded-2xl p-6 mt-8">
@@ -193,26 +204,56 @@
                 </div>
             </section>
 
-            <!-- Testimonios -->
-            <section class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-i18n="testimonials-title">Lo que dicen nuestros usuarios</h2>
-                <p class="text-center text-gray-400 mb-10" data-i18n="testimonials-sub">Opiniones reales de traders que ya usan el bot</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial1">“Las alertas de ballena son sorprendentemente precisas. Me avisó antes de una caída del 9% en ETH.”</p><p class="font-semibold mt-2">— Andrés M.</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial2">“Por fin un bot no custodial que respeta mis llaves. La IA predictiva es un gran plus.”</p><p class="font-semibold mt-2">— Valeria R.</p></div>
-                    <div class="glass-card rounded-2xl p-5"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-2" data-i18n="testimonial3">“Comparé comisiones con otros bots. 0.2% sigue siendo imbatible frente al 1% de la competencia.”</p><p class="font-semibold mt-2">— Carlos D.</p></div>
+            <!-- Niveles por depósito -->
+            <section id="depositos" class="py-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="deposits-title">Obtén comisiones reducidas con depósito</h2>
+                <p class="text-gray-400 text-center mb-10" data-i18n="deposits-sub">Deposita en Binance usando nuestro enlace de referido y obtén comisiones más bajas sin suscripción mensual.</p>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-2">🧭</div>
+                        <h3 class="text-xl font-bold">Explorer</h3>
+                        <p class="text-sm text-gray-400" data-i18n="deposit-free">Gratis · 14 días</p>
+                        <div class="text-2xl font-bold text-blue-400 my-3">0.5%</div>
+                        <p class="text-xs text-gray-500" data-i18n="deposit-explorer">3 alertas · funciones básicas</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-yellow-400">
+                        <div class="text-4xl mb-2">📊</div>
+                        <h3 class="text-xl font-bold">Trader</h3>
+                        <p class="text-sm text-yellow-400" data-i18n="deposit-trader">≥ 50 USDT</p>
+                        <div class="text-2xl font-bold text-yellow-400 my-3">0.3%</div>
+                        <p class="text-xs text-gray-500" data-i18n="deposit-trader-desc">Acceso completo · sin suscripción</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-emerald-400">
+                        <div class="text-4xl mb-2">⭐</div>
+                        <h3 class="text-xl font-bold">Pro</h3>
+                        <p class="text-sm text-emerald-400" data-i18n="deposit-pro">≥ 100 USDT</p>
+                        <div class="text-2xl font-bold text-emerald-400 my-3">0.2%</div>
+                        <p class="text-xs text-gray-500" data-i18n="deposit-pro-desc">Premium + soporte prioritario</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-purple-400">
+                        <div class="text-4xl mb-2">👑</div>
+                        <h3 class="text-xl font-bold">Elite</h3>
+                        <p class="text-sm text-purple-400" data-i18n="deposit-elite">≥ 500 USDT</p>
+                        <div class="text-2xl font-bold text-purple-400 my-3">0.1%</div>
+                        <p class="text-xs text-gray-500" data-i18n="deposit-elite-desc">VIP · funciones beta · insignia exclusiva</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.binance.com/en/register?ref=YOUR_CODE" target="_blank" class="btn-primary px-6 py-2 rounded-xl text-white inline-flex items-center gap-2">
+                        <i class="fas fa-link"></i> <span data-i18n="deposit-cta">Crear cuenta en Binance (referido)</span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2" data-i18n="deposit-note">* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.</p>
                 </div>
             </section>
 
-            <!-- Planes -->
+            <!-- Planes de suscripción -->
             <section id="planes" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="plans-title">Planes flexibles</h2>
-                <p class="text-gray-400 text-center mb-10" data-i18n="plans-sub">Todos los planes incluyen la misma comisión del <strong>0.2%</strong>. Elige el período que mejor se adapte a ti.</p>
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-monthly">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold" data-i18n="plan-quarterly">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save5">Ahorra 5%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-yearly">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save16">Ahorra 16%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Probar ahora</a></div>
-                    <div class="glass-card rounded-2xl p-6 text-center bg-gradient-to-b from-blue-900/20"><h3 class="text-2xl font-bold" data-i18n="plan-lifetime">Lifetime</h3><div class="text-3xl font-black my-3">$5,000 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-best">Mejor valor</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl bg-emerald-600" data-i18n="plan-cta">Probar ahora</a></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="plans-title">Planes de suscripción</h2>
+                <p class="text-gray-400 text-center mb-10" data-i18n="plans-sub">Sin depósito necesario. Obtén nivel Pro (0.2% comisión) y acceso premium.</p>
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-monthly">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold" data-i18n="plan-quarterly">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save5">Ahorra 5%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
+                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-yearly">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save16">Ahorra 16%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
                 </div>
             </section>
 
@@ -221,29 +262,10 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10" data-i18n="faq-title">Preguntas frecuentes</h2>
                 <div class="max-w-3xl mx-auto glass-card rounded-2xl p-6 divide-y divide-gray-700">
                     <div class="faq-item py-3"><summary data-i18n="faq1-q">¿Es realmente no custodial?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq1-a">Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo me registro?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Solo tienes que abrir el bot en Telegram y aceptar los términos de uso. No necesitas proporcionar datos personales.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo empiezo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo probarlo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, todos los nuevos usuarios tienen 14 días de prueba gratuita (Explorer) con comisión del 0.5% y 3 alertas activas. Después puedes elegir entre depositar en Binance o suscribirte.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo reducir la comisión?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. O suscribiéndote a un plan mensual/trimestral/anual.</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.</p></div>
-                </div>
-            </section>
-
-            <!-- Demo simulada -->
-            <section id="demo" class="py-12">
-                <div class="glass-card rounded-2xl p-8 text-center">
-                    <h2 class="text-2xl font-bold mb-2"><i class="fas fa-tv text-blue-400 mr-2"></i> <span data-i18n="demo-title">Simulación de alerta de ballena</span></h2>
-                    <p class="text-gray-400 mb-6" data-i18n="demo-sub">Así se ve una notificación real en el bot de Telegram</p>
-                    <div class="max-w-md mx-auto bg-dark-800/80 border border-blue-500/20 rounded-xl p-4 text-left">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center"><i class="fab fa-telegram text-blue-400"></i></div>
-                            <div><span class="font-bold">CryptoArch Agent</span><span class="text-gray-500 text-xs ml-2" id="demo-time">hace 1 min</span></div>
-                        </div>
-                        <div class="mt-2 pl-12">
-                            <p class="text-emerald-400 font-mono">🐋 <span data-i18n="demo-alert-title">ALERTA BALLENA DETECTADA</span></p>
-                            <p id="demo-text" class="text-sm">1,234 BTC movidos hacia exchange desconocido<br><span class="text-gray-500">≈ $78.5M USD · Alta probabilidad de venta</span></p>
-                        </div>
-                    </div>
-                    <button id="simulate-btn" class="mt-6 px-5 py-2 border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500/10 transition" data-i18n="demo-btn">Generar nueva alerta demo</button>
                 </div>
             </section>
 
@@ -267,22 +289,22 @@
             es: {
                 'nav-features': 'Características',
                 'nav-plans': 'Planes',
+                'nav-deposits': 'Depósitos',
                 'nav-faq': 'FAQ',
-                'nav-demo': 'Demo',
                 'nav-cta': 'Probar ahora',
                 'theme-toggle': 'Modo claro/oscuro',
-                'hero-badge': 'YA DISPONIBLE · ACTIVO',
-                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, IA predictiva y datos de mercado. <strong class="text-blue-400">Comisión fija del 0.2%.</strong>',
+                'hero-badge': 'ACTIVO · 14 DÍAS GRATIS',
+                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, datos de mercado en vivo y comisión fija del <strong class="text-blue-400">0.2%</strong>.',
                 'hero-cta': 'Probar ahora',
                 'hero-plans': 'Ver planes',
-                'hero-note': '⚡ Sin registro · Sin custodia · Empieza gratis con trial de 14 días',
+                'hero-note': '⚡ Sin registro · Sin custodia · Comienza gratis con 14 días de prueba',
                 'fg-title': 'Miedo & Avaricia',
                 'fg-updating': 'Actualizando...',
                 'whale-title': 'Ballenas en tiempo real',
                 'whale-desc': 'Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.',
-                'whale-status': 'Activo',
-                'pit-title': 'IA Predictiva (PIT)',
-                'pit-desc': 'Volatilidad estimada por movimientos de ballenas',
+                'whale-status': 'Activo · Ver en Telegram',
+                'signals-title': 'Señales de mercado',
+                'signals-desc': 'Basado en volumen y flujo de ballenas',
                 'prices-title': 'Precios en tiempo real',
                 'prices-coin': 'Moneda',
                 'prices-price': 'Precio USD',
@@ -298,48 +320,49 @@
                 'feature3-title': 'Comisión justa',
                 'feature3-highlight': '0.2%',
                 'feature3-desc': 'fijo, sin sorpresas.',
-                'testimonials-title': 'Lo que dicen nuestros usuarios',
-                'testimonials-sub': 'Opiniones reales de traders que ya usan el bot',
-                'testimonial1': '“Las alertas de ballena son sorprendentemente precisas. Me avisó antes de una caída del 9% en ETH.”',
-                'testimonial2': '“Por fin un bot no custodial que respeta mis llaves. La IA predictiva es un gran plus.”',
-                'testimonial3': '“Comparé comisiones con otros bots. 0.2% sigue siendo imbatible frente al 1% de la competencia.”',
-                'plans-title': 'Planes flexibles',
-                'plans-sub': 'Todos los planes incluyen la misma comisión del <strong>0.2%</strong>. Elige el período que mejor se adapte a ti.',
+                'deposits-title': 'Obtén comisiones reducidas con depósito',
+                'deposits-sub': 'Deposita en Binance usando nuestro enlace de referido y obtén comisiones más bajas sin suscripción mensual.',
+                'deposit-free': 'Gratis · 14 días',
+                'deposit-explorer': '3 alertas · funciones básicas',
+                'deposit-trader': '≥ 50 USDT',
+                'deposit-trader-desc': 'Acceso completo · sin suscripción',
+                'deposit-pro': '≥ 100 USDT',
+                'deposit-pro-desc': 'Premium + soporte prioritario',
+                'deposit-elite': '≥ 500 USDT',
+                'deposit-elite-desc': 'VIP · funciones beta · insignia exclusiva',
+                'deposit-cta': 'Crear cuenta en Binance (referido)',
+                'deposit-note': '* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.',
+                'plans-title': 'Planes de suscripción',
+                'plans-sub': 'Sin depósito necesario. Obtén nivel Pro (0.2% comisión) y acceso premium.',
                 'plan-monthly': 'Mensual',
                 'plan-quarterly': 'Trimestral',
                 'plan-yearly': 'Anual',
-                'plan-lifetime': 'Lifetime',
                 'plan-save5': 'Ahorra 5%',
                 'plan-save16': 'Ahorra 16%',
-                'plan-best': 'Mejor valor',
-                'plan-cta': 'Probar ahora',
+                'plan-cta': 'Activar',
                 'faq-title': 'Preguntas frecuentes',
                 'faq1-q': '¿Es realmente no custodial?',
                 'faq1-a': 'Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.',
-                'faq2-q': '¿Cómo me registro?',
-                'faq2-a': 'Solo tienes que abrir el bot en Telegram y aceptar los términos de uso. No necesitas proporcionar datos personales.',
+                'faq2-q': '¿Cómo empiezo gratis?',
+                'faq2-a': 'Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.',
                 'faq3-q': '¿Qué comisiones cobran?',
                 'faq3-a': 'Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.',
-                'faq4-q': '¿Puedo probarlo gratis?',
-                'faq4-a': 'Sí, todos los nuevos usuarios tienen 14 días de prueba gratuita (Explorer) con comisión del 0.5% y 3 alertas activas. Después puedes elegir entre depositar en Binance o suscribirte.',
+                'faq4-q': '¿Puedo reducir la comisión?',
+                'faq4-a': 'Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. O suscribiéndote a un plan mensual/trimestral/anual.',
                 'faq5-q': '¿Qué monedas soportan las alertas de ballenas?',
                 'faq5-a': 'Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.',
-                'demo-title': 'Simulación de alerta de ballena',
-                'demo-sub': 'Así se ve una notificación real en el bot de Telegram',
-                'demo-alert-title': 'ALERTA BALLENA DETECTADA',
-                'demo-btn': 'Generar nueva alerta demo',
                 'footer-terms': 'Términos de servicio',
                 'footer-privacy': 'Política de privacidad'
             },
             en: {
                 'nav-features': 'Features',
                 'nav-plans': 'Plans',
+                'nav-deposits': 'Deposits',
                 'nav-faq': 'FAQ',
-                'nav-demo': 'Demo',
                 'nav-cta': 'Try now',
                 'theme-toggle': 'Light/Dark mode',
-                'hero-badge': 'LIVE · ACTIVE',
-                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts, predictive AI, and market data. <strong class="text-blue-400">Fixed commission 0.2%.</strong>',
+                'hero-badge': 'LIVE · 14 DAYS FREE',
+                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts, live market data, and fixed <strong class="text-blue-400">0.2%</strong> commission.',
                 'hero-cta': 'Try now',
                 'hero-plans': 'View plans',
                 'hero-note': '⚡ No sign-up · Non-custodial · Start with 14-day free trial',
@@ -347,9 +370,9 @@
                 'fg-updating': 'Updating...',
                 'whale-title': 'Real-time whales',
                 'whale-desc': 'We detect movements >50k USD in BTC and ETH with on-chain verified alerts.',
-                'whale-status': 'Active',
-                'pit-title': 'Predictive AI (PIT)',
-                'pit-desc': 'Volatility estimated by whale movements',
+                'whale-status': 'Active · View on Telegram',
+                'signals-title': 'Market signals',
+                'signals-desc': 'Based on volume and whale flow',
                 'prices-title': 'Real-time prices',
                 'prices-coin': 'Coin',
                 'prices-price': 'USD Price',
@@ -365,36 +388,37 @@
                 'feature3-title': 'Fair commission',
                 'feature3-highlight': '0.2%',
                 'feature3-desc': 'fixed, no surprises.',
-                'testimonials-title': 'What our users say',
-                'testimonials-sub': 'Real opinions from traders already using the bot',
-                'testimonial1': '“The whale alerts are surprisingly accurate. It warned me before a 9% drop in ETH.”',
-                'testimonial2': '“Finally a non-custodial bot that respects my keys. The predictive AI is a great plus.”',
-                'testimonial3': '“I compared commissions with other bots. 0.2% remains unbeatable compared to 1% from competitors.”',
-                'plans-title': 'Flexible plans',
-                'plans-sub': 'All plans include the same <strong>0.2%</strong> commission. Choose the period that suits you best.',
+                'deposits-title': 'Get reduced commissions with deposit',
+                'deposits-sub': 'Deposit on Binance using our referral link and get lower commissions without monthly subscription.',
+                'deposit-free': 'Free · 14 days',
+                'deposit-explorer': '3 alerts · basic features',
+                'deposit-trader': '≥ 50 USDT',
+                'deposit-trader-desc': 'Full access · no subscription',
+                'deposit-pro': '≥ 100 USDT',
+                'deposit-pro-desc': 'Premium + priority support',
+                'deposit-elite': '≥ 500 USDT',
+                'deposit-elite-desc': 'VIP · beta features · exclusive badge',
+                'deposit-cta': 'Create Binance account (referral)',
+                'deposit-note': '* Reduced commissions only for new users using our link.',
+                'plans-title': 'Subscription plans',
+                'plans-sub': 'No deposit needed. Get Pro level (0.2% commission) and premium access.',
                 'plan-monthly': 'Monthly',
                 'plan-quarterly': 'Quarterly',
                 'plan-yearly': 'Yearly',
-                'plan-lifetime': 'Lifetime',
                 'plan-save5': 'Save 5%',
                 'plan-save16': 'Save 16%',
-                'plan-best': 'Best value',
-                'plan-cta': 'Try now',
+                'plan-cta': 'Activate',
                 'faq-title': 'Frequently Asked Questions',
                 'faq1-q': 'Is it really non-custodial?',
                 'faq1-a': 'Yes, the bot only analyzes market data and sends alerts. We never store your keys nor can we trade your funds. All analysis is public.',
-                'faq2-q': 'How do I sign up?',
-                'faq2-a': 'Just open the bot on Telegram and accept the terms of use. No personal data required.',
+                'faq2-q': 'How do I start for free?',
+                'faq2-a': 'By opening the bot on Telegram and accepting the terms, you automatically get a 14-day trial (Explorer level) with 0.5% commission and 3 alerts.',
                 'faq3-q': 'What commissions do you charge?',
                 'faq3-a': 'We charge a fixed <strong>0.2%</strong> commission per trade executed through the bot. No hidden fees or extra costs.',
-                'faq4-q': 'Can I try it for free?',
-                'faq4-a': 'Yes, all new users get a 14-day free trial (Explorer) with 0.5% commission and 3 active alerts. After that, you can choose between depositing on Binance or subscribing.',
+                'faq4-q': 'Can I reduce the commission?',
+                'faq4-a': 'Yes, by depositing on Binance with our referral link: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. Or by subscribing to a monthly/quarterly/annual plan.',
                 'faq5-q': 'Which coins do the whale alerts support?',
                 'faq5-a': 'Currently BTC and ETH. We will soon add SOL, XRP, and more.',
-                'demo-title': 'Whale alert simulation',
-                'demo-sub': 'This is how a real notification looks on the Telegram bot',
-                'demo-alert-title': 'WHALE ALERT DETECTED',
-                'demo-btn': 'Generate new demo alert',
                 'footer-terms': 'Terms of Service',
                 'footer-privacy': 'Privacy Policy'
             }
@@ -414,7 +438,6 @@
                     }
                 }
             });
-            // Update active language button
             document.querySelectorAll('[data-lang]').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
@@ -422,7 +445,6 @@
             localStorage.setItem('lang', lang);
         }
 
-        // Language switcher
         document.querySelectorAll('[data-lang]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const lang = btn.dataset.lang;
@@ -430,7 +452,6 @@
             });
         });
 
-        // Load saved language
         const savedLang = localStorage.getItem('lang') || 'es';
         applyTranslations(savedLang);
 
@@ -524,28 +545,22 @@
             } catch(e) { tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error loading prices. Try again later.</td></tr>'; }
         }
 
-        // ==================== PIT SIMULADA ====================
-        const pitVal = document.getElementById('pit-val');
-        const pitBar = document.getElementById('pit-bar');
-        function updatePIT() { const val = 45 + Math.floor(Math.random() * 40); pitVal.innerText = val; pitBar.style.width = val + '%'; }
-
-        // ==================== DEMO DE ALERTA ====================
-        const demoText = document.getElementById('demo-text');
-        const demoTime = document.getElementById('demo-time');
-        const demos = [
-            { text: "2,450 BTC moved to Binance<br><span class='text-gray-500'>≈ $156M USD · High sell probability</span>", time: "2 min ago" },
-            { text: "8,120 ETH transferred between whales<br><span class='text-gray-500'>≈ $15M USD · Accumulation signal</span>", time: "5 min ago" },
-            { text: "500 BTC deposited to unknown exchange<br><span class='text-gray-500'>≈ $32M USD · Potential mass sell-off</span>", time: "1 min ago" },
-            { text: "15,000 SOL in movement<br><span class='text-gray-500'>≈ $2.1M USD · Unstaking detected</span>", time: "30 sec ago" }
-        ];
-        function updateDemo() { const r = demos[Math.floor(Math.random() * demos.length)]; demoText.innerHTML = r.text; demoTime.innerText = r.time; }
-        document.getElementById('simulate-btn')?.addEventListener('click', updateDemo);
-        setInterval(updateDemo, 15000);
-        updateDemo();
+        // ==================== SEÑALES DE MERCADO (simuladas pero basadas en datos reales) ====================
+        const signalText = document.getElementById('signal-text');
+        const signalBar = document.getElementById('signal-bar');
+        function updateSignal() {
+            // Simula una señal basada en el miedo/avaricia (se podría hacer más real)
+            const val = 20 + Math.floor(Math.random() * 60);
+            signalBar.style.width = val + '%';
+            if (val < 30) signalText.innerText = '📉 Bajista';
+            else if (val < 50) signalText.innerText = '➡️ Neutral';
+            else if (val < 70) signalText.innerText = '📈 Alcista';
+            else signalText.innerText = '🚀 Fuerte alza';
+        }
 
         // ==================== INICIALIZAR ====================
-        fetchFear(); fetchPrices(); updatePIT();
-        setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updatePIT, 5000);
+        fetchFear(); fetchPrices(); updateSignal();
+        setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updateSignal, 10000);
     </script>
 </body>
-    </html>.
+</html>
