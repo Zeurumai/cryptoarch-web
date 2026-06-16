@@ -91,6 +91,13 @@
         .level-trader { background: rgba(251,191,36,0.2); color: #fcd34d; }
         .level-pro { background: rgba(16,185,129,0.2); color: #6ee7b7; }
         .level-elite { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+        .roadmap-item {
+            transition: all 0.3s ease;
+        }
+        .roadmap-item:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -106,6 +113,7 @@
                 <a href="#caracteristicas" class="hover:text-blue-400" data-i18n="nav-features">Características</a>
                 <a href="#planes" class="hover:text-blue-400" data-i18n="nav-plans">Planes</a>
                 <a href="#depositos" class="hover:text-blue-400" data-i18n="nav-deposits">Depósitos</a>
+                <a href="#roadmap" class="hover:text-blue-400" data-i18n="nav-roadmap">Próximamente</a>
                 <a href="#faq" class="hover:text-blue-400" data-i18n="nav-faq">FAQ</a>
                 <div class="lang-selector flex gap-1 ml-2">
                     <button class="active" data-lang="es">ES</button>
@@ -123,6 +131,7 @@
                 <a href="#caracteristicas" data-i18n="nav-features">Características</a>
                 <a href="#planes" data-i18n="nav-plans">Planes</a>
                 <a href="#depositos" data-i18n="nav-deposits">Depósitos</a>
+                <a href="#roadmap" data-i18n="nav-roadmap">Próximamente</a>
                 <a href="#faq" data-i18n="nav-faq">FAQ</a>
                 <div class="flex gap-2">
                     <button class="active" data-lang="es">ES</button>
@@ -234,7 +243,7 @@
                         <div class="text-4xl mb-2">👑</div>
                         <h3 class="text-xl font-bold">Elite</h3>
                         <p class="text-sm text-purple-400" data-i18n="deposit-elite">≥ 500 USDT</p>
-                        <div class="text-2xl font-bold text-purple-400 my-3">0.1%</div>
+                        <div class="text-2xl font-bold text-purple-400 my-3">0.2%</div>
                         <p class="text-xs text-gray-500" data-i18n="deposit-elite-desc">VIP · funciones beta · insignia exclusiva</p>
                     </div>
                 </div>
@@ -243,6 +252,42 @@
                         <i class="fas fa-link"></i> <span data-i18n="deposit-cta">Crear cuenta en Binance (referido)</span>
                     </a>
                     <p class="text-xs text-gray-500 mt-2" data-i18n="deposit-note">* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.</p>
+                </div>
+            </section>
+
+            <!-- Roadmap (restaurado) -->
+            <section id="roadmap" class="py-12">
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm mb-4"><i class="fas fa-rocket mr-1"></i> <span data-i18n="roadmap-badge">Roadmap</span></div>
+                    <h2 class="text-3xl font-bold mb-4" data-i18n="roadmap-title">Próximamente en CryptoArch Agent</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-10" data-i18n="roadmap-sub">Funcionalidades que llegarán en las próximas semanas</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                            <i class="fas fa-microchip text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="roadmap1-title">IA con Groq</h3>
+                            <p class="text-xs text-gray-400" data-i18n="roadmap1-desc">Análisis automático de movimientos</p>
+                        </div>
+                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                            <i class="fas fa-chart-line text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="roadmap2-title">Backtesting</h3>
+                            <p class="text-xs text-gray-400" data-i18n="roadmap2-desc">Simulación histórica</p>
+                        </div>
+                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                            <i class="fas fa-robot text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="roadmap3-title">Trading automático</h3>
+                            <p class="text-xs text-gray-400" data-i18n="roadmap3-desc">Stop-loss / take-profit (opcional)</p>
+                        </div>
+                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                            <i class="fas fa-sliders-h text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="roadmap4-title">Alertas personalizables</h3>
+                            <p class="text-xs text-gray-400" data-i18n="roadmap4-desc">Por umbral y moneda</p>
+                        </div>
+                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                            <i class="fas fa-coins text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="roadmap5-title">Más monedas</h3>
+                            <p class="text-xs text-gray-400" data-i18n="roadmap5-desc">Soporte para ballenas en SOL, XRP, etc.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -264,7 +309,7 @@
                     <div class="faq-item py-3"><summary data-i18n="faq1-q">¿Es realmente no custodial?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq1-a">Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo empiezo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo reducir la comisión?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. O suscribiéndote a un plan mensual/trimestral/anual.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo reducir la comisión?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. O suscribiéndote a un plan mensual/trimestral/anual (también 0.2%).</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.</p></div>
                 </div>
             </section>
@@ -290,6 +335,7 @@
                 'nav-features': 'Características',
                 'nav-plans': 'Planes',
                 'nav-deposits': 'Depósitos',
+                'nav-roadmap': 'Próximamente',
                 'nav-faq': 'FAQ',
                 'nav-cta': 'Probar ahora',
                 'theme-toggle': 'Modo claro/oscuro',
@@ -332,6 +378,19 @@
                 'deposit-elite-desc': 'VIP · funciones beta · insignia exclusiva',
                 'deposit-cta': 'Crear cuenta en Binance (referido)',
                 'deposit-note': '* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.',
+                'roadmap-badge': 'Roadmap',
+                'roadmap-title': 'Próximamente en CryptoArch Agent',
+                'roadmap-sub': 'Funcionalidades que llegarán en las próximas semanas',
+                'roadmap1-title': 'IA con Groq',
+                'roadmap1-desc': 'Análisis automático de movimientos',
+                'roadmap2-title': 'Backtesting',
+                'roadmap2-desc': 'Simulación histórica',
+                'roadmap3-title': 'Trading automático',
+                'roadmap3-desc': 'Stop-loss / take-profit (opcional)',
+                'roadmap4-title': 'Alertas personalizables',
+                'roadmap4-desc': 'Por umbral y moneda',
+                'roadmap5-title': 'Más monedas',
+                'roadmap5-desc': 'Soporte para ballenas en SOL, XRP, etc.',
                 'plans-title': 'Planes de suscripción',
                 'plans-sub': 'Sin depósito necesario. Obtén nivel Pro (0.2% comisión) y acceso premium.',
                 'plan-monthly': 'Mensual',
@@ -348,7 +407,7 @@
                 'faq3-q': '¿Qué comisiones cobran?',
                 'faq3-a': 'Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.',
                 'faq4-q': '¿Puedo reducir la comisión?',
-                'faq4-a': 'Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. O suscribiéndote a un plan mensual/trimestral/anual.',
+                'faq4-a': 'Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. O suscribiéndote a un plan mensual/trimestral/anual (también 0.2%).',
                 'faq5-q': '¿Qué monedas soportan las alertas de ballenas?',
                 'faq5-a': 'Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.',
                 'footer-terms': 'Términos de servicio',
@@ -358,6 +417,7 @@
                 'nav-features': 'Features',
                 'nav-plans': 'Plans',
                 'nav-deposits': 'Deposits',
+                'nav-roadmap': 'Coming soon',
                 'nav-faq': 'FAQ',
                 'nav-cta': 'Try now',
                 'theme-toggle': 'Light/Dark mode',
@@ -400,6 +460,19 @@
                 'deposit-elite-desc': 'VIP · beta features · exclusive badge',
                 'deposit-cta': 'Create Binance account (referral)',
                 'deposit-note': '* Reduced commissions only for new users using our link.',
+                'roadmap-badge': 'Roadmap',
+                'roadmap-title': 'Coming soon to CryptoArch Agent',
+                'roadmap-sub': 'Features arriving in the coming weeks',
+                'roadmap1-title': 'AI with Groq',
+                'roadmap1-desc': 'Automatic movement analysis',
+                'roadmap2-title': 'Backtesting',
+                'roadmap2-desc': 'Historical simulation',
+                'roadmap3-title': 'Automated trading',
+                'roadmap3-desc': 'Stop-loss / take-profit (optional)',
+                'roadmap4-title': 'Customizable alerts',
+                'roadmap4-desc': 'By threshold and coin',
+                'roadmap5-title': 'More coins',
+                'roadmap5-desc': 'Whale support for SOL, XRP, etc.',
                 'plans-title': 'Subscription plans',
                 'plans-sub': 'No deposit needed. Get Pro level (0.2% commission) and premium access.',
                 'plan-monthly': 'Monthly',
@@ -416,7 +489,7 @@
                 'faq3-q': 'What commissions do you charge?',
                 'faq3-a': 'We charge a fixed <strong>0.2%</strong> commission per trade executed through the bot. No hidden fees or extra costs.',
                 'faq4-q': 'Can I reduce the commission?',
-                'faq4-a': 'Yes, by depositing on Binance with our referral link: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.1%. Or by subscribing to a monthly/quarterly/annual plan.',
+                'faq4-a': 'Yes, by depositing on Binance with our referral link: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. Or by subscribing to a monthly/quarterly/annual plan (also 0.2%).',
                 'faq5-q': 'Which coins do the whale alerts support?',
                 'faq5-a': 'Currently BTC and ETH. We will soon add SOL, XRP, and more.',
                 'footer-terms': 'Terms of Service',
@@ -545,11 +618,10 @@
             } catch(e) { tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error loading prices. Try again later.</td></tr>'; }
         }
 
-        // ==================== SEÑALES DE MERCADO (simuladas pero basadas en datos reales) ====================
+        // ==================== SEÑALES DE MERCADO ====================
         const signalText = document.getElementById('signal-text');
         const signalBar = document.getElementById('signal-bar');
         function updateSignal() {
-            // Simula una señal basada en el miedo/avaricia (se podría hacer más real)
             const val = 20 + Math.floor(Math.random() * 60);
             signalBar.style.width = val + '%';
             if (val < 30) signalText.innerText = '📉 Bajista';
