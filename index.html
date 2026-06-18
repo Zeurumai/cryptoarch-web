@@ -17,12 +17,10 @@
                         radial-gradient(circle at 100% 100%, rgba(16,185,129,0.08) 0%, transparent 50%),
                         #0A0C12;
             transition: background 0.3s, color 0.3s;
+            color: #e5e7eb;
         }
-        body.light-mode {
-            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.05) 0%, transparent 50%),
-                        #F8FAFC;
-        }
+        
+        /* ===== MODO OSCURO (por defecto) ===== */
         .glass-card {
             background: rgba(15, 17, 25, 0.75);
             backdrop-filter: blur(16px);
@@ -34,9 +32,10 @@
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(59,130,246,0.15);
         }
-        body.light-mode .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            border-color: rgba(59, 130, 246, 0.3);
+        .nav-blur {
+            background: rgba(10,12,18,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59,130,246,0.1);
         }
         .btn-primary {
             background: linear-gradient(135deg, #3b82f6, #2563eb);
@@ -62,20 +61,6 @@
         .btn-primary:hover::after { opacity: 1; }
         .coin-row { cursor: pointer; transition: background 0.2s; }
         .coin-row:hover { background: rgba(59,130,246,0.1); }
-        .nav-blur {
-            background: rgba(10,12,18,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59,130,246,0.1);
-        }
-        body.light-mode .nav-blur {
-            background: rgba(248,250,252,0.85);
-            border-bottom: 1px solid rgba(59,130,246,0.2);
-        }
-        @keyframes float {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .animate-float { animation: float 4s ease-in-out infinite; }
         .lang-selector button {
             font-weight: 600;
             padding: 4px 10px;
@@ -138,9 +123,115 @@
         .commission-card:hover {
             transform: translateY(-4px);
         }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        /* ===== MODO CLARO (MEJORADO) ===== */
+        body.light-mode {
+            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.04) 0%, transparent 50%),
+                        #eef2f6;
+            color: #0f172a;
+        }
+
+        body.light-mode .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            color: #0f172a;
+        }
+        body.light-mode .glass-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 32px rgba(59,130,246,0.08);
+        }
+        body.light-mode .nav-blur {
+            background: rgba(238, 242, 246, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59,130,246,0.1);
+        }
+        body.light-mode .text-gray-200 { color: #1e293b; }
+        body.light-mode .text-gray-300 { color: #334155; }
+        body.light-mode .text-gray-400 { color: #64748b; }
+        body.light-mode .text-gray-500 { color: #94a3b8; }
+        body.light-mode .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        body.light-mode .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(59,130,246,0.3);
+        }
+        body.light-mode .level-badge {
+            background: rgba(59,130,246,0.1);
+            color: #1e40af;
+        }
+        body.light-mode .legal-badge {
+            background: rgba(16,185,129,0.1);
+            color: #065f46;
+            border-color: rgba(16,185,129,0.2);
+        }
+        body.light-mode .legal-badge.warning {
+            background: rgba(251,191,36,0.1);
+            color: #92400e;
+            border-color: rgba(251,191,36,0.2);
+        }
+        body.light-mode .faq-item summary {
+            color: #0f172a;
+        }
+        body.light-mode .faq-item summary:hover {
+            color: #3b82f6;
+        }
+        body.light-mode .faq-item p {
+            color: #334155;
+        }
+        body.light-mode .bg-dark-700\/50 {
+            background: rgba(241, 245, 249, 0.8);
+        }
+        body.light-mode .border-t-2 {
+            border-color: rgba(0,0,0,0.08);
+        }
+        body.light-mode .text-purple-400 { color: #7c3aed; }
+        body.light-mode .text-blue-400 { color: #2563eb; }
+        body.light-mode .text-emerald-400 { color: #059669; }
+        body.light-mode .text-yellow-400 { color: #d97706; }
+        body.light-mode .text-rose-400 { color: #dc2626; }
+        body.light-mode .coin-row:hover {
+            background: rgba(59,130,246,0.06);
+        }
+        body.light-mode .lang-selector button.active {
+            background: #3b82f6;
+            color: white;
+        }
+        body.light-mode .lang-selector button:not(.active):hover {
+            background: rgba(59,130,246,0.1);
+        }
+        body.light-mode .border-t {
+            border-color: rgba(0,0,0,0.06);
+        }
+        body.light-mode .border-b {
+            border-color: rgba(0,0,0,0.06);
+        }
+        body.light-mode .divide-y > * + * {
+            border-color: rgba(0,0,0,0.06);
+        }
+        body.light-mode .bg-dark-700\/50 {
+            background: rgba(241, 245, 249, 0.8);
+        }
+        body.light-mode .bg-dark-800\/95 {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        body.light-mode .text-yellow-500 {
+            color: #d97706;
+        }
+        body.light-mode .text-purple-300 {
+            color: #7c3aed;
+        }
     </style>
 </head>
-<body class="text-gray-200">
+<body>
 
     <!-- Header -->
     <header class="fixed top-0 w-full z-50 nav-blur">
@@ -242,7 +333,7 @@
                 </div>
             </section>
 
-            <!-- COMISIONES (NUEVO MODELO) -->
+            <!-- COMISIONES -->
             <section id="comisiones" class="py-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="commissions-title">Comisiones justas y transparentes</h2>
                 <p class="text-gray-400 text-center mb-10" data-i18n="commissions-sub">Sin suscripciones. Solo pagas comisión al operar. Y puedes reducirla.</p>
@@ -315,7 +406,7 @@
                 </div>
             </section>
 
-            <!-- CUMPLIMIENTO Y REGULACIONES -->
+            <!-- CUMPLIMIENTO -->
             <section id="cumplimiento" class="py-12">
                 <div class="glass-card rounded-3xl p-8">
                     <div class="flex flex-col md:flex-row items-start gap-6">
@@ -325,7 +416,7 @@
                         <div>
                             <h2 class="text-2xl font-bold mb-4" data-i18n="compliance-title">Transparencia y cumplimiento normativo</h2>
                             <p class="text-gray-300 text-sm leading-relaxed" data-i18n="compliance-desc">
-                                CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO)</strong> en México, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. 
+                                CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO) en México</strong>, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. 
                                 Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.
                             </p>
                             <div class="flex flex-wrap gap-2 mt-4">
@@ -429,7 +520,7 @@
                 'token-benefit3-desc': 'Funciones exclusivas antes que nadie',
                 'token-note': '* El token $CARCH se lanzará en los próximos meses. Los primeros 100 usuarios recibirán un airdrop.',
                 'compliance-title': 'Transparencia y cumplimiento normativo',
-                'compliance-desc': 'CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO)</strong> en México, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.',
+                'compliance-desc': 'CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO) en México</strong>, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.',
                 'compliance-risk1': 'Este bot es una herramienta de análisis y automatización. <strong>NO es un asesor financiero.</strong>',
                 'compliance-risk2': 'Las alertas, informes y datos generados son <strong>puramente informativos</strong> y no constituyen recomendaciones de compra/venta/inversión.',
                 'compliance-risk3': 'El trading de criptomonedas implica un <strong>alto riesgo de pérdida total del capital</strong>. Ni el creador del bot ni sus operadores se hacen responsables de las pérdidas financieras derivadas del uso de esta herramienta.',
@@ -501,7 +592,7 @@
                 'token-benefit3-desc': 'Exclusive features before anyone else',
                 'token-note': '* The $CARCH token will be launched in the coming months. The first 100 users will receive an airdrop.',
                 'compliance-title': 'Transparency and regulatory compliance',
-                'compliance-desc': 'CryptoArch Agent operates under the <strong>Simplified Trust Regime (RESICO)</strong> in Mexico, complying with all applicable tax obligations for digital services. Our service is available to <strong>traders worldwide</strong>. The location of our company does not affect the global functionality of the bot.',
+                'compliance-desc': 'CryptoArch Agent operates under the <strong>Simplified Trust Regime (RESICO) in Mexico</strong>, complying with all applicable tax obligations for digital services. Our service is available to <strong>traders worldwide</strong>. The location of our company does not affect the global functionality of the bot.',
                 'compliance-risk1': 'This bot is an analysis and automation tool. <strong>It is NOT a financial advisor.</strong>',
                 'compliance-risk2': 'Alerts, reports, and generated data are <strong>purely informational</strong> and do not constitute buy/sell/investment recommendations.',
                 'compliance-risk3': 'Cryptocurrency trading involves <strong>high risk of total capital loss</strong>. Neither the bot creator nor its operators are responsible for financial losses arising from use of this tool.',
@@ -664,4 +755,4 @@
         setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updateSignal, 10000);
     </script>
 </body>
-    </html>
+</html>
