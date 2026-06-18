@@ -1,758 +1,307 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>CryptoArch Agent · Bot No Custodial · Gratis · Comisiones desde 0.3%</title>
-    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. Comisiones desde 0.3%, sin suscripciones. Token $CARCH con revenue sharing.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        body {
-            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.08) 0%, transparent 50%),
-                        #0A0C12;
-            transition: background 0.3s, color 0.3s;
-            color: #e5e7eb;
-        }
-        
-        /* ===== MODO OSCURO (por defecto) ===== */
-        .glass-card {
-            background: rgba(15, 17, 25, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.4s ease;
-        }
-        .glass-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(59,130,246,0.15);
-        }
-        .nav-blur {
-            background: rgba(10,12,18,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59,130,246,0.1);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(59,130,246,0.4);
-        }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .btn-primary:hover::after { opacity: 1; }
-        .coin-row { cursor: pointer; transition: background 0.2s; }
-        .coin-row:hover { background: rgba(59,130,246,0.1); }
-        .lang-selector button {
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-        .lang-selector button.active {
-            background: #3b82f6;
-            color: white;
-        }
-        .lang-selector button:not(.active):hover {
-            background: rgba(59,130,246,0.2);
-        }
-        .faq-item summary {
-            cursor: pointer;
-            font-weight: 600;
-            padding: 0.5rem 0;
-        }
-        .faq-item summary:hover { color: #3b82f6; }
-        .level-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .level-explorer { background: rgba(59,130,246,0.2); color: #93c5fd; }
-        .level-trader { background: rgba(251,191,36,0.2); color: #fcd34d; }
-        .level-pro { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-        .level-elite { background: rgba(139,92,246,0.2); color: #c4b5fd; }
-        .level-legendary { background: rgba(244,63,94,0.2); color: #fda4af; }
-        .roadmap-item {
-            transition: all 0.3s ease;
-        }
-        .roadmap-item:hover {
-            transform: translateY(-3px);
-            border-color: #3b82f6;
-        }
-        .legal-badge {
-            display: inline-block;
-            background: rgba(16,185,129,0.1);
-            color: #6ee7b7;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(16,185,129,0.2);
-        }
-        .legal-badge.warning {
-            background: rgba(251,191,36,0.1);
-            color: #fcd34d;
-            border-color: rgba(251,191,36,0.2);
-        }
-        .token-glow {
-            text-shadow: 0 0 40px rgba(139,92,246,0.3);
-        }
-        .commission-card {
-            transition: all 0.3s;
-        }
-        .commission-card:hover {
-            transform: translateY(-4px);
-        }
-        @keyframes float {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .animate-float { animation: float 4s ease-in-out infinite; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryptoArch Agent · Modo Claro</title>
+  <!-- Fuente moderna y limpia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset básico y estilos globales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* ===== MODO CLARO (MEJORADO) ===== */
-        body.light-mode {
-            background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.04) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(16,185,129,0.04) 0%, transparent 50%),
-                        #eef2f6;
-            color: #0f172a;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #EEF0F3; /* gris tenue con matiz frío */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      margin: 0;
+      line-height: 1.5;
+      color: #0B1120;
+    }
 
-        body.light-mode .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-            color: #0f172a;
-        }
-        body.light-mode .glass-card:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 8px 32px rgba(59,130,246,0.08);
-        }
-        body.light-mode .nav-blur {
-            background: rgba(238, 242, 246, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59,130,246,0.1);
-        }
-        body.light-mode .text-gray-200 { color: #1e293b; }
-        body.light-mode .text-gray-300 { color: #334155; }
-        body.light-mode .text-gray-400 { color: #64748b; }
-        body.light-mode .text-gray-500 { color: #94a3b8; }
-        body.light-mode .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-        }
-        body.light-mode .btn-primary:hover {
-            box-shadow: 0 8px 30px rgba(59,130,246,0.3);
-        }
-        body.light-mode .level-badge {
-            background: rgba(59,130,246,0.1);
-            color: #1e40af;
-        }
-        body.light-mode .legal-badge {
-            background: rgba(16,185,129,0.1);
-            color: #065f46;
-            border-color: rgba(16,185,129,0.2);
-        }
-        body.light-mode .legal-badge.warning {
-            background: rgba(251,191,36,0.1);
-            color: #92400e;
-            border-color: rgba(251,191,36,0.2);
-        }
-        body.light-mode .faq-item summary {
-            color: #0f172a;
-        }
-        body.light-mode .faq-item summary:hover {
-            color: #3b82f6;
-        }
-        body.light-mode .faq-item p {
-            color: #334155;
-        }
-        body.light-mode .bg-dark-700\/50 {
-            background: rgba(241, 245, 249, 0.8);
-        }
-        body.light-mode .border-t-2 {
-            border-color: rgba(0,0,0,0.08);
-        }
-        body.light-mode .text-purple-400 { color: #7c3aed; }
-        body.light-mode .text-blue-400 { color: #2563eb; }
-        body.light-mode .text-emerald-400 { color: #059669; }
-        body.light-mode .text-yellow-400 { color: #d97706; }
-        body.light-mode .text-rose-400 { color: #dc2626; }
-        body.light-mode .coin-row:hover {
-            background: rgba(59,130,246,0.06);
-        }
-        body.light-mode .lang-selector button.active {
-            background: #3b82f6;
-            color: white;
-        }
-        body.light-mode .lang-selector button:not(.active):hover {
-            background: rgba(59,130,246,0.1);
-        }
-        body.light-mode .border-t {
-            border-color: rgba(0,0,0,0.06);
-        }
-        body.light-mode .border-b {
-            border-color: rgba(0,0,0,0.06);
-        }
-        body.light-mode .divide-y > * + * {
-            border-color: rgba(0,0,0,0.06);
-        }
-        body.light-mode .bg-dark-700\/50 {
-            background: rgba(241, 245, 249, 0.8);
-        }
-        body.light-mode .bg-dark-800\/95 {
-            background: rgba(255, 255, 255, 0.95);
-        }
-        body.light-mode .text-yellow-500 {
-            color: #d97706;
-        }
-        body.light-mode .text-purple-300 {
-            color: #7c3aed;
-        }
-    </style>
+    /* Tarjeta principal que flota sobre el fondo gris */
+    .card {
+      max-width: 820px;
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 2rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s ease;
+    }
+
+    /* Encabezado: logo + etiqueta live */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .monogram {
+      background: linear-gradient(145deg, #1E3A8A, #5B21B6);
+      color: white;
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.5px;
+      box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.3px;
+      color: #0B1120;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #E9F5F0;
+      color: #0A6E4A;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem 0.4rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid #C6E3D6;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .badge-live .check {
+      color: #059669;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    /* Contenido principal */
+    .main-content {
+      margin-bottom: 2.2rem;
+    }
+
+    .title {
+      font-weight: 800;
+      font-size: 2.2rem;
+      letter-spacing: -0.5px;
+      color: #0B1120;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: #374151;
+      max-width: 90%;
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+
+    .commission-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #FEF3C7;
+      color: #92400E;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.3rem 1.1rem;
+      border-radius: 40px;
+      border: 1px solid #FDE68A;
+      letter-spacing: -0.2px;
+      box-shadow: 0 1px 3px rgba(180, 120, 20, 0.08);
+    }
+
+    .commission-badge strong {
+      font-weight: 800;
+      color: #B45309;
+      margin-right: 2px;
+    }
+
+    /* Acciones (botones) */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .btn-primary {
+      background: #2563EB;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 2.2rem;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: background 0.15s, transform 0.1s, box-shadow 0.2s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary:hover {
+      background: #1D4ED8;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.30);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #1F2937;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.7rem 1.8rem;
+      border: 1.5px solid #D1D5DB;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.15s, border-color 0.2s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-secondary:hover {
+      background: #F3F4F6;
+      border-color: #9CA3AF;
+    }
+
+    /* Pie de características */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 0.6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E7EB;
+      font-size: 0.95rem;
+      color: #6B7280;
+    }
+
+    .features .dot {
+      color: #9CA3AF;
+      font-weight: 300;
+      margin: 0 2px;
+    }
+
+    .features .highlight {
+      color: #2563EB;
+      font-weight: 600;
+    }
+
+    .features .highlight-green {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    /* Ajustes responsivos */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.8rem 1.5rem;
+        border-radius: 1.5rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .description {
+        max-width: 100%;
+        font-size: 1rem;
+      }
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-primary,
+      .btn-secondary {
+        text-align: center;
+      }
+      .features {
+        font-size: 0.85rem;
+        gap: 0.2rem 0.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 nav-blur">
-        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">CA</div>
-                <span class="text-xl font-black">CRYPTOARCH <span class="text-blue-500">AGENT</span></span>
-            </div>
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-                <a href="#comisiones" class="hover:text-blue-400" data-i18n="nav-commissions">Comisiones</a>
-                <a href="#token" class="hover:text-blue-400" data-i18n="nav-token">Token $CARCH</a>
-                <a href="#cumplimiento" class="hover:text-blue-400" data-i18n="nav-compliance">Cumplimiento</a>
-                <a href="#faq" class="hover:text-blue-400" data-i18n="nav-faq">FAQ</a>
-                <div class="lang-selector flex gap-1 ml-2">
-                    <button class="active" data-lang="es">ES</button>
-                    <button data-lang="en">EN</button>
-                </div>
-                <button id="theme-toggle" class="text-gray-300 hover:text-blue-400 ml-2"><i class="fas fa-moon"></i></button>
-                <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-5 py-2 rounded-xl text-white font-semibold flex items-center gap-2">
-                    <i class="fab fa-telegram"></i> <span data-i18n="nav-cta">Probar ahora</span>
-                </a>
-            </nav>
-            <button id="menu-toggle" class="md:hidden text-gray-300"><i class="fas fa-bars text-xl"></i></button>
-        </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-dark-800/95 backdrop-blur-lg border-t border-blue-500/10">
-            <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
-                <a href="#comisiones" data-i18n="nav-commissions">Comisiones</a>
-                <a href="#token" data-i18n="nav-token">Token $CARCH</a>
-                <a href="#cumplimiento" data-i18n="nav-compliance">Cumplimiento</a>
-                <a href="#faq" data-i18n="nav-faq">FAQ</a>
-                <div class="flex gap-2">
-                    <button class="active" data-lang="es">ES</button>
-                    <button data-lang="en">EN</button>
-                </div>
-                <button id="theme-toggle-mobile" class="text-left py-2"><i class="fas fa-moon mr-2"></i> <span data-i18n="theme-toggle">Modo claro/oscuro</span></button>
-                <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary py-2 rounded-xl text-center" data-i18n="nav-cta">Probar ahora</a>
-            </div>
-        </div>
+  <div class="card">
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+      <div class="logo-group">
+        <div class="monogram">CA</div>
+        <span class="brand">CRYPTOARCH AGENT</span>
+      </div>
+      <div class="badge-live">
+        <span class="check">✔</span> LIVE · FREE · NO SUBSCRIPTIONS
+      </div>
     </header>
 
-    <main class="pt-28 pb-16 px-4">
-        <div class="container mx-auto max-w-7xl">
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+      <h1 class="title">CryptoArch Agent</h1>
+      <p class="description">
+        The non-custodial Telegram analysis bot with real whale alerts on BTC, ETH, SOL, MATIC, and ARB.
+      </p>
+      <div class="commission-badge">
+        <strong>Commission from 0.3%</strong>
+      </div>
+    </div>
 
-            <!-- Hero -->
-            <section class="text-center py-12 md:py-20">
-                <div class="inline-flex flex-wrap justify-center gap-2 px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm mb-6 border border-emerald-500/30 animate-pulse">
-                    <span>✅</span>
-                    <span data-i18n="hero-badge">ACTIVO · GRATIS · SIN SUSCRIPCIONES</span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-400 to-emerald-400 bg-clip-text text-transparent leading-tight">
-                    CryptoArch Agent
-                </h1>
-                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6" data-i18n="hero-sub">
-                    El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. <strong class="text-blue-400">Comisiones desde 0.3%.</strong>
-                </p>
-                <div class="mt-8 flex gap-4 justify-center flex-wrap">
-                    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
-                        <i class="fab fa-telegram text-xl"></i> <span data-i18n="hero-cta">Probar ahora</span>
-                    </a>
-                    <a href="#comisiones" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero-plans">Ver comisiones</a>
-                </div>
-                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Gratis · Sin suscripciones · 14 días de prueba</p>
-            </section>
+    <!-- ACCIONES -->
+    <div class="actions">
+      <a href="#" class="btn-primary">Try now</a>
+      <a href="#" class="btn-secondary">View commissions</a>
+    </div>
 
-            <!-- Widgets en vivo -->
-            <section class="my-12">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold flex items-center gap-2 mb-3"><i class="fas fa-chart-line text-blue-500"></i> <span data-i18n="fg-title">Miedo & Avaricia</span></h3>
-                        <div class="flex items-center gap-5">
-                            <span class="text-6xl font-black text-blue-400" id="fg-value">--</span>
-                            <span class="px-3 py-1 rounded-full text-sm font-semibold" id="fg-class">---</span>
-                        </div>
-                        <div class="w-full h-2 bg-gray-700 rounded-full mt-3"><div id="fg-bar" class="h-full rounded-full bg-gradient-to-r from-red-500 to-green-500" style="width: 0%"></div></div>
-                        <p class="text-xs text-gray-500 mt-2" id="fg-time" data-i18n="fg-updating">Actualizando...</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center border border-emerald-500/30">
-                        <i class="fas fa-whale text-5xl text-emerald-400 mb-3 animate-float"></i>
-                        <h3 class="text-xl font-bold" data-i18n="whale-title">Ballenas en tiempo real</h3>
-                        <p class="text-gray-300 text-sm my-3" data-i18n="whale-desc">Detectamos movimientos >50k USD en BTC, ETH, SOL, MATIC y ARB con alertas verificadas on-chain.</p>
-                        <span class="inline-block bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs" data-i18n="whale-status">Activo · Ver en Telegram</span>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500">
-                        <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-bolt text-yellow-400"></i> <span data-i18n="signals-title">Señales de mercado</span></h3>
-                        <p class="text-sm text-gray-400" data-i18n="signals-desc">Basado en volumen y flujo de ballenas</p>
-                        <div class="text-2xl font-black text-yellow-400 my-2" id="signal-text">--</div>
-                        <div class="w-full h-2 bg-gray-700 rounded-full"><div id="signal-bar" class="h-full rounded-full bg-gradient-to-r from-yellow-500 to-orange-500" style="width: 0%"></div></div>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl p-6 mt-8">
-                    <h3 class="text-xl font-bold mb-4"><i class="fas fa-coins text-yellow-500 mr-2"></i> <span data-i18n="prices-title">Precios en tiempo real</span></h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead class="border-b border-gray-700"><tr class="text-gray-400 text-sm"><th class="py-3" data-i18n="prices-coin">Moneda</th><th data-i18n="prices-price">Precio USD</th><th data-i18n="prices-change">24h %</th><th data-i18n="prices-trend">Tendencia</th></tr></thead>
-                            <tbody id="prices-table"><tr><td colspan="4" class="py-8 text-center" data-i18n="prices-loading">Cargando datos...</td></tr></tbody>
-                        </table>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right mt-3" data-i18n="prices-footer">Click en cualquier fila para ver detalles · Fuente: CoinGecko</p>
-                </div>
-            </section>
+    <!-- PIE: CARACTERÍSTICAS -->
+    <div class="features">
+      <span>No sign-up</span>
+      <span class="dot">·</span>
+      <span>Non-custodial</span>
+      <span class="dot">·</span>
+      <span class="highlight-green">Free</span>
+      <span class="dot">·</span>
+      <span>No subscriptions</span>
+      <span class="dot">·</span>
+      <span class="highlight">14‑day trial</span>
+    </div>
 
-            <!-- COMISIONES -->
-            <section id="comisiones" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="commissions-title">Comisiones justas y transparentes</h2>
-                <p class="text-gray-400 text-center mb-10" data-i18n="commissions-sub">Sin suscripciones. Solo pagas comisión al operar. Y puedes reducirla.</p>
-                <div class="grid md:grid-cols-5 gap-4">
-                    <div class="glass-card rounded-2xl p-4 text-center commission-card">
-                        <div class="text-3xl mb-2">🧭</div>
-                        <h3 class="font-bold" data-i18n="level-explorer">Explorer</h3>
-                        <div class="text-2xl font-bold text-blue-400">0.5%</div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-free">Gratis · Sin requisitos</p>
-                        <p class="text-xs text-gray-500 mt-1">Alertas · Ballenas · 14 días</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-yellow-400 commission-card">
-                        <div class="text-3xl mb-2">📊</div>
-                        <h3 class="font-bold" data-i18n="level-trader">Trader</h3>
-                        <div class="text-2xl font-bold text-yellow-400">0.4%</div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-trader-req">≥ 50 USDT depositado</p>
-                        <p class="text-xs text-gray-500 mt-1">+ Copy Trading</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-emerald-400 commission-card">
-                        <div class="text-3xl mb-2">⭐</div>
-                        <h3 class="font-bold" data-i18n="level-pro">Pro</h3>
-                        <div class="text-2xl font-bold text-emerald-400">0.3%</div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-pro-req">≥ 100 USDT o volumen > $10k</p>
-                        <p class="text-xs text-gray-500 mt-1">+ Sniper X · Auto Trading</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-purple-400 commission-card">
-                        <div class="text-3xl mb-2">👑</div>
-                        <h3 class="font-bold" data-i18n="level-elite">Elite</h3>
-                        <div class="text-2xl font-bold text-purple-400">0.3%</div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-elite-req">Holder de $CARCH (≥100)</p>
-                        <p class="text-xs text-gray-500 mt-1">+ Beta · Insignia · Token reward</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-rose-400 bg-gradient-to-b from-rose-900/20 commission-card">
-                        <div class="text-3xl mb-2">🏆</div>
-                        <h3 class="font-bold" data-i18n="level-legendary">Legendary</h3>
-                        <div class="text-2xl font-bold text-rose-400">0.3%</div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-legendary-req">Holder + Volumen + Referidos</p>
-                        <p class="text-xs text-gray-500 mt-1">+ Voto · Soporte VIP</p>
-                    </div>
-                </div>
-                <p class="text-center text-xs text-gray-500 mt-6" data-i18n="commissions-note">* Los niveles Elite y Legendary reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot en tokens $CARCH</strong>.</p>
-            </section>
+  </div>
 
-            <!-- TOKEN $CARCH -->
-            <section id="token" class="py-12">
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="inline-block px-4 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm mb-4">🪙 <span data-i18n="token-badge">Próximamente</span></div>
-                    <h2 class="text-3xl font-bold mb-4">Token <span class="text-purple-400 token-glow">$CARCH</span></h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto mb-6" data-i18n="token-desc">
-                        El token de gobernanza y utilidad de CryptoArch Agent. Los holders reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot</strong>, acceso a funciones beta, y voto en las decisiones del proyecto.
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
-                            <i class="fas fa-coins text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="token-benefit1">Revenue Sharing</h3>
-                            <p class="text-xs text-gray-400" data-i18n="token-benefit1-desc">0.05% de todas las comisiones</p>
-                        </div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
-                            <i class="fas fa-vote-yea text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="token-benefit2">Gobernanza</h3>
-                            <p class="text-xs text-gray-400" data-i18n="token-benefit2-desc">Vota nuevas funcionalidades</p>
-                        </div>
-                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
-                            <i class="fas fa-flask text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="token-benefit3">Acceso Beta</h3>
-                            <p class="text-xs text-gray-400" data-i18n="token-benefit3-desc">Funciones exclusivas antes que nadie</p>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-6" data-i18n="token-note">* El token $CARCH se lanzará en los próximos meses. Los primeros 100 usuarios recibirán un airdrop.</p>
-                </div>
-            </section>
-
-            <!-- CUMPLIMIENTO -->
-            <section id="cumplimiento" class="py-12">
-                <div class="glass-card rounded-3xl p-8">
-                    <div class="flex flex-col md:flex-row items-start gap-6">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-shield-alt text-4xl text-blue-400"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4" data-i18n="compliance-title">Transparencia y cumplimiento normativo</h2>
-                            <p class="text-gray-300 text-sm leading-relaxed" data-i18n="compliance-desc">
-                                CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO) en México</strong>, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. 
-                                Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="legal-badge">✅ RESICO México</span>
-                                <span class="legal-badge">✅ No custodial</span>
-                                <span class="legal-badge">✅ Datos verificables</span>
-                                <span class="legal-badge warning">⚠️ Riesgo de inversión</span>
-                                <span class="legal-badge warning">⚠️ No asesoría financiera</span>
-                            </div>
-                            <div class="mt-4 text-xs text-gray-400 space-y-1">
-                                <p data-i18n="compliance-risk1"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Este bot es una herramienta de análisis y automatización. <strong>NO es un asesor financiero.</strong></p>
-                                <p data-i18n="compliance-risk2"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Las alertas, informes y datos generados son <strong>puramente informativos</strong> y no constituyen recomendaciones de compra/venta/inversión.</p>
-                                <p data-i18n="compliance-risk3"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> El trading de criptomonedas implica un <strong>alto riesgo de pérdida total del capital</strong>. Ni el creador del bot ni sus operadores se hacen responsables de las pérdidas financieras derivadas del uso de esta herramienta.</p>
-                                <p data-i18n="compliance-risk4"><i class="fas fa-check-circle text-green-500 mr-1"></i> Al usar este bot, aceptas la <strong>responsabilidad total</strong> sobre tus propias decisiones de inversión.</p>
-                            </div>
-                            <div class="mt-4 text-xs text-gray-500">
-                                <p data-i18n="compliance-gdpr">🔒 Cumplimos con el <strong>GDPR</strong> (Reglamento General de Protección de Datos de la UE) y las leyes de protección de datos aplicables en México y otros países. No almacenamos tus claves privadas ni podemos operar con tus fondos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ -->
-            <section id="faq" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10" data-i18n="faq-title">Preguntas frecuentes</h2>
-                <div class="max-w-3xl mx-auto glass-card rounded-2xl p-6 divide-y divide-gray-700">
-                    <div class="faq-item py-3"><summary data-i18n="faq1-q">¿Es realmente no custodial?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq1-a">Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo empiezo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos comisión por operación, no suscripción. Desde 0.5% hasta 0.3% según tu nivel. Los holders de $CARCH reciben además 0.05% de todas las comisiones del bot.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Qué es $CARCH?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Es el token de gobernanza y utilidad de CryptoArch Agent. Próximamente, los holders recibirán 0.05% de todas las comisiones del bot, acceso beta y voto en nuevas funcionalidades.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">BTC, ETH, SOL, MATIC y ARB. Próximamente añadiremos más.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq6-q">¿Están registrados fiscalmente?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq6-a">Sí, operamos bajo el Régimen Simplificado de Confianza (RESICO) en México y cumplimos con las obligaciones fiscales aplicables a servicios digitales.</p></div>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="border-t border-blue-500/10 pt-8 mt-8 text-center text-gray-500 text-sm">
-                <div class="flex flex-wrap justify-center gap-6 mb-4">
-                    <a href="#" class="hover:text-blue-400" data-i18n="footer-terms">Términos de servicio</a>
-                    <a href="#" class="hover:text-blue-400" data-i18n="footer-privacy">Política de privacidad</a>
-                    <a href="#" class="hover:text-blue-400" data-i18n="footer-risk">Aviso de riesgos</a>
-                    <a href="mailto:contacto@cryptoarchagent.com" class="hover:text-blue-400">contacto@cryptoarchagent.com</a>
-                    <a href="https://x.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i> X</a>
-                    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram</a>
-                </div>
-                <p>© 2026 CryptoArch Agent · Comisiones desde 0.3% · No custodial · Gratis · Sin suscripciones · RESICO México · Servicio global · <span class="text-yellow-500">⚠️ Riesgo de inversión</span></p>
-            </footer>
-        </div>
-    </main>
-
-    <script>
-        // ==================== IDIOMA (ES/EN) ====================
-        const translations = {
-            es: {
-                'nav-commissions': 'Comisiones',
-                'nav-token': 'Token $CARCH',
-                'nav-compliance': 'Cumplimiento',
-                'nav-faq': 'FAQ',
-                'nav-cta': 'Probar ahora',
-                'theme-toggle': 'Modo claro/oscuro',
-                'hero-badge': 'ACTIVO · GRATIS · SIN SUSCRIPCIONES',
-                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. <strong class="text-blue-400">Comisiones desde 0.3%.</strong>',
-                'hero-cta': 'Probar ahora',
-                'hero-plans': 'Ver comisiones',
-                'hero-note': '⚡ Sin registro · Sin custodia · Gratis · Sin suscripciones · 14 días de prueba',
-                'fg-title': 'Miedo & Avaricia',
-                'fg-updating': 'Actualizando...',
-                'whale-title': 'Ballenas en tiempo real',
-                'whale-desc': 'Detectamos movimientos >50k USD en BTC, ETH, SOL, MATIC y ARB con alertas verificadas on-chain.',
-                'whale-status': 'Activo · Ver en Telegram',
-                'signals-title': 'Señales de mercado',
-                'signals-desc': 'Basado en volumen y flujo de ballenas',
-                'prices-title': 'Precios en tiempo real',
-                'prices-coin': 'Moneda',
-                'prices-price': 'Precio USD',
-                'prices-change': '24h %',
-                'prices-trend': 'Tendencia',
-                'prices-loading': 'Cargando datos...',
-                'prices-footer': 'Click en cualquier fila para ver detalles · Fuente: CoinGecko',
-                'commissions-title': 'Comisiones justas y transparentes',
-                'commissions-sub': 'Sin suscripciones. Solo pagas comisión al operar. Y puedes reducirla.',
-                'level-explorer': 'Explorer',
-                'level-trader': 'Trader',
-                'level-pro': 'Pro',
-                'level-elite': 'Elite',
-                'level-legendary': 'Legendary',
-                'level-free': 'Gratis · Sin requisitos',
-                'level-trader-req': '≥ 50 USDT depositado',
-                'level-pro-req': '≥ 100 USDT o volumen > $10k',
-                'level-elite-req': 'Holder de $CARCH (≥100)',
-                'level-legendary-req': 'Holder + Volumen + Referidos',
-                'commissions-note': '* Los niveles Elite y Legendary reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot en tokens $CARCH</strong>.',
-                'token-badge': 'Próximamente',
-                'token-desc': 'El token de gobernanza y utilidad de CryptoArch Agent. Los holders reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot</strong>, acceso a funciones beta, y voto en las decisiones del proyecto.',
-                'token-benefit1': 'Revenue Sharing',
-                'token-benefit1-desc': '0.05% de todas las comisiones',
-                'token-benefit2': 'Gobernanza',
-                'token-benefit2-desc': 'Vota nuevas funcionalidades',
-                'token-benefit3': 'Acceso Beta',
-                'token-benefit3-desc': 'Funciones exclusivas antes que nadie',
-                'token-note': '* El token $CARCH se lanzará en los próximos meses. Los primeros 100 usuarios recibirán un airdrop.',
-                'compliance-title': 'Transparencia y cumplimiento normativo',
-                'compliance-desc': 'CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO) en México</strong>, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.',
-                'compliance-risk1': 'Este bot es una herramienta de análisis y automatización. <strong>NO es un asesor financiero.</strong>',
-                'compliance-risk2': 'Las alertas, informes y datos generados son <strong>puramente informativos</strong> y no constituyen recomendaciones de compra/venta/inversión.',
-                'compliance-risk3': 'El trading de criptomonedas implica un <strong>alto riesgo de pérdida total del capital</strong>. Ni el creador del bot ni sus operadores se hacen responsables de las pérdidas financieras derivadas del uso de esta herramienta.',
-                'compliance-risk4': 'Al usar este bot, aceptas la <strong>responsabilidad total</strong> sobre tus propias decisiones de inversión.',
-                'compliance-gdpr': '🔒 Cumplimos con el <strong>GDPR</strong> (Reglamento General de Protección de Datos de la UE) y las leyes de protección de datos aplicables en México y otros países. No almacenamos tus claves privadas ni podemos operar con tus fondos.',
-                'faq-title': 'Preguntas frecuentes',
-                'faq1-q': '¿Es realmente no custodial?',
-                'faq1-a': 'Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.',
-                'faq2-q': '¿Cómo empiezo gratis?',
-                'faq2-a': 'Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.',
-                'faq3-q': '¿Qué comisiones cobran?',
-                'faq3-a': 'Cobramos comisión por operación, no suscripción. Desde 0.5% hasta 0.3% según tu nivel. Los holders de $CARCH reciben además 0.05% de todas las comisiones del bot.',
-                'faq4-q': '¿Qué es $CARCH?',
-                'faq4-a': 'Es el token de gobernanza y utilidad de CryptoArch Agent. Próximamente, los holders recibirán 0.05% de todas las comisiones del bot, acceso beta y voto en nuevas funcionalidades.',
-                'faq5-q': '¿Qué monedas soportan las alertas de ballenas?',
-                'faq5-a': 'BTC, ETH, SOL, MATIC y ARB. Próximamente añadiremos más.',
-                'faq6-q': '¿Están registrados fiscalmente?',
-                'faq6-a': 'Sí, operamos bajo el Régimen Simplificado de Confianza (RESICO) en México y cumplimos con las obligaciones fiscales aplicables a servicios digitales.',
-                'footer-terms': 'Términos de servicio',
-                'footer-privacy': 'Política de privacidad',
-                'footer-risk': 'Aviso de riesgos'
-            },
-            en: {
-                'nav-commissions': 'Commissions',
-                'nav-token': 'Token $CARCH',
-                'nav-compliance': 'Compliance',
-                'nav-faq': 'FAQ',
-                'nav-cta': 'Try now',
-                'theme-toggle': 'Light/Dark mode',
-                'hero-badge': 'LIVE · FREE · NO SUBSCRIPTIONS',
-                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts on BTC, ETH, SOL, MATIC, and ARB. <strong class="text-blue-400">Commission from 0.3%.</strong>',
-                'hero-cta': 'Try now',
-                'hero-plans': 'View commissions',
-                'hero-note': '⚡ No sign-up · Non-custodial · Free · No subscriptions · 14-day trial',
-                'fg-title': 'Fear & Greed',
-                'fg-updating': 'Updating...',
-                'whale-title': 'Real-time whales',
-                'whale-desc': 'We detect movements >50k USD in BTC, ETH, SOL, MATIC, and ARB with on-chain verified alerts.',
-                'whale-status': 'Active · View on Telegram',
-                'signals-title': 'Market signals',
-                'signals-desc': 'Based on volume and whale flow',
-                'prices-title': 'Real-time prices',
-                'prices-coin': 'Coin',
-                'prices-price': 'USD Price',
-                'prices-change': '24h %',
-                'prices-trend': 'Trend',
-                'prices-loading': 'Loading data...',
-                'prices-footer': 'Click any row for details · Source: CoinGecko',
-                'commissions-title': 'Fair and transparent commissions',
-                'commissions-sub': 'No subscriptions. You only pay commission when you trade. And you can reduce it.',
-                'level-explorer': 'Explorer',
-                'level-trader': 'Trader',
-                'level-pro': 'Pro',
-                'level-elite': 'Elite',
-                'level-legendary': 'Legendary',
-                'level-free': 'Free · No requirements',
-                'level-trader-req': '≥ 50 USDT deposited',
-                'level-pro-req': '≥ 100 USDT or volume > $10k',
-                'level-elite-req': '$CARCH holder (≥100)',
-                'level-legendary-req': 'Holder + Volume + Referrals',
-                'commissions-note': '* Elite and Legendary levels receive <strong class="text-purple-400">0.05% of all bot commissions in $CARCH tokens</strong>.',
-                'token-badge': 'Coming soon',
-                'token-desc': 'The governance and utility token of CryptoArch Agent. Holders receive <strong class="text-purple-400">0.05% of all bot commissions</strong>, beta access, and voting on project decisions.',
-                'token-benefit1': 'Revenue Sharing',
-                'token-benefit1-desc': '0.05% of all commissions',
-                'token-benefit2': 'Governance',
-                'token-benefit2-desc': 'Vote on new features',
-                'token-benefit3': 'Beta Access',
-                'token-benefit3-desc': 'Exclusive features before anyone else',
-                'token-note': '* The $CARCH token will be launched in the coming months. The first 100 users will receive an airdrop.',
-                'compliance-title': 'Transparency and regulatory compliance',
-                'compliance-desc': 'CryptoArch Agent operates under the <strong>Simplified Trust Regime (RESICO) in Mexico</strong>, complying with all applicable tax obligations for digital services. Our service is available to <strong>traders worldwide</strong>. The location of our company does not affect the global functionality of the bot.',
-                'compliance-risk1': 'This bot is an analysis and automation tool. <strong>It is NOT a financial advisor.</strong>',
-                'compliance-risk2': 'Alerts, reports, and generated data are <strong>purely informational</strong> and do not constitute buy/sell/investment recommendations.',
-                'compliance-risk3': 'Cryptocurrency trading involves <strong>high risk of total capital loss</strong>. Neither the bot creator nor its operators are responsible for financial losses arising from use of this tool.',
-                'compliance-risk4': 'By using this bot, you accept <strong>full responsibility</strong> for your own investment decisions.',
-                'compliance-gdpr': '🔒 We comply with <strong>GDPR</strong> (EU General Data Protection Regulation) and applicable data protection laws in Mexico and other countries. We do not store your private keys nor can we trade your funds.',
-                'faq-title': 'Frequently Asked Questions',
-                'faq1-q': 'Is it really non-custodial?',
-                'faq1-a': 'Yes, the bot only analyzes market data and sends alerts. We never store your keys nor can we trade your funds. All analysis is public.',
-                'faq2-q': 'How do I start for free?',
-                'faq2-a': 'By opening the bot on Telegram and accepting the terms, you automatically get a 14-day trial (Explorer level) with 0.5% commission and 3 alerts.',
-                'faq3-q': 'What commissions do you charge?',
-                'faq3-a': 'We charge commission per trade, not subscription. From 0.5% down to 0.3% depending on your level. $CARCH holders also receive 0.05% of all bot commissions.',
-                'faq4-q': 'What is $CARCH?',
-                'faq4-a': 'It is the governance and utility token of CryptoArch Agent. Coming soon, holders will receive 0.05% of all bot commissions, beta access, and voting on new features.',
-                'faq5-q': 'Which coins do the whale alerts support?',
-                'faq5-a': 'BTC, ETH, SOL, MATIC, and ARB. We will soon add more.',
-                'faq6-q': 'Are you tax-registered?',
-                'faq6-a': 'Yes, we operate under the Simplified Trust Regime (RESICO) in Mexico and comply with all applicable tax obligations for digital services.',
-                'footer-terms': 'Terms of Service',
-                'footer-privacy': 'Privacy Policy',
-                'footer-risk': 'Risk Disclaimer'
-            }
-        };
-
-        let currentLang = 'es';
-
-        function applyTranslations(lang) {
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
-                    } else {
-                        el.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-            document.querySelectorAll('[data-lang]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-        }
-
-        document.querySelectorAll('[data-lang]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.dataset.lang;
-                applyTranslations(lang);
-            });
-        });
-
-        const savedLang = localStorage.getItem('lang') || 'es';
-        applyTranslations(savedLang);
-
-        // ==================== TEMA OSCURO/CLARO ====================
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-        themeToggle?.addEventListener('click', toggleTheme);
-        themeToggleMobile?.addEventListener('click', toggleTheme);
-
-        // ==================== MENÚ MÓVIL ====================
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // ==================== FEAR & GREED ====================
-        const fgValue = document.getElementById('fg-value');
-        const fgClass = document.getElementById('fg-class');
-        const fgBar = document.getElementById('fg-bar');
-        const fgTime = document.getElementById('fg-time');
-        async function fetchFear() {
-            try {
-                const res = await fetch('https://api.alternative.me/fng/?limit=1');
-                const data = await res.json();
-                if (data?.data?.[0]) {
-                    const val = parseInt(data.data[0].value);
-                    const cls = data.data[0].value_classification;
-                    fgValue.innerText = val;
-                    fgClass.innerText = cls;
-                    fgBar.style.width = val + '%';
-                    fgTime.innerText = `Actualizado: ${new Date().toLocaleTimeString()}`;
-                    let bg = '';
-                    if (val < 25) bg = 'bg-red-900/30 text-red-400';
-                    else if (val < 45) bg = 'bg-orange-900/30 text-orange-400';
-                    else if (val < 55) bg = 'bg-gray-700 text-gray-300';
-                    else if (val < 75) bg = 'bg-yellow-900/30 text-yellow-400';
-                    else bg = 'bg-emerald-900/30 text-emerald-400';
-                    fgClass.className = `px-3 py-1 rounded-full text-sm font-semibold ${bg}`;
-                }
-            } catch(e) { fgValue.innerText = 'N/A'; }
-        }
-
-        // ==================== PRECIOS ====================
-        const coins = [
-            { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC' }, { id: 'ethereum', name: 'Ethereum', symbol: 'ETH' },
-            { id: 'solana', name: 'Solana', symbol: 'SOL' }, { id: 'ripple', name: 'XRP', symbol: 'XRP' },
-            { id: 'binancecoin', name: 'BNB', symbol: 'BNB' }, { id: 'chainlink', name: 'Chainlink', symbol: 'LINK' },
-            { id: 'avalanche-2', name: 'Avalanche', symbol: 'AVAX' }
-        ];
-        const tbodyPrices = document.getElementById('prices-table');
-        async function fetchPrices() {
-            try {
-                const ids = coins.map(c => c.id).join(',');
-                const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
-                const res = await fetch(url);
-                const data = await res.json();
-                let html = '';
-                for (let coin of coins) {
-                    const p = data[coin.id];
-                    if (p) {
-                        const change = p.usd_24h_change || 0;
-                        const arrow = change >= 0 ? '↑' : '↓';
-                        const barWidth = Math.min(Math.abs(change) * 5, 100);
-                        html += `<tr class="coin-row" data-coin-id="${coin.id}" data-coin-name="${coin.name}">
-                                    <td class="py-3 font-medium">${coin.name} (${coin.symbol})</td>
-                                    <td class="font-mono">$${p.usd.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
-                                    <td class="${change>=0?'text-emerald-400':'text-red-400'}">${arrow} ${change.toFixed(2)}%</td>
-                                    <td><div class="w-20 h-1.5 bg-gray-700 rounded-full"><div class="${change>=0?'bg-emerald-500':'bg-red-500'} h-full rounded-full" style="width: ${barWidth}%"></div></div></td>
-                                 </tr>`;
-                    } else {
-                        html += `<tr><td colspan="4" class="py-3 text-red-400">Error ${coin.symbol}</td></tr>`;
-                    }
-                }
-                tbodyPrices.innerHTML = html;
-                document.querySelectorAll('.coin-row').forEach(row => {
-                    row.addEventListener('click', async () => {
-                        const coinId = row.dataset.coinId;
-                        const coinName = row.dataset.coinName;
-                        try {
-                            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
-                            const detail = await res.json();
-                            const md = detail.market_data;
-                            alert(`📊 ${coinName}\n\n💰 Price: $${md.current_price.usd.toLocaleString()} USD\n📈 24h change: ${md.price_change_percentage_24h?.toFixed(2) ?? 'N/A'}%\n🏦 Market cap: $${md.market_cap.usd.toLocaleString()}\n💸 24h volume: $${md.total_volume.usd.toLocaleString()}\n🚀 ATH: $${md.ath.usd.toLocaleString()}`);
-                        } catch(e) { alert(`Could not load details for ${coinName}`); }
-                    });
-                });
-            } catch(e) { tbodyPrices.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-red-400">Error loading prices. Try again later.</td></tr>'; }
-        }
-
-        // ==================== SEÑALES DE MERCADO ====================
-        const signalText = document.getElementById('signal-text');
-        const signalBar = document.getElementById('signal-bar');
-        function updateSignal() {
-            const val = 20 + Math.floor(Math.random() * 60);
-            signalBar.style.width = val + '%';
-            if (val < 30) signalText.innerText = '📉 Bajista';
-            else if (val < 50) signalText.innerText = '➡️ Neutral';
-            else if (val < 70) signalText.innerText = '📈 Alcista';
-            else signalText.innerText = '🚀 Fuerte alza';
-        }
-
-        // ==================== INICIALIZAR ====================
-        fetchFear(); fetchPrices(); updateSignal();
-        setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updateSignal, 10000);
-    </script>
 </body>
 </html>
