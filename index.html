@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>CryptoArch Agent · Bot de Análisis No Custodial · Activo</title>
-    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas BTC/ETH, comisión fija del 0.2%, 14 días gratis. Prueba ahora.">
+    <title>CryptoArch Agent · Bot No Custodial · Gratis · Comisiones desde 0.3%</title>
+    <meta name="description" content="Bot de análisis en Telegram no custodial. Alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. Comisiones desde 0.3%, sin suscripciones. Token $CARCH con revenue sharing.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,11 +27,12 @@
             background: rgba(15, 17, 25, 0.75);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         .glass-card:hover {
             border-color: #3b82f6;
             transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59,130,246,0.15);
         }
         body.light-mode .glass-card {
             background: rgba(255, 255, 255, 0.85);
@@ -39,12 +40,26 @@
         }
         .btn-primary {
             background: linear-gradient(135deg, #3b82f6, #2563eb);
-            transition: all 0.2s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+            box-shadow: 0 8px 30px rgba(59,130,246,0.4);
         }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .btn-primary:hover::after { opacity: 1; }
         .coin-row { cursor: pointer; transition: background 0.2s; }
         .coin-row:hover { background: rgba(59,130,246,0.1); }
         .nav-blur {
@@ -91,12 +106,37 @@
         .level-trader { background: rgba(251,191,36,0.2); color: #fcd34d; }
         .level-pro { background: rgba(16,185,129,0.2); color: #6ee7b7; }
         .level-elite { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+        .level-legendary { background: rgba(244,63,94,0.2); color: #fda4af; }
         .roadmap-item {
             transition: all 0.3s ease;
         }
         .roadmap-item:hover {
             transform: translateY(-3px);
             border-color: #3b82f6;
+        }
+        .legal-badge {
+            display: inline-block;
+            background: rgba(16,185,129,0.1);
+            color: #6ee7b7;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        .legal-badge.warning {
+            background: rgba(251,191,36,0.1);
+            color: #fcd34d;
+            border-color: rgba(251,191,36,0.2);
+        }
+        .token-glow {
+            text-shadow: 0 0 40px rgba(139,92,246,0.3);
+        }
+        .commission-card {
+            transition: all 0.3s;
+        }
+        .commission-card:hover {
+            transform: translateY(-4px);
         }
     </style>
 </head>
@@ -110,10 +150,9 @@
                 <span class="text-xl font-black">CRYPTOARCH <span class="text-blue-500">AGENT</span></span>
             </div>
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-                <a href="#caracteristicas" class="hover:text-blue-400" data-i18n="nav-features">Características</a>
-                <a href="#planes" class="hover:text-blue-400" data-i18n="nav-plans">Planes</a>
-                <a href="#depositos" class="hover:text-blue-400" data-i18n="nav-deposits">Depósitos</a>
-                <a href="#roadmap" class="hover:text-blue-400" data-i18n="nav-roadmap">Próximamente</a>
+                <a href="#comisiones" class="hover:text-blue-400" data-i18n="nav-commissions">Comisiones</a>
+                <a href="#token" class="hover:text-blue-400" data-i18n="nav-token">Token $CARCH</a>
+                <a href="#cumplimiento" class="hover:text-blue-400" data-i18n="nav-compliance">Cumplimiento</a>
                 <a href="#faq" class="hover:text-blue-400" data-i18n="nav-faq">FAQ</a>
                 <div class="lang-selector flex gap-1 ml-2">
                     <button class="active" data-lang="es">ES</button>
@@ -128,10 +167,9 @@
         </div>
         <div id="mobile-menu" class="md:hidden hidden bg-dark-800/95 backdrop-blur-lg border-t border-blue-500/10">
             <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
-                <a href="#caracteristicas" data-i18n="nav-features">Características</a>
-                <a href="#planes" data-i18n="nav-plans">Planes</a>
-                <a href="#depositos" data-i18n="nav-deposits">Depósitos</a>
-                <a href="#roadmap" data-i18n="nav-roadmap">Próximamente</a>
+                <a href="#comisiones" data-i18n="nav-commissions">Comisiones</a>
+                <a href="#token" data-i18n="nav-token">Token $CARCH</a>
+                <a href="#cumplimiento" data-i18n="nav-compliance">Cumplimiento</a>
                 <a href="#faq" data-i18n="nav-faq">FAQ</a>
                 <div class="flex gap-2">
                     <button class="active" data-lang="es">ES</button>
@@ -148,22 +186,23 @@
 
             <!-- Hero -->
             <section class="text-center py-12 md:py-20">
-                <div class="inline-block px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm mb-6 border border-emerald-500/30 animate-pulse">
-                    ✅ <span data-i18n="hero-badge">ACTIVO · 14 DÍAS GRATIS</span>
+                <div class="inline-flex flex-wrap justify-center gap-2 px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm mb-6 border border-emerald-500/30 animate-pulse">
+                    <span>✅</span>
+                    <span data-i18n="hero-badge">ACTIVO · GRATIS · SIN SUSCRIPCIONES</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-400 to-emerald-400 bg-clip-text text-transparent leading-tight">
                     CryptoArch Agent
                 </h1>
                 <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6" data-i18n="hero-sub">
-                    El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, datos de mercado en vivo y comisión fija del <strong class="text-blue-400">0.2%</strong>.
+                    El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. <strong class="text-blue-400">Comisiones desde 0.3%.</strong>
                 </p>
                 <div class="mt-8 flex gap-4 justify-center flex-wrap">
                     <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
                         <i class="fab fa-telegram text-xl"></i> <span data-i18n="hero-cta">Probar ahora</span>
                     </a>
-                    <a href="#planes" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero-plans">Ver planes</a>
+                    <a href="#comisiones" class="glass-card px-8 py-3 rounded-xl font-semibold" data-i18n="hero-plans">Ver comisiones</a>
                 </div>
-                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Comienza gratis con 14 días de prueba</p>
+                <p class="text-xs text-gray-500 mt-4" data-i18n="hero-note">⚡ Sin registro · Sin custodia · Gratis · Sin suscripciones · 14 días de prueba</p>
             </section>
 
             <!-- Widgets en vivo -->
@@ -181,7 +220,7 @@
                     <div class="glass-card rounded-2xl p-6 text-center border border-emerald-500/30">
                         <i class="fas fa-whale text-5xl text-emerald-400 mb-3 animate-float"></i>
                         <h3 class="text-xl font-bold" data-i18n="whale-title">Ballenas en tiempo real</h3>
-                        <p class="text-gray-300 text-sm my-3" data-i18n="whale-desc">Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.</p>
+                        <p class="text-gray-300 text-sm my-3" data-i18n="whale-desc">Detectamos movimientos >50k USD en BTC, ETH, SOL, MATIC y ARB con alertas verificadas on-chain.</p>
                         <span class="inline-block bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs" data-i18n="whale-status">Activo · Ver en Telegram</span>
                     </div>
                     <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500">
@@ -203,102 +242,110 @@
                 </div>
             </section>
 
-            <!-- Características -->
-            <section id="caracteristicas" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="features-title">¿Por qué CryptoArch Agent?</h2>
-                <div class="grid md:grid-cols-3 gap-6 mt-10">
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-whale text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature1-title">Ballenas reales</h3><p class="text-gray-300 text-sm" data-i18n="feature1-desc">Alertas verificadas BTC/ETH, sin simulaciones.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-shield-alt text-4xl text-blue-500 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature2-title">No custodial</h3><p class="text-gray-300 text-sm" data-i18n="feature2-desc">Tus claves, tus fondos. Solo análisis.</p></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><i class="fas fa-percent text-4xl text-emerald-400 mb-3"></i><h3 class="text-xl font-bold" data-i18n="feature3-title">Comisión justa</h3><p class="text-gray-300 text-sm"><strong data-i18n="feature3-highlight">0.2%</strong> <span data-i18n="feature3-desc">fijo, sin sorpresas.</span></p></div>
+            <!-- COMISIONES (NUEVO MODELO) -->
+            <section id="comisiones" class="py-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="commissions-title">Comisiones justas y transparentes</h2>
+                <p class="text-gray-400 text-center mb-10" data-i18n="commissions-sub">Sin suscripciones. Solo pagas comisión al operar. Y puedes reducirla.</p>
+                <div class="grid md:grid-cols-5 gap-4">
+                    <div class="glass-card rounded-2xl p-4 text-center commission-card">
+                        <div class="text-3xl mb-2">🧭</div>
+                        <h3 class="font-bold" data-i18n="level-explorer">Explorer</h3>
+                        <div class="text-2xl font-bold text-blue-400">0.5%</div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-free">Gratis · Sin requisitos</p>
+                        <p class="text-xs text-gray-500 mt-1">Alertas · Ballenas · 14 días</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-yellow-400 commission-card">
+                        <div class="text-3xl mb-2">📊</div>
+                        <h3 class="font-bold" data-i18n="level-trader">Trader</h3>
+                        <div class="text-2xl font-bold text-yellow-400">0.4%</div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-trader-req">≥ 50 USDT depositado</p>
+                        <p class="text-xs text-gray-500 mt-1">+ Copy Trading</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-emerald-400 commission-card">
+                        <div class="text-3xl mb-2">⭐</div>
+                        <h3 class="font-bold" data-i18n="level-pro">Pro</h3>
+                        <div class="text-2xl font-bold text-emerald-400">0.3%</div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-pro-req">≥ 100 USDT o volumen > $10k</p>
+                        <p class="text-xs text-gray-500 mt-1">+ Sniper X · Auto Trading</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-purple-400 commission-card">
+                        <div class="text-3xl mb-2">👑</div>
+                        <h3 class="font-bold" data-i18n="level-elite">Elite</h3>
+                        <div class="text-2xl font-bold text-purple-400">0.3%</div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-elite-req">Holder de $CARCH (≥100)</p>
+                        <p class="text-xs text-gray-500 mt-1">+ Beta · Insignia · Token reward</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 text-center border-t-2 border-rose-400 bg-gradient-to-b from-rose-900/20 commission-card">
+                        <div class="text-3xl mb-2">🏆</div>
+                        <h3 class="font-bold" data-i18n="level-legendary">Legendary</h3>
+                        <div class="text-2xl font-bold text-rose-400">0.3%</div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="level-legendary-req">Holder + Volumen + Referidos</p>
+                        <p class="text-xs text-gray-500 mt-1">+ Voto · Soporte VIP</p>
+                    </div>
                 </div>
+                <p class="text-center text-xs text-gray-500 mt-6" data-i18n="commissions-note">* Los niveles Elite y Legendary reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot en tokens $CARCH</strong>.</p>
             </section>
 
-            <!-- Niveles por depósito -->
-            <section id="depositos" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="deposits-title">Obtén comisiones reducidas con depósito</h2>
-                <p class="text-gray-400 text-center mb-10" data-i18n="deposits-sub">Deposita en Binance usando nuestro enlace de referido y obtén comisiones más bajas sin suscripción mensual.</p>
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="glass-card rounded-2xl p-6 text-center">
-                        <div class="text-4xl mb-2">🧭</div>
-                        <h3 class="text-xl font-bold">Explorer</h3>
-                        <p class="text-sm text-gray-400" data-i18n="deposit-free">Gratis · 14 días</p>
-                        <div class="text-2xl font-bold text-blue-400 my-3">0.5%</div>
-                        <p class="text-xs text-gray-500" data-i18n="deposit-explorer">3 alertas · funciones básicas</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-yellow-400">
-                        <div class="text-4xl mb-2">📊</div>
-                        <h3 class="text-xl font-bold">Trader</h3>
-                        <p class="text-sm text-yellow-400" data-i18n="deposit-trader">≥ 50 USDT</p>
-                        <div class="text-2xl font-bold text-yellow-400 my-3">0.3%</div>
-                        <p class="text-xs text-gray-500" data-i18n="deposit-trader-desc">Acceso completo · sin suscripción</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-emerald-400">
-                        <div class="text-4xl mb-2">⭐</div>
-                        <h3 class="text-xl font-bold">Pro</h3>
-                        <p class="text-sm text-emerald-400" data-i18n="deposit-pro">≥ 100 USDT</p>
-                        <div class="text-2xl font-bold text-emerald-400 my-3">0.2%</div>
-                        <p class="text-xs text-gray-500" data-i18n="deposit-pro-desc">Premium + soporte prioritario</p>
-                    </div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-purple-400">
-                        <div class="text-4xl mb-2">👑</div>
-                        <h3 class="text-xl font-bold">Elite</h3>
-                        <p class="text-sm text-purple-400" data-i18n="deposit-elite">≥ 500 USDT</p>
-                        <div class="text-2xl font-bold text-purple-400 my-3">0.2%</div>
-                        <p class="text-xs text-gray-500" data-i18n="deposit-elite-desc">VIP · funciones beta · insignia exclusiva</p>
-                    </div>
-                </div>
-                <div class="text-center mt-8">
-                    <a href="https://www.binance.com/en/register?ref=YOUR_CODE" target="_blank" class="btn-primary px-6 py-2 rounded-xl text-white inline-flex items-center gap-2">
-                        <i class="fas fa-link"></i> <span data-i18n="deposit-cta">Crear cuenta en Binance (referido)</span>
-                    </a>
-                    <p class="text-xs text-gray-500 mt-2" data-i18n="deposit-note">* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.</p>
-                </div>
-            </section>
-
-            <!-- Roadmap (restaurado) -->
-            <section id="roadmap" class="py-12">
+            <!-- TOKEN $CARCH -->
+            <section id="token" class="py-12">
                 <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm mb-4"><i class="fas fa-rocket mr-1"></i> <span data-i18n="roadmap-badge">Roadmap</span></div>
-                    <h2 class="text-3xl font-bold mb-4" data-i18n="roadmap-title">Próximamente en CryptoArch Agent</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto mb-10" data-i18n="roadmap-sub">Funcionalidades que llegarán en las próximas semanas</p>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
-                            <i class="fas fa-microchip text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="roadmap1-title">IA con Groq</h3>
-                            <p class="text-xs text-gray-400" data-i18n="roadmap1-desc">Análisis automático de movimientos</p>
-                        </div>
-                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
-                            <i class="fas fa-chart-line text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="roadmap2-title">Backtesting</h3>
-                            <p class="text-xs text-gray-400" data-i18n="roadmap2-desc">Simulación histórica</p>
-                        </div>
-                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
-                            <i class="fas fa-robot text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="roadmap3-title">Trading automático</h3>
-                            <p class="text-xs text-gray-400" data-i18n="roadmap3-desc">Stop-loss / take-profit (opcional)</p>
-                        </div>
-                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
-                            <i class="fas fa-sliders-h text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="roadmap4-title">Alertas personalizables</h3>
-                            <p class="text-xs text-gray-400" data-i18n="roadmap4-desc">Por umbral y moneda</p>
-                        </div>
-                        <div class="roadmap-item bg-dark-700/50 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500 transition-all">
+                    <div class="inline-block px-4 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm mb-4">🪙 <span data-i18n="token-badge">Próximamente</span></div>
+                    <h2 class="text-3xl font-bold mb-4">Token <span class="text-purple-400 token-glow">$CARCH</span></h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-6" data-i18n="token-desc">
+                        El token de gobernanza y utilidad de CryptoArch Agent. Los holders reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot</strong>, acceso a funciones beta, y voto en las decisiones del proyecto.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
                             <i class="fas fa-coins text-3xl text-purple-400 mb-2"></i>
-                            <h3 class="font-bold" data-i18n="roadmap5-title">Más monedas</h3>
-                            <p class="text-xs text-gray-400" data-i18n="roadmap5-desc">Soporte para ballenas en SOL, XRP, etc.</p>
+                            <h3 class="font-bold" data-i18n="token-benefit1">Revenue Sharing</h3>
+                            <p class="text-xs text-gray-400" data-i18n="token-benefit1-desc">0.05% de todas las comisiones</p>
+                        </div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
+                            <i class="fas fa-vote-yea text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="token-benefit2">Gobernanza</h3>
+                            <p class="text-xs text-gray-400" data-i18n="token-benefit2-desc">Vota nuevas funcionalidades</p>
+                        </div>
+                        <div class="bg-dark-700/50 rounded-xl p-4 border border-purple-500/20">
+                            <i class="fas fa-flask text-3xl text-purple-400 mb-2"></i>
+                            <h3 class="font-bold" data-i18n="token-benefit3">Acceso Beta</h3>
+                            <p class="text-xs text-gray-400" data-i18n="token-benefit3-desc">Funciones exclusivas antes que nadie</p>
                         </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-6" data-i18n="token-note">* El token $CARCH se lanzará en los próximos meses. Los primeros 100 usuarios recibirán un airdrop.</p>
                 </div>
             </section>
 
-            <!-- Planes de suscripción -->
-            <section id="planes" class="py-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center" data-i18n="plans-title">Planes de suscripción</h2>
-                <p class="text-gray-400 text-center mb-10" data-i18n="plans-sub">Sin depósito necesario. Obtén nivel Pro (0.2% comisión) y acceso premium.</p>
-                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-monthly">Mensual</h3><div class="text-3xl font-black my-3">$190 <span class="text-base font-normal">MXN</span></div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
-                    <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-blue-500"><h3 class="text-2xl font-bold" data-i18n="plan-quarterly">Trimestral</h3><div class="text-3xl font-black my-3">$540 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save5">Ahorra 5%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
-                    <div class="glass-card rounded-2xl p-6 text-center"><h3 class="text-2xl font-bold" data-i18n="plan-yearly">Anual</h3><div class="text-3xl font-black my-3">$1,900 <span class="text-base font-normal">MXN</span></div><div class="text-sm text-emerald-400 mb-2" data-i18n="plan-save16">Ahorra 16%</div><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary block w-full py-2 rounded-xl" data-i18n="plan-cta">Activar</a></div>
+            <!-- CUMPLIMIENTO Y REGULACIONES -->
+            <section id="cumplimiento" class="py-12">
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="flex flex-col md:flex-row items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-shield-alt text-4xl text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4" data-i18n="compliance-title">Transparencia y cumplimiento normativo</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed" data-i18n="compliance-desc">
+                                CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO)</strong> en México, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. 
+                                Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="legal-badge">✅ RESICO México</span>
+                                <span class="legal-badge">✅ No custodial</span>
+                                <span class="legal-badge">✅ Datos verificables</span>
+                                <span class="legal-badge warning">⚠️ Riesgo de inversión</span>
+                                <span class="legal-badge warning">⚠️ No asesoría financiera</span>
+                            </div>
+                            <div class="mt-4 text-xs text-gray-400 space-y-1">
+                                <p data-i18n="compliance-risk1"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Este bot es una herramienta de análisis y automatización. <strong>NO es un asesor financiero.</strong></p>
+                                <p data-i18n="compliance-risk2"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Las alertas, informes y datos generados son <strong>puramente informativos</strong> y no constituyen recomendaciones de compra/venta/inversión.</p>
+                                <p data-i18n="compliance-risk3"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> El trading de criptomonedas implica un <strong>alto riesgo de pérdida total del capital</strong>. Ni el creador del bot ni sus operadores se hacen responsables de las pérdidas financieras derivadas del uso de esta herramienta.</p>
+                                <p data-i18n="compliance-risk4"><i class="fas fa-check-circle text-green-500 mr-1"></i> Al usar este bot, aceptas la <strong>responsabilidad total</strong> sobre tus propias decisiones de inversión.</p>
+                            </div>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <p data-i18n="compliance-gdpr">🔒 Cumplimos con el <strong>GDPR</strong> (Reglamento General de Protección de Datos de la UE) y las leyes de protección de datos aplicables en México y otros países. No almacenamos tus claves privadas ni podemos operar con tus fondos.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -308,9 +355,10 @@
                 <div class="max-w-3xl mx-auto glass-card rounded-2xl p-6 divide-y divide-gray-700">
                     <div class="faq-item py-3"><summary data-i18n="faq1-q">¿Es realmente no custodial?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq1-a">Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.</p></div>
                     <div class="faq-item py-3"><summary data-i18n="faq2-q">¿Cómo empiezo gratis?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq2-a">Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Puedo reducir la comisión?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. O suscribiéndote a un plan mensual/trimestral/anual (también 0.2%).</p></div>
-                    <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq3-q">¿Qué comisiones cobran?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq3-a">Cobramos comisión por operación, no suscripción. Desde 0.5% hasta 0.3% según tu nivel. Los holders de $CARCH reciben además 0.05% de todas las comisiones del bot.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq4-q">¿Qué es $CARCH?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq4-a">Es el token de gobernanza y utilidad de CryptoArch Agent. Próximamente, los holders recibirán 0.05% de todas las comisiones del bot, acceso beta y voto en nuevas funcionalidades.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq5-q">¿Qué monedas soportan las alertas de ballenas?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq5-a">BTC, ETH, SOL, MATIC y ARB. Próximamente añadiremos más.</p></div>
+                    <div class="faq-item py-3"><summary data-i18n="faq6-q">¿Están registrados fiscalmente?</summary><p class="text-gray-400 mt-2 text-sm" data-i18n="faq6-a">Sí, operamos bajo el Régimen Simplificado de Confianza (RESICO) en México y cumplimos con las obligaciones fiscales aplicables a servicios digitales.</p></div>
                 </div>
             </section>
 
@@ -319,11 +367,12 @@
                 <div class="flex flex-wrap justify-center gap-6 mb-4">
                     <a href="#" class="hover:text-blue-400" data-i18n="footer-terms">Términos de servicio</a>
                     <a href="#" class="hover:text-blue-400" data-i18n="footer-privacy">Política de privacidad</a>
+                    <a href="#" class="hover:text-blue-400" data-i18n="footer-risk">Aviso de riesgos</a>
                     <a href="mailto:contacto@cryptoarchagent.com" class="hover:text-blue-400">contacto@cryptoarchagent.com</a>
                     <a href="https://x.com/CryptoArchAgent" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i> X</a>
                     <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="hover:text-blue-400"><i class="fab fa-telegram"></i> Telegram</a>
                 </div>
-                <p>© 2025 CryptoArch Agent · Comisión fija del 0.2% · RESICO México · Servicio global · No custodial</p>
+                <p>© 2026 CryptoArch Agent · Comisiones desde 0.3% · No custodial · Gratis · Sin suscripciones · RESICO México · Servicio global · <span class="text-yellow-500">⚠️ Riesgo de inversión</span></p>
             </footer>
         </div>
     </main>
@@ -332,22 +381,21 @@
         // ==================== IDIOMA (ES/EN) ====================
         const translations = {
             es: {
-                'nav-features': 'Características',
-                'nav-plans': 'Planes',
-                'nav-deposits': 'Depósitos',
-                'nav-roadmap': 'Próximamente',
+                'nav-commissions': 'Comisiones',
+                'nav-token': 'Token $CARCH',
+                'nav-compliance': 'Cumplimiento',
                 'nav-faq': 'FAQ',
                 'nav-cta': 'Probar ahora',
                 'theme-toggle': 'Modo claro/oscuro',
-                'hero-badge': 'ACTIVO · 14 DÍAS GRATIS',
-                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas, datos de mercado en vivo y comisión fija del <strong class="text-blue-400">0.2%</strong>.',
+                'hero-badge': 'ACTIVO · GRATIS · SIN SUSCRIPCIONES',
+                'hero-sub': 'El bot de análisis en Telegram <strong>no custodial</strong> con alertas reales de ballenas en BTC, ETH, SOL, MATIC y ARB. <strong class="text-blue-400">Comisiones desde 0.3%.</strong>',
                 'hero-cta': 'Probar ahora',
-                'hero-plans': 'Ver planes',
-                'hero-note': '⚡ Sin registro · Sin custodia · Comienza gratis con 14 días de prueba',
+                'hero-plans': 'Ver comisiones',
+                'hero-note': '⚡ Sin registro · Sin custodia · Gratis · Sin suscripciones · 14 días de prueba',
                 'fg-title': 'Miedo & Avaricia',
                 'fg-updating': 'Actualizando...',
                 'whale-title': 'Ballenas en tiempo real',
-                'whale-desc': 'Detectamos movimientos >50k USD en BTC y ETH con alertas verificadas on-chain.',
+                'whale-desc': 'Detectamos movimientos >50k USD en BTC, ETH, SOL, MATIC y ARB con alertas verificadas on-chain.',
                 'whale-status': 'Activo · Ver en Telegram',
                 'signals-title': 'Señales de mercado',
                 'signals-desc': 'Basado en volumen y flujo de ballenas',
@@ -358,78 +406,68 @@
                 'prices-trend': 'Tendencia',
                 'prices-loading': 'Cargando datos...',
                 'prices-footer': 'Click en cualquier fila para ver detalles · Fuente: CoinGecko',
-                'features-title': '¿Por qué CryptoArch Agent?',
-                'feature1-title': 'Ballenas reales',
-                'feature1-desc': 'Alertas verificadas BTC/ETH, sin simulaciones.',
-                'feature2-title': 'No custodial',
-                'feature2-desc': 'Tus claves, tus fondos. Solo análisis.',
-                'feature3-title': 'Comisión justa',
-                'feature3-highlight': '0.2%',
-                'feature3-desc': 'fijo, sin sorpresas.',
-                'deposits-title': 'Obtén comisiones reducidas con depósito',
-                'deposits-sub': 'Deposita en Binance usando nuestro enlace de referido y obtén comisiones más bajas sin suscripción mensual.',
-                'deposit-free': 'Gratis · 14 días',
-                'deposit-explorer': '3 alertas · funciones básicas',
-                'deposit-trader': '≥ 50 USDT',
-                'deposit-trader-desc': 'Acceso completo · sin suscripción',
-                'deposit-pro': '≥ 100 USDT',
-                'deposit-pro-desc': 'Premium + soporte prioritario',
-                'deposit-elite': '≥ 500 USDT',
-                'deposit-elite-desc': 'VIP · funciones beta · insignia exclusiva',
-                'deposit-cta': 'Crear cuenta en Binance (referido)',
-                'deposit-note': '* Comisiones reducidas solo para nuevos usuarios que usen nuestro enlace.',
-                'roadmap-badge': 'Roadmap',
-                'roadmap-title': 'Próximamente en CryptoArch Agent',
-                'roadmap-sub': 'Funcionalidades que llegarán en las próximas semanas',
-                'roadmap1-title': 'IA con Groq',
-                'roadmap1-desc': 'Análisis automático de movimientos',
-                'roadmap2-title': 'Backtesting',
-                'roadmap2-desc': 'Simulación histórica',
-                'roadmap3-title': 'Trading automático',
-                'roadmap3-desc': 'Stop-loss / take-profit (opcional)',
-                'roadmap4-title': 'Alertas personalizables',
-                'roadmap4-desc': 'Por umbral y moneda',
-                'roadmap5-title': 'Más monedas',
-                'roadmap5-desc': 'Soporte para ballenas en SOL, XRP, etc.',
-                'plans-title': 'Planes de suscripción',
-                'plans-sub': 'Sin depósito necesario. Obtén nivel Pro (0.2% comisión) y acceso premium.',
-                'plan-monthly': 'Mensual',
-                'plan-quarterly': 'Trimestral',
-                'plan-yearly': 'Anual',
-                'plan-save5': 'Ahorra 5%',
-                'plan-save16': 'Ahorra 16%',
-                'plan-cta': 'Activar',
+                'commissions-title': 'Comisiones justas y transparentes',
+                'commissions-sub': 'Sin suscripciones. Solo pagas comisión al operar. Y puedes reducirla.',
+                'level-explorer': 'Explorer',
+                'level-trader': 'Trader',
+                'level-pro': 'Pro',
+                'level-elite': 'Elite',
+                'level-legendary': 'Legendary',
+                'level-free': 'Gratis · Sin requisitos',
+                'level-trader-req': '≥ 50 USDT depositado',
+                'level-pro-req': '≥ 100 USDT o volumen > $10k',
+                'level-elite-req': 'Holder de $CARCH (≥100)',
+                'level-legendary-req': 'Holder + Volumen + Referidos',
+                'commissions-note': '* Los niveles Elite y Legendary reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot en tokens $CARCH</strong>.',
+                'token-badge': 'Próximamente',
+                'token-desc': 'El token de gobernanza y utilidad de CryptoArch Agent. Los holders reciben <strong class="text-purple-400">0.05% de todas las comisiones del bot</strong>, acceso a funciones beta, y voto en las decisiones del proyecto.',
+                'token-benefit1': 'Revenue Sharing',
+                'token-benefit1-desc': '0.05% de todas las comisiones',
+                'token-benefit2': 'Gobernanza',
+                'token-benefit2-desc': 'Vota nuevas funcionalidades',
+                'token-benefit3': 'Acceso Beta',
+                'token-benefit3-desc': 'Funciones exclusivas antes que nadie',
+                'token-note': '* El token $CARCH se lanzará en los próximos meses. Los primeros 100 usuarios recibirán un airdrop.',
+                'compliance-title': 'Transparencia y cumplimiento normativo',
+                'compliance-desc': 'CryptoArch Agent opera bajo el <strong>Régimen Simplificado de Confianza (RESICO)</strong> en México, cumpliendo con todas las obligaciones fiscales aplicables a servicios digitales. Nuestro servicio está disponible para <strong>traders de todo el mundo</strong>. La ubicación de nuestra empresa no afecta la funcionalidad global del bot.',
+                'compliance-risk1': 'Este bot es una herramienta de análisis y automatización. <strong>NO es un asesor financiero.</strong>',
+                'compliance-risk2': 'Las alertas, informes y datos generados son <strong>puramente informativos</strong> y no constituyen recomendaciones de compra/venta/inversión.',
+                'compliance-risk3': 'El trading de criptomonedas implica un <strong>alto riesgo de pérdida total del capital</strong>. Ni el creador del bot ni sus operadores se hacen responsables de las pérdidas financieras derivadas del uso de esta herramienta.',
+                'compliance-risk4': 'Al usar este bot, aceptas la <strong>responsabilidad total</strong> sobre tus propias decisiones de inversión.',
+                'compliance-gdpr': '🔒 Cumplimos con el <strong>GDPR</strong> (Reglamento General de Protección de Datos de la UE) y las leyes de protección de datos aplicables en México y otros países. No almacenamos tus claves privadas ni podemos operar con tus fondos.',
                 'faq-title': 'Preguntas frecuentes',
                 'faq1-q': '¿Es realmente no custodial?',
                 'faq1-a': 'Sí, el bot solo analiza datos de mercado y envía alertas. Nunca almacenamos tus claves ni podemos operar con tus fondos. Todo el análisis es público.',
                 'faq2-q': '¿Cómo empiezo gratis?',
                 'faq2-a': 'Al abrir el bot en Telegram y aceptar los términos, obtienes automáticamente 14 días de prueba (nivel Explorer) con comisión 0.5% y 3 alertas.',
                 'faq3-q': '¿Qué comisiones cobran?',
-                'faq3-a': 'Cobramos una comisión fija del <strong>0.2%</strong> por cada operación ejecutada a través del bot. No hay comisiones ocultas ni costos adicionales.',
-                'faq4-q': '¿Puedo reducir la comisión?',
-                'faq4-a': 'Sí, depositando en Binance con nuestro enlace de referido: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. O suscribiéndote a un plan mensual/trimestral/anual (también 0.2%).',
+                'faq3-a': 'Cobramos comisión por operación, no suscripción. Desde 0.5% hasta 0.3% según tu nivel. Los holders de $CARCH reciben además 0.05% de todas las comisiones del bot.',
+                'faq4-q': '¿Qué es $CARCH?',
+                'faq4-a': 'Es el token de gobernanza y utilidad de CryptoArch Agent. Próximamente, los holders recibirán 0.05% de todas las comisiones del bot, acceso beta y voto en nuevas funcionalidades.',
                 'faq5-q': '¿Qué monedas soportan las alertas de ballenas?',
-                'faq5-a': 'Actualmente BTC y ETH. Próximamente añadiremos SOL, XRP y más.',
+                'faq5-a': 'BTC, ETH, SOL, MATIC y ARB. Próximamente añadiremos más.',
+                'faq6-q': '¿Están registrados fiscalmente?',
+                'faq6-a': 'Sí, operamos bajo el Régimen Simplificado de Confianza (RESICO) en México y cumplimos con las obligaciones fiscales aplicables a servicios digitales.',
                 'footer-terms': 'Términos de servicio',
-                'footer-privacy': 'Política de privacidad'
+                'footer-privacy': 'Política de privacidad',
+                'footer-risk': 'Aviso de riesgos'
             },
             en: {
-                'nav-features': 'Features',
-                'nav-plans': 'Plans',
-                'nav-deposits': 'Deposits',
-                'nav-roadmap': 'Coming soon',
+                'nav-commissions': 'Commissions',
+                'nav-token': 'Token $CARCH',
+                'nav-compliance': 'Compliance',
                 'nav-faq': 'FAQ',
                 'nav-cta': 'Try now',
                 'theme-toggle': 'Light/Dark mode',
-                'hero-badge': 'LIVE · 14 DAYS FREE',
-                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts, live market data, and fixed <strong class="text-blue-400">0.2%</strong> commission.',
+                'hero-badge': 'LIVE · FREE · NO SUBSCRIPTIONS',
+                'hero-sub': 'The <strong>non-custodial</strong> Telegram analysis bot with real whale alerts on BTC, ETH, SOL, MATIC, and ARB. <strong class="text-blue-400">Commission from 0.3%.</strong>',
                 'hero-cta': 'Try now',
-                'hero-plans': 'View plans',
-                'hero-note': '⚡ No sign-up · Non-custodial · Start with 14-day free trial',
+                'hero-plans': 'View commissions',
+                'hero-note': '⚡ No sign-up · Non-custodial · Free · No subscriptions · 14-day trial',
                 'fg-title': 'Fear & Greed',
                 'fg-updating': 'Updating...',
                 'whale-title': 'Real-time whales',
-                'whale-desc': 'We detect movements >50k USD in BTC and ETH with on-chain verified alerts.',
+                'whale-desc': 'We detect movements >50k USD in BTC, ETH, SOL, MATIC, and ARB with on-chain verified alerts.',
                 'whale-status': 'Active · View on Telegram',
                 'signals-title': 'Market signals',
                 'signals-desc': 'Based on volume and whale flow',
@@ -440,60 +478,51 @@
                 'prices-trend': 'Trend',
                 'prices-loading': 'Loading data...',
                 'prices-footer': 'Click any row for details · Source: CoinGecko',
-                'features-title': 'Why CryptoArch Agent?',
-                'feature1-title': 'Real whales',
-                'feature1-desc': 'Verified BTC/ETH alerts, no simulations.',
-                'feature2-title': 'Non-custodial',
-                'feature2-desc': 'Your keys, your funds. Analysis only.',
-                'feature3-title': 'Fair commission',
-                'feature3-highlight': '0.2%',
-                'feature3-desc': 'fixed, no surprises.',
-                'deposits-title': 'Get reduced commissions with deposit',
-                'deposits-sub': 'Deposit on Binance using our referral link and get lower commissions without monthly subscription.',
-                'deposit-free': 'Free · 14 days',
-                'deposit-explorer': '3 alerts · basic features',
-                'deposit-trader': '≥ 50 USDT',
-                'deposit-trader-desc': 'Full access · no subscription',
-                'deposit-pro': '≥ 100 USDT',
-                'deposit-pro-desc': 'Premium + priority support',
-                'deposit-elite': '≥ 500 USDT',
-                'deposit-elite-desc': 'VIP · beta features · exclusive badge',
-                'deposit-cta': 'Create Binance account (referral)',
-                'deposit-note': '* Reduced commissions only for new users using our link.',
-                'roadmap-badge': 'Roadmap',
-                'roadmap-title': 'Coming soon to CryptoArch Agent',
-                'roadmap-sub': 'Features arriving in the coming weeks',
-                'roadmap1-title': 'AI with Groq',
-                'roadmap1-desc': 'Automatic movement analysis',
-                'roadmap2-title': 'Backtesting',
-                'roadmap2-desc': 'Historical simulation',
-                'roadmap3-title': 'Automated trading',
-                'roadmap3-desc': 'Stop-loss / take-profit (optional)',
-                'roadmap4-title': 'Customizable alerts',
-                'roadmap4-desc': 'By threshold and coin',
-                'roadmap5-title': 'More coins',
-                'roadmap5-desc': 'Whale support for SOL, XRP, etc.',
-                'plans-title': 'Subscription plans',
-                'plans-sub': 'No deposit needed. Get Pro level (0.2% commission) and premium access.',
-                'plan-monthly': 'Monthly',
-                'plan-quarterly': 'Quarterly',
-                'plan-yearly': 'Yearly',
-                'plan-save5': 'Save 5%',
-                'plan-save16': 'Save 16%',
-                'plan-cta': 'Activate',
+                'commissions-title': 'Fair and transparent commissions',
+                'commissions-sub': 'No subscriptions. You only pay commission when you trade. And you can reduce it.',
+                'level-explorer': 'Explorer',
+                'level-trader': 'Trader',
+                'level-pro': 'Pro',
+                'level-elite': 'Elite',
+                'level-legendary': 'Legendary',
+                'level-free': 'Free · No requirements',
+                'level-trader-req': '≥ 50 USDT deposited',
+                'level-pro-req': '≥ 100 USDT or volume > $10k',
+                'level-elite-req': '$CARCH holder (≥100)',
+                'level-legendary-req': 'Holder + Volume + Referrals',
+                'commissions-note': '* Elite and Legendary levels receive <strong class="text-purple-400">0.05% of all bot commissions in $CARCH tokens</strong>.',
+                'token-badge': 'Coming soon',
+                'token-desc': 'The governance and utility token of CryptoArch Agent. Holders receive <strong class="text-purple-400">0.05% of all bot commissions</strong>, beta access, and voting on project decisions.',
+                'token-benefit1': 'Revenue Sharing',
+                'token-benefit1-desc': '0.05% of all commissions',
+                'token-benefit2': 'Governance',
+                'token-benefit2-desc': 'Vote on new features',
+                'token-benefit3': 'Beta Access',
+                'token-benefit3-desc': 'Exclusive features before anyone else',
+                'token-note': '* The $CARCH token will be launched in the coming months. The first 100 users will receive an airdrop.',
+                'compliance-title': 'Transparency and regulatory compliance',
+                'compliance-desc': 'CryptoArch Agent operates under the <strong>Simplified Trust Regime (RESICO)</strong> in Mexico, complying with all applicable tax obligations for digital services. Our service is available to <strong>traders worldwide</strong>. The location of our company does not affect the global functionality of the bot.',
+                'compliance-risk1': 'This bot is an analysis and automation tool. <strong>It is NOT a financial advisor.</strong>',
+                'compliance-risk2': 'Alerts, reports, and generated data are <strong>purely informational</strong> and do not constitute buy/sell/investment recommendations.',
+                'compliance-risk3': 'Cryptocurrency trading involves <strong>high risk of total capital loss</strong>. Neither the bot creator nor its operators are responsible for financial losses arising from use of this tool.',
+                'compliance-risk4': 'By using this bot, you accept <strong>full responsibility</strong> for your own investment decisions.',
+                'compliance-gdpr': '🔒 We comply with <strong>GDPR</strong> (EU General Data Protection Regulation) and applicable data protection laws in Mexico and other countries. We do not store your private keys nor can we trade your funds.',
                 'faq-title': 'Frequently Asked Questions',
                 'faq1-q': 'Is it really non-custodial?',
                 'faq1-a': 'Yes, the bot only analyzes market data and sends alerts. We never store your keys nor can we trade your funds. All analysis is public.',
                 'faq2-q': 'How do I start for free?',
                 'faq2-a': 'By opening the bot on Telegram and accepting the terms, you automatically get a 14-day trial (Explorer level) with 0.5% commission and 3 alerts.',
                 'faq3-q': 'What commissions do you charge?',
-                'faq3-a': 'We charge a fixed <strong>0.2%</strong> commission per trade executed through the bot. No hidden fees or extra costs.',
-                'faq4-q': 'Can I reduce the commission?',
-                'faq4-a': 'Yes, by depositing on Binance with our referral link: ≥50 USDT → 0.3%, ≥100 USDT → 0.2%, ≥500 USDT → 0.2%. Or by subscribing to a monthly/quarterly/annual plan (also 0.2%).',
+                'faq3-a': 'We charge commission per trade, not subscription. From 0.5% down to 0.3% depending on your level. $CARCH holders also receive 0.05% of all bot commissions.',
+                'faq4-q': 'What is $CARCH?',
+                'faq4-a': 'It is the governance and utility token of CryptoArch Agent. Coming soon, holders will receive 0.05% of all bot commissions, beta access, and voting on new features.',
                 'faq5-q': 'Which coins do the whale alerts support?',
-                'faq5-a': 'Currently BTC and ETH. We will soon add SOL, XRP, and more.',
+                'faq5-a': 'BTC, ETH, SOL, MATIC, and ARB. We will soon add more.',
+                'faq6-q': 'Are you tax-registered?',
+                'faq6-a': 'Yes, we operate under the Simplified Trust Regime (RESICO) in Mexico and comply with all applicable tax obligations for digital services.',
                 'footer-terms': 'Terms of Service',
-                'footer-privacy': 'Privacy Policy'
+                'footer-privacy': 'Privacy Policy',
+                'footer-risk': 'Risk Disclaimer'
             }
         };
 
@@ -635,4 +664,4 @@
         setInterval(fetchFear, 5*60*1000); setInterval(fetchPrices, 5*60*1000); setInterval(updateSignal, 10000);
     </script>
 </body>
-</html>
+    </html>
