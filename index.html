@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CryptoArch Agent · Bot de análisis para Telegram</title>
+  <title>CryptoArch Agent · Bot de análisis con IA y sentimiento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -259,23 +259,6 @@
     .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: #F8FAFC; }
     .card p { color: #94A3B8; font-size: 0.95rem; }
 
-    /* ===== TERMINAL ===== */
-    .terminal-wrap {
-      background: #0F172A;
-      border-radius: 1.2rem;
-      border: 1px solid #334155;
-      padding: 1.5rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      color: #A5B4FC;
-      overflow-x: auto;
-      margin-top: 1rem;
-    }
-    .terminal-wrap .line { padding: 0.2rem 0; display: flex; gap: 0.8rem; }
-    .terminal-wrap .prompt { color: #34D399; font-weight: 600; }
-    .terminal-wrap .cmd { color: #F8FAFC; }
-    .terminal-wrap .output { color: #94A3B8; padding-left: 1.5rem; }
-
     /* ===== COMPARATIVA ===== */
     .compare-table {
       width: 100%;
@@ -321,61 +304,6 @@
       font-size: 0.8rem;
       margin-top: 0.5rem;
     }
-
-    /* ===== HERRAMIENTAS ===== */
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .tool-item {
-      background: #1E293B;
-      border-radius: 1rem;
-      padding: 1.2rem;
-      text-align: center;
-      border: 1px solid #334155;
-      transition: all 0.2s;
-    }
-    .tool-item:hover { border-color: #60A5FA; background: #273548; }
-    .tool-item .coin { font-weight: 700; font-size: 1.3rem; color: #F8FAFC; }
-    .tool-item .price { color: #34D399; font-weight: 600; }
-    .tool-item .change { font-size: 0.9rem; color: #94A3B8; }
-
-    /* ===== MODAL ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-    .modal.open { display: flex; }
-    .modal-content {
-      background: #1E293B;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      max-width: 450px;
-      width: 90%;
-      border: 1px solid #475569;
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.2rem;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: #94A3B8;
-      transition: color 0.2s;
-    }
-    .modal-close:hover { color: #F8FAFC; }
-    .modal-content h2 { margin-bottom: 0.5rem; color: #F8FAFC; }
-    .modal-content .detail { color: #CBD5E1; margin: 0.3rem 0; }
-    .modal-content .label { color: #94A3B8; font-weight: 600; }
 
     /* ===== TESTIMONIOS ===== */
     .testimonial-grid {
@@ -551,7 +479,6 @@
     </div>
     <nav class="nav-links">
       <a href="#features">Features</a>
-      <a href="#terminal">Terminal</a>
       <a href="#compare">Compare</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#roadmap">Roadmap</a>
@@ -573,8 +500,8 @@
     <span class="lang-en">OPEN BETA · 100% FREE</span>
   </div>
   <h1>CryptoArch Agent</h1>
-  <p class="lang-es active">El bot no custodio para Telegram con IA predictiva, alertas de ballenas, anti‑MEV y comisiones desde el 0.3%.</p>
-  <p class="lang-en">The non‑custodial Telegram bot with predictive AI, whale alerts, anti‑MEV and commissions from 0.3%.</p>
+  <p class="lang-es active">El bot no custodio para Telegram con IA predictiva, scoring de tokens y análisis de sentimiento en X (Twitter).</p>
+  <p class="lang-en">The non‑custodial Telegram bot with predictive AI, token scoring, and sentiment analysis from X (Twitter).</p>
   <div class="commission-badge">
     <strong>Commission from 0.3%</strong> &nbsp;·&nbsp; <span style="font-weight:400; color:#D1D5DB;">No subscriptions</span>
   </div>
@@ -583,6 +510,8 @@
     <span><i class="fas fa-shield-alt" style="color:#34D399;"></i> Anti‑MEV / Anti‑Rug</span>
     <span><i class="fas fa-robot" style="color:#A78BFA;"></i> Predictive AI</span>
     <span><i class="fas fa-copy" style="color:#FCD34D;"></i> Copy Trading</span>
+    <span><i class="fas fa-chart-line" style="color:#F59E0B;"></i> Token Scoring</span>
+    <span><i class="fas fa-twitter" style="color:#1DA1F2;"></i> Sentiment Analysis</span>
   </div>
   <div class="hero-actions">
     <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary"><i class="fab fa-telegram-plane"></i> <span class="lang-es active">Probar ahora</span><span class="lang-en">Try now</span></a>
@@ -601,30 +530,12 @@
   <p class="section-sub lang-es active">Alertas en tiempo real, análisis profundo y total transparencia.</p>
   <p class="section-sub lang-en">Real‑time alerts, deep analysis and total transparency.</p>
   <div class="grid-2">
-    <div class="card"><div class="icon"><i class="fas fa-whale"></i></div><h3 class="lang-es active">Alertas de ballenas con IA</h3><h3 class="lang-en">AI Whale Alerts</h3><p class="lang-es active">Detección de grandes movimientos en BTC, ETH, SOL, MATIC y ARB. Además, predicción con % de confianza.</p><p class="lang-en">Detection of large moves on BTC, ETH, SOL, MATIC and ARB. Plus, prediction with confidence %.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-robot"></i></div><h3 class="lang-es active">IA Predictiva Avanzada</h3><h3 class="lang-en">Advanced Predictive AI</h3><p class="lang-es active">Analiza 6 factores (tamaño, tipo, frecuencia, Fear & Greed, volatilidad, liquidez) para dar señales con alta precisión.</p><p class="lang-en">Analyzes 6 factors (size, type, frequency, Fear & Greed, volatility, liquidity) to give high‑accuracy signals.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-shield-alt"></i></div><h3 class="lang-es active">Anti‑MEV y Anti‑Rug</h3><h3 class="lang-en">Anti‑MEV & Anti‑Rug</h3><p class="lang-es active">Protección contra ataques sandwich y verificación de contratos (honeypot, liquidez bloqueada) con GoPlusLabs.</p><p class="lang-en">Protection against sandwich attacks and contract verification (honeypot, locked liquidity) with GoPlusLabs.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-whale"></i></div><h3 class="lang-es active">Alertas de ballenas con IA</h3><h3 class="lang-en">AI Whale Alerts</h3><p class="lang-es active">Detección de grandes movimientos en BTC, ETH, SOL, MATIC, ARB y más.</p><p class="lang-en">Detection of large moves on BTC, ETH, SOL, MATIC, ARB and more.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-robot"></i></div><h3 class="lang-es active">IA Predictiva Avanzada</h3><h3 class="lang-en">Advanced Predictive AI</h3><p class="lang-es active">Modelo de Machine Learning que predice el crecimiento de tokens con hasta un 90% de precisión.</p><p class="lang-en">Machine Learning model predicting token growth with up to 90% accuracy.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-shield-alt"></i></div><h3 class="lang-es active">Anti‑MEV y Anti‑Rug</h3><h3 class="lang-en">Anti‑MEV & Anti‑Rug</h3><p class="lang-es active">Protección contra ataques sandwich y verificación de contratos (honeypot, liquidez) con GoPlusLabs.</p><p class="lang-en">Protection against sandwich attacks and contract verification with GoPlusLabs.</p></div>
     <div class="card"><div class="icon"><i class="fas fa-copy"></i></div><h3 class="lang-es active">Copy Trading de Ballenas</h3><h3 class="lang-en">Whale Copy Trading</h3><p class="lang-es active">Copia automáticamente las operaciones de las ballenas con un solo clic. Modo follow o invert.</p><p class="lang-en">Automatically copy whale trades with one click. Follow or invert mode.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-bullseye"></i></div><h3 class="lang-es active">Sniper X y Auto Trading</h3><h3 class="lang-en">Sniper X & Auto Trading</h3><p class="lang-es active">Ejecución ultrarrápida en lanzamientos con anti‑MEV. Reglas automáticas (compra/venta ante ballenas).</p><p class="lang-en">Ultra‑fast execution on launches with anti‑MEV. Automatic rules (buy/sell on whale activity).</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-lock"></i></div><h3 class="lang-es active">No custodio y gratuito</h3><h3 class="lang-en">Non‑custodial & Free</h3><p class="lang-es active">Tus fondos nunca están en riesgo. Sin suscripciones, solo comisiones por operación (0.5% → 0.3%).</p><p class="lang-en">Your funds are never at risk. No subscriptions, only trading fees (0.5% → 0.3%).</p></div>
-  </div>
-</section>
-
-<!-- ==================== TERMINAL ==================== -->
-<section id="terminal" class="container">
-  <h2 class="section-title lang-es active">Terminal Web</h2>
-  <h2 class="section-title lang-en">Web Terminal</h2>
-  <p class="section-sub lang-es active">Accede a nuestra terminal interactiva desde tu navegador con datos en tiempo real.</p>
-  <p class="section-sub lang-en">Access our interactive terminal from your browser with real‑time data.</p>
-  <div class="terminal-wrap">
-    <div class="line"><span class="prompt">$</span><span class="cmd"> whale --alert BTC</span></div>
-    <div class="line output">🐋 <span class="lang-es active">Ballena movió 2,340 BTC (~$145M) hace 3 min.</span><span class="lang-en">Whale moved 2,340 BTC (~$145M) 3 min ago.</span></div>
-    <div class="line"><span class="prompt">$</span><span class="cmd"> predict --coin ETH</span></div>
-    <div class="line output">🧠 <span class="lang-es active">Predicción: ALCISTA · Confianza 68% · Basado en 6 factores</span><span class="lang-en">Prediction: BULLISH · Confidence 68% · Based on 6 factors</span></div>
-    <div class="line"><span class="prompt">$</span><span class="cmd"> sniper --set 100 2 aggressive true on</span></div>
-    <div class="line output">🎯 <span class="lang-es active">Sniper X configurado: $100, slippage 2%, modo agresivo, anti‑MEV activado</span><span class="lang-en">Sniper X set: $100, slippage 2%, aggressive mode, anti‑MEV on</span></div>
-    <div class="line"><span class="prompt">$</span><span class="cmd"> copy --whale 20 1.5 follow on</span></div>
-    <div class="line output">🐋 <span class="lang-es active">Copy trading activado: $20, slippage 1.5%, modo follow</span><span class="lang-en">Copy trading enabled: $20, slippage 1.5%, follow mode</span></div>
+    <div class="card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3 class="lang-es active">Scoring de Riesgo y Oportunidad</h3><h3 class="lang-en">Risk & Opportunity Scoring</h3><p class="lang-es active">Cada token recibe una puntuación de riesgo (0-100) y oportunidad (0-100). Sabrás si comprar o huir antes que nadie.</p><p class="lang-en">Each token gets a Risk (0-100) and Opportunity (0-100) score. Know whether to buy or run before anyone else.</p></div>
+    <div class="card"><div class="icon"><i class="fab fa-twitter"></i></div><h3 class="lang-es active">Análisis de Sentimiento en X</h3><h3 class="lang-en">Sentiment Analysis on X</h3><p class="lang-es active">Monitorea el sentimiento del mercado en tiempo real. Detecta "shilling" masivo y tendencias emergentes.</p><p class="lang-en">Real-time market sentiment monitoring. Detects mass "shilling" and emerging trends.</p></div>
   </div>
 </section>
 
@@ -649,13 +560,15 @@
         <tr><td>Commission</td><td>1%</td><td>1% / 0.5%</td><td>1%</td><td class="highlight">0.3% (by deposit)</td></tr>
         <tr><td>Subscription</td><td>$200/mo</td><td>❌</td><td>❌</td><td class="highlight">Free</td></tr>
         <tr><td>Whale Alerts</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ AI‑powered</td></tr>
-        <tr><td>Predictive AI</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ 6‑factor analysis</td></tr>
+        <tr><td>Predictive AI</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ ML Model</td></tr>
+        <tr><td>Risk/Opportunity Scoring</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ 0-100 score</td></tr>
+        <tr><td>Sentiment Analysis (X)</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Real-time</td></tr>
         <tr><td>Anti‑MEV / Anti‑Rug</td><td>✅</td><td>✅</td><td>✅ (MEV only)</td><td class="highlight">✅ GoPlusLabs</td></tr>
         <tr><td>Copy Trading</td><td>✅</td><td>✅</td><td>✅</td><td class="highlight">✅ Whale copy</td></tr>
-        <tr><td>Multi‑Chain</td><td>14</td><td>4</td><td>1 (Solana)</td><td class="highlight">5 (growing)</td></tr>
+        <tr><td>Multi‑Chain</td><td>14</td><td>4</td><td>1 (Solana)</td><td class="highlight">8 (growing)</td></tr>
         <tr><td>Free Trial</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">Unlimited beta</td></tr>
         <tr><td>Token Reward</td><td>❌</td><td>❌ (BANANA)</td><td>❌</td><td class="highlight">0.05% in $CARCH (Q4 2026)</td></tr>
-        <tr><td>Web Terminal</td><td>❌</td><td>❌</td><td>✅</td><td class="highlight">✅ Dashboard + API</td></tr>
+        <tr><td>Web Terminal</td><td>❌</td><td>✅</td><td>✅</td><td class="highlight">✅ Dashboard + API</td></tr>
       </tbody>
     </table>
   </div>
@@ -680,14 +593,14 @@
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <blockquote class="lang-es active">Me encanta que sea no custodio y que pueda copiar a las ballenas automáticamente. Nunca había visto algo así.</blockquote>
-      <blockquote class="lang-en">I love that it's non‑custodial and I can copy whales automatically. Never seen anything like it.</blockquote>
+      <blockquote class="lang-es active">El sistema de scoring de riesgo me ha salvado de varias estafas. Saber que un token tiene 85/100 de riesgo antes de comprar es oro puro.</blockquote>
+      <blockquote class="lang-en">The risk scoring system has saved me from several scams. Knowing a token has 85/100 risk before buying is pure gold.</blockquote>
       <div class="author">Laura G. <span>· Inversora, beta desde abril 2026</span></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★☆</div>
-      <blockquote class="lang-es active">La terminal web y el anti‑rug me dan mucha tranquilidad. Espero con ansias el token $CARCH.</blockquote>
-      <blockquote class="lang-en">The web terminal and anti‑rug give me great peace of mind. I'm looking forward to the $CARCH token.</blockquote>
+      <blockquote class="lang-es active">El análisis de sentimiento de X me ayuda a saber si un token tiene hype real o es puro shilling. Nunca había visto algo así.</blockquote>
+      <blockquote class="lang-en">The X sentiment analysis helps me know if a token has real hype or is pure shilling. Never seen anything like it.</blockquote>
       <div class="author">Javier R. <span>· Desarrollador, beta desde marzo 2026</span></div>
     </div>
   </div>
@@ -764,8 +677,8 @@
     </div>
     <div>
       <h4 class="lang-es active">Legal</h4><h4 class="lang-en">Legal</h4>
-      <a href="#" class="lang-es active">Términos de uso</a><a href="#" class="lang-en">Terms of use</a>
-      <a href="#" class="lang-es active">Política de privacidad</a><a href="#" class="lang-en">Privacy policy</a>
+      <a href="/privacy" class="lang-es active">Política de privacidad</a><a href="/privacy" class="lang-en">Privacy policy</a>
+      <a href="/terms" class="lang-es active">Términos de servicio</a><a href="/terms" class="lang-en">Terms of service</a>
       <a href="#" class="lang-es active">Política de cookies</a><a href="#" class="lang-en">Cookie policy</a>
     </div>
     <div>
@@ -821,4 +734,4 @@
 </script>
 
 </body>
-</html>
+  </html>
