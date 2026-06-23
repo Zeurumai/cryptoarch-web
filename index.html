@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoArch Agent · Bot de análisis con IA y sentimiento</title>
+  <!-- Meta SEO -->
+  <meta name="description" content="CryptoArch Agent: Bot no custodio para Telegram con IA predictiva, scoring de tokens y análisis de sentimiento en X (Twitter). Comisiones desde 0.3%." />
+  <meta name="keywords" content="trading bot, crypto, ia, whale alerts, copy trading, anti-mev, token scoring" />
+  <link rel="canonical" href="https://cryptoarchagent.com" />
+  <!-- Open Graph (para compartir en redes) -->
+  <meta property="og:title" content="CryptoArch Agent · Bot de trading con IA" />
+  <meta property="og:description" content="Alertas de ballenas, IA predictiva, scoring de tokens y análisis de sentimiento en X. Comisiones desde 0.3%." />
+  <meta property="og:image" content="https://cryptoarchagent.com/og-image.jpg" />
+  <meta property="og:url" content="https://cryptoarchagent.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CryptoArch Agent · Bot de trading con IA" />
+  <meta name="twitter:description" content="Alertas de ballenas, IA predictiva, scoring de tokens y análisis de sentimiento en X." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -259,6 +272,36 @@
     .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: #F8FAFC; }
     .card p { color: #94A3B8; font-size: 0.95rem; }
 
+    /* ===== CÓMO EMPEZAR ===== */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .step {
+      background: #1E293B;
+      border-radius: 1.2rem;
+      padding: 1.5rem;
+      text-align: center;
+      flex: 1 1 200px;
+      border: 1px solid #334155;
+    }
+    .step .num {
+      background: #2563EB;
+      color: white;
+      font-weight: 800;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.8rem;
+    }
+    .step p { color: #94A3B8; font-size: 0.95rem; }
+
     /* ===== COMPARATIVA ===== */
     .compare-table {
       width: 100%;
@@ -360,6 +403,11 @@
       background: #78350F;
       color: #FCD34D;
       border-color: #B45309;
+    }
+    .roadmap-item .date {
+      color: #64748B;
+      font-size: 0.8rem;
+      margin-left: 0.3rem;
     }
 
     /* ===== SEGURIDAD ===== */
@@ -484,6 +532,7 @@
       <a href="#roadmap">Roadmap</a>
       <a href="#token">$CARCH</a>
       <a href="#security">Security</a>
+      <a href="#howto">How to start</a>
       <div class="lang-selector">
         <button class="lang-btn active" data-lang="es">ES</button>
         <button class="lang-btn" data-lang="en">EN</button>
@@ -520,6 +569,22 @@
   <div style="font-size:0.85rem; color:#64748B; margin-top:0.5rem;">
     <span class="lang-es active">Sin registro · No custodio · Gratis · Comisiones reducidas por depósito</span>
     <span class="lang-en">No sign‑up · Non‑custodial · Free · Reduced commissions by deposit</span>
+  </div>
+</section>
+
+<!-- ==================== CÓMO EMPEZAR ==================== -->
+<section id="howto" class="container">
+  <h2 class="section-title lang-es active">Cómo empezar en 3 pasos</h2>
+  <h2 class="section-title lang-en">How to start in 3 steps</h2>
+  <p class="section-sub lang-es active">Lanza el bot, acepta los términos y prueba las funciones clave.</p>
+  <p class="section-sub lang-en">Launch the bot, accept the terms and test the key features.</p>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><p class="lang-es active">Abre el bot en Telegram: <strong>@CryptoArchTrading_bot</strong> y escribe <code>/start</code>.</p><p class="lang-en">Open the bot on Telegram: <strong>@CryptoArchTrading_bot</strong> and type <code>/start</code>.</p></div>
+    <div class="step"><div class="num">2</div><p class="lang-es active">Acepta los términos con <code>/accept</code> y cambia a español con <code>/Es</code>.</p><p class="lang-en">Accept terms with <code>/accept</code> and switch to Spanish with <code>/Es</code>.</p></div>
+    <div class="step"><div class="num">3</div><p class="lang-es active">Prueba los comandos estrella: <code>/whale</code>, <code>/predict</code>, <code>/status</code> y <code>/compare</code>.</p><p class="lang-en">Test the star commands: <code>/whale</code>, <code>/predict</code>, <code>/status</code> and <code>/compare</code>.</p></div>
+  </div>
+  <div style="text-align:center; margin-top:1.5rem;">
+    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary"><i class="fab fa-telegram-plane"></i> <span class="lang-es active">Probar ahora</span><span class="lang-en">Try now</span></a>
   </div>
 </section>
 
@@ -566,6 +631,9 @@
         <tr><td>Anti‑MEV / Anti‑Rug</td><td>✅</td><td>✅</td><td>✅ (MEV only)</td><td class="highlight">✅ GoPlusLabs</td></tr>
         <tr><td>Copy Trading</td><td>✅</td><td>✅</td><td>✅</td><td class="highlight">✅ Whale copy</td></tr>
         <tr><td>Multi‑Chain</td><td>14</td><td>4</td><td>1 (Solana)</td><td class="highlight">8 (growing)</td></tr>
+        <tr><td>Speed on Solana</td><td>0.15s</td><td>0.1s</td><td>0.15s</td><td class="highlight"><0.1s (Jito)</td></tr>
+        <tr><td>Sniper X</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Aggressive/Moderate/Safe</td></tr>
+        <tr><td>Panic Shield</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Emotional protection</td></tr>
         <tr><td>Free Trial</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">Unlimited beta</td></tr>
         <tr><td>Token Reward</td><td>❌</td><td>❌ (BANANA)</td><td>❌</td><td class="highlight">0.05% in $CARCH (Q4 2026)</td></tr>
         <tr><td>Web Terminal</td><td>❌</td><td>✅</td><td>✅</td><td class="highlight">✅ Dashboard + API</td></tr>
@@ -584,6 +652,10 @@
 <section id="testimonials" class="container">
   <h2 class="section-title lang-es active">Lo que dicen nuestros usuarios</h2>
   <h2 class="section-title lang-en">What our users say</h2>
+  <p style="color:#64748B; font-size:0.9rem; margin-bottom:1.5rem;">
+    <span class="lang-es active">* Testimonios de usuarios reales de la beta. Los resultados pueden variar.</span>
+    <span class="lang-en">* Testimonials from real beta users. Results may vary.</span>
+  </p>
   <div class="testimonial-grid">
     <div class="testimonial">
       <div class="stars">★★★★★</div>
@@ -631,12 +703,12 @@
   <h2 class="section-title lang-es active">Próximas fases 🚀</h2>
   <h2 class="section-title lang-en">Upcoming phases 🚀</h2>
   <div class="roadmap-list">
-    <div class="roadmap-item"><span class="chip"><span class="highlight">+BNB</span> y <span class="highlight">AVAX</span></span> <span class="lang-es active">nuevas cadenas</span><span class="lang-en">new chains</span></div>
-    <div class="roadmap-item"><span class="chip">⚡ Alertas personalizables</span> <span class="lang-es active">por monto</span><span class="lang-en">by amount</span></div>
-    <div class="roadmap-item"><span class="chip">📊 Dashboard web avanzado</span> <span class="lang-es active">con backtesting</span><span class="lang-en">with backtesting</span></div>
-    <div class="roadmap-item"><span class="chip token-chip">🪙 $CARCH token</span> <span class="lang-es active">lanzamiento Q4 2026</span><span class="lang-en">launch Q4 2026</span></div>
-    <div class="roadmap-item"><span class="chip">🔗 Referidos 3 niveles</span> <span class="lang-es active">10% / 5% / 2.5%</span><span class="lang-en">10% / 5% / 2.5%</span></div>
-    <div class="roadmap-item"><span class="chip">🏆 Gamificación</span> <span class="lang-es active">rankings y premios</span><span class="lang-en">rankings & prizes</span></div>
+    <div class="roadmap-item"><span class="chip"><span class="highlight">+BNB</span> y <span class="highlight">AVAX</span></span> <span class="lang-es active">nuevas cadenas</span><span class="lang-en">new chains</span> <span class="date">Jul 2026</span></div>
+    <div class="roadmap-item"><span class="chip">⚡ Alertas personalizables</span> <span class="lang-es active">por monto</span><span class="lang-en">by amount</span> <span class="date">Ago 2026</span></div>
+    <div class="roadmap-item"><span class="chip">📊 Dashboard web avanzado</span> <span class="lang-es active">con backtesting</span><span class="lang-en">with backtesting</span> <span class="date">Sep 2026</span></div>
+    <div class="roadmap-item"><span class="chip token-chip">🪙 $CARCH token</span> <span class="lang-es active">lanzamiento</span><span class="lang-en">launch</span> <span class="date">Q4 2026</span></div>
+    <div class="roadmap-item"><span class="chip">🔗 Referidos 3 niveles</span> <span class="lang-es active">10% / 5% / 2.5%</span><span class="lang-en">10% / 5% / 2.5%</span> <span class="date">Oct 2026</span></div>
+    <div class="roadmap-item"><span class="chip">🏆 Gamificación</span> <span class="lang-es active">rankings y premios</span><span class="lang-en">rankings & prizes</span> <span class="date">Nov 2026</span></div>
   </div>
 </section>
 
@@ -651,19 +723,19 @@
     <div class="security-item"><i class="fas fa-shield-halved"></i><h4 class="lang-es active">Anti‑MEV / Anti‑Rug</h4><h4 class="lang-en">Anti‑MEV / Anti‑Rug</h4><p class="lang-es active">Protección contra ataques sandwich y contratos maliciosos.</p><p class="lang-en">Protection against sandwich attacks and malicious contracts.</p></div>
     <div class="security-item"><i class="fas fa-lock"></i><h4 class="lang-es active">Cifrado end‑to‑end</h4><h4 class="lang-en">End‑to‑end encryption</h4><p class="lang-es active">Todas las comunicaciones están cifradas.</p><p class="lang-en">All communications are encrypted.</p></div>
     <div class="security-item"><i class="fas fa-user-secret"></i><h4 class="lang-es active">Sin registro</h4><h4 class="lang-en">No sign‑up</h4><p class="lang-es active">No guardamos datos personales ni historial.</p><p class="lang-en">We don't store personal data or history.</p></div>
-    <div class="security-item"><i class="fas fa-file-contract"></i><h4 class="lang-es active">Código abierto</h4><h4 class="lang-en">Open source</h4><p class="lang-es active">Puedes auditar nuestro código en GitHub.</p><p class="lang-en">You can audit our code on GitHub.</p></div>
+    <div class="security-item"><i class="fas fa-file-contract"></i><h4 class="lang-es active">Código abierto</h4><h4 class="lang-en">Open source</h4><p class="lang-es active">Puedes auditar nuestro código en <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank">GitHub</a>.</p><p class="lang-en">You can audit our code on <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank">GitHub</a>.</p></div>
   </div>
 </section>
 
 <!-- ==================== SOCIAL ==================== -->
 <section class="container" style="padding: 1.5rem 0;">
-  <h3 class="text-center lang-es active" style="color:#F8FAFC;">Síguenos en redes</h3>
-  <h3 class="text-center lang-en" style="color:#F8FAFC;">Follow us on social</h3>
+  <h3 class="text-center lang-es active" style="color:#F8FAFC; text-align:center;">Síguenos en redes</h3>
+  <h3 class="text-center lang-en" style="color:#F8FAFC; text-align:center;">Follow us on social</h3>
   <div class="social-links">
     <a href="https://x.com/CryptoArc_Es" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
     <a href="https://t.me/CryptoArchTrading_bot" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
-    <a href="#" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-    <a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="#" target="_blank"><i class="fab fa-discord"></i> Discord <span style="color:#64748B; font-size:0.7rem;">(coming soon)</span></a>
+    <a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube <span style="color:#64748B; font-size:0.7rem;">(coming soon)</span></a>
     <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank"><i class="fab fa-github"></i> GitHub</a>
   </div>
 </section>
@@ -683,7 +755,7 @@
     </div>
     <div>
       <h4 class="lang-es active">Contacto</h4><h4 class="lang-en">Contact</h4>
-      <a href="mailto:support@cryptoarch.io">support@cryptoarch.io</a>
+      <a href="mailto:support@cryptoarchagent.com">support@cryptoarchagent.com</a>
       <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="lang-es active">Soporte en Telegram</a><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="lang-en">Telegram support</a>
     </div>
   </div>
@@ -734,4 +806,4 @@
 </script>
 
 </body>
-  </html>
+        </html>
