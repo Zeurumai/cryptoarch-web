@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CryptoArch Agent · Bot de análisis con IA y sentimiento</title>
-  <!-- Meta SEO -->
-  <meta name="description" content="CryptoArch Agent: Bot no custodio para Telegram con IA predictiva, scoring de tokens y análisis de sentimiento en X (Twitter). Comisiones desde 0.3%." />
-  <meta name="keywords" content="trading bot, crypto, ia, whale alerts, copy trading, anti-mev, token scoring" />
+  <title>CryptoArch Agent · Bot de trading con IA que supera a Maestro, Banana Gun y Trojan</title>
+  
+  <!-- SEO Meta -->
+  <meta name="description" content="CryptoArch Agent: Bot no custodio para Telegram con IA predictiva, scoring de tokens, copy trading y análisis de sentimiento en X. Comisiones desde 0.3%." />
+  <meta name="keywords" content="trading bot, crypto, ia, whale alerts, copy trading, anti-mev, token scoring, cryptoarch" />
   <link rel="canonical" href="https://cryptoarchagent.com" />
-  <!-- Open Graph (para compartir en redes) -->
+  
+  <!-- Open Graph -->
   <meta property="og:title" content="CryptoArch Agent · Bot de trading con IA" />
   <meta property="og:description" content="Alertas de ballenas, IA predictiva, scoring de tokens y análisis de sentimiento en X. Comisiones desde 0.3%." />
   <meta property="og:image" content="https://cryptoarchagent.com/og-image.jpg" />
@@ -17,23 +19,24 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CryptoArch Agent · Bot de trading con IA" />
   <meta name="twitter:description" content="Alertas de ballenas, IA predictiva, scoring de tokens y análisis de sentimiento en X." />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
   <style>
-    /* ===== RESET Y BASE ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ============================================
+       RESET Y BASE
+       ============================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0B1120;
+      background: #0B1120;
       color: #F1F5F9;
       line-height: 1.6;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
     a { color: #60A5FA; text-decoration: none; transition: color 0.2s; }
     a:hover { color: #93C5FD; }
@@ -43,16 +46,17 @@
       padding: 0 2rem;
     }
 
-    /* ===== HEADER ===== */
+    /* ============================================
+       HEADER
+       ============================================ */
     header {
-      padding: 1.2rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid #1E293B;
-      background: #0B1120;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-      background-color: rgba(11, 17, 32, 0.85);
+      z-index: 1000;
     }
     .header-inner {
       display: flex;
@@ -69,7 +73,7 @@
     .monogram {
       background: linear-gradient(145deg, #3B82F6, #8B5CF6);
       color: white;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 1.4rem;
       width: 44px;
       height: 44px;
@@ -77,96 +81,134 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
     }
     .brand {
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.3rem;
-      letter-spacing: -0.3px;
-      color: #F8FAFC;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #F8FAFC, #94A3B8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
     }
     .nav-links a {
       color: #94A3B8;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: #F8FAFC; }
-    .lang-selector {
-      display: flex;
-      gap: 0.3rem;
-      background: #1E293B;
-      padding: 0.2rem;
-      border-radius: 40px;
-      border: 1px solid #334155;
-    }
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: #94A3B8;
-      font-weight: 600;
-      font-size: 0.75rem;
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-transform: uppercase;
-    }
-    .lang-btn.active {
+    .nav-cta {
       background: #2563EB;
-      color: white;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 700 !important;
+      transition: all 0.2s;
     }
-    .lang-btn:hover:not(.active) { color: #F8FAFC; }
+    .nav-cta:hover { background: #3B82F6; transform: scale(1.05); color: white !important; }
 
-    /* ===== HERO ===== */
+    /* ============================================
+       HERO
+       ============================================ */
     .hero {
-      padding: 3rem 0 2.5rem;
+      padding: 4rem 0 3rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+      animation: heroGlow 20s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes heroGlow {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(10%, 10%); }
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       background: #064E3B;
       color: #6EE7B7;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.8rem;
-      padding: 0.4rem 1.2rem;
+      padding: 0.4rem 1.4rem;
       border-radius: 40px;
       border: 1px solid #065F46;
       margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
-    .hero-badge .check { color: #34D399; font-weight: 800; font-size: 1rem; }
+    .hero-badge .pulse {
+      width: 8px;
+      height: 8px;
+      background: #34D399;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
     .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
       margin-bottom: 0.8rem;
-      background: linear-gradient(to right, #F8FAFC, #94A3B8);
+      background: linear-gradient(to right, #F8FAFC 30%, #94A3B8 70%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
+      position: relative;
+      z-index: 1;
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: #CBD5E1;
       max-width: 700px;
       margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
     }
+    .commission-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #78350F;
+      color: #FCD34D;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.4rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid #B45309;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .commission-badge strong { color: #FBBF24; font-size: 1.1rem; }
     .hero-features {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 0.8rem;
       margin: 1.5rem 0;
+      position: relative;
+      z-index: 1;
     }
     .hero-features span {
       background: #1E293B;
@@ -175,138 +217,139 @@
       font-size: 0.85rem;
       border: 1px solid #334155;
       color: #E2E8F0;
-    }
-    .commission-badge {
       display: inline-flex;
       align-items: center;
-      background: #78350F;
-      color: #FCD34D;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 0.3rem 1.3rem;
-      border-radius: 40px;
-      border: 1px solid #B45309;
-      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.2);
-      margin-bottom: 2rem;
+      gap: 0.4rem;
     }
-    .commission-badge strong { font-weight: 800; color: #FBBF24; }
+    .hero-features span i { font-size: 0.9rem; }
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 1rem;
+      margin: 1.5rem 0 1rem;
+      position: relative;
+      z-index: 1;
     }
     .btn-primary {
       background: #2563EB;
       color: white;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 0.75rem 2.5rem;
+      font-size: 1.05rem;
+      padding: 0.8rem 2.8rem;
       border: none;
       border-radius: 60px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
-      transition: all 0.2s;
+      gap: 0.6rem;
+      box-shadow: 0 4px 24px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s;
     }
     .btn-primary:hover {
       background: #3B82F6;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.5);
     }
     .btn-secondary {
       background: transparent;
       color: #E2E8F0;
       font-weight: 600;
       font-size: 1rem;
-      padding: 0.7rem 2rem;
+      padding: 0.75rem 2.2rem;
       border: 1.5px solid #475569;
       border-radius: 60px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: all 0.2s;
+      transition: all 0.3s;
     }
     .btn-secondary:hover {
       background: #334155;
       border-color: #94A3B8;
       color: white;
+      transform: translateY(-2px);
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1E293B;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-stats .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #F8FAFC;
+    }
+    .hero-stats .stat-label {
+      color: #94A3B8;
+      font-size: 0.85rem;
     }
 
-    /* ===== SECCIONES ===== */
-    section { padding: 3rem 0; border-top: 1px solid #1E293B; }
+    /* ============================================
+       SECCIONES
+       ============================================ */
+    section { padding: 4rem 0; border-top: 1px solid #1E293B; }
     .section-title {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       margin-bottom: 0.5rem;
       color: #FFFFFF;
     }
+    .section-title .highlight { color: #60A5FA; }
     .section-sub {
       color: #94A3B8;
       max-width: 600px;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
     }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+
+    /* ============================================
+       CARDS
+       ============================================ */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .card {
       background: #1E293B;
       border-radius: 1.2rem;
-      padding: 1.8rem;
+      padding: 2rem;
       border: 1px solid #334155;
-      transition: all 0.25s;
+      transition: all 0.3s;
     }
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: #475569;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
-    .card .icon { font-size: 2.2rem; margin-bottom: 0.8rem; color: #60A5FA; }
+    .card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; color: #60A5FA; }
     .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: #F8FAFC; }
     .card p { color: #94A3B8; font-size: 0.95rem; }
+    .card .tag {
+      display: inline-block;
+      background: #064E3B;
+      color: #6EE7B7;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      margin-top: 0.5rem;
+    }
 
-    /* ===== CÓMO EMPEZAR ===== */
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .step {
-      background: #1E293B;
-      border-radius: 1.2rem;
-      padding: 1.5rem;
-      text-align: center;
-      flex: 1 1 200px;
-      border: 1px solid #334155;
-    }
-    .step .num {
-      background: #2563EB;
-      color: white;
-      font-weight: 800;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.8rem;
-    }
-    .step p { color: #94A3B8; font-size: 0.95rem; }
-
-    /* ===== COMPARATIVA ===== */
+    /* ============================================
+       COMPARATIVA (MEJORADA)
+       ============================================ */
+    .compare-wrapper { overflow-x: auto; }
     .compare-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      min-width: 700px;
     }
     .compare-table th {
       background: #1E293B;
@@ -317,42 +360,31 @@
       border-bottom: 2px solid #334155;
     }
     .compare-table td {
-      padding: 0.8rem 1rem;
+      padding: 0.7rem 1rem;
       border-bottom: 1px solid #1E293B;
       color: #E2E8F0;
     }
     .compare-table .highlight { color: #34D399; font-weight: 700; }
-    .compare-table .check { color: #34D399; }
+    .compare-table .check { color: #34D399; font-weight: 700; }
     .compare-table .cross { color: #EF4444; }
-
-    /* ===== TOKEN ===== */
-    .token-box {
+    .compare-table .ours { background: rgba(52, 211, 153, 0.05); border-left: 3px solid #34D399; }
+    .compare-banner {
+      margin-top: 1.5rem;
       background: linear-gradient(145deg, #1E293B, #0F172A);
-      border: 2px solid #F59E0B;
-      border-radius: 1.2rem;
-      padding: 2rem;
+      border-radius: 1rem;
+      padding: 1.5rem;
       text-align: center;
+      border: 1px solid #334155;
     }
-    .token-box .icon { font-size: 3rem; color: #F59E0B; margin-bottom: 1rem; }
-    .token-box h3 { color: #F8FAFC; font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .token-box .sub { color: #94A3B8; font-size: 1rem; }
-    .token-box .highlight { color: #FCD34D; font-weight: 700; }
-    .token-box .badge {
-      display: inline-block;
-      background: #78350F;
-      color: #FCD34D;
-      padding: 0.2rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-    }
+    .compare-banner strong { color: #34D399; }
 
-    /* ===== TESTIMONIOS ===== */
+    /* ============================================
+       TESTIMONIOS
+       ============================================ */
     .testimonial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
     }
     .testimonial {
       background: #0F172A;
@@ -365,21 +397,52 @@
       font-style: normal;
       font-weight: 500;
       color: #E2E8F0;
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       margin: 0.5rem 0;
     }
-    .testimonial blockquote::before { content: "“"; font-size: 1.4rem; color: #60A5FA; font-weight: 700; margin-right: 2px; }
-    .testimonial blockquote::after { content: "”"; font-size: 1.4rem; color: #60A5FA; font-weight: 700; margin-left: 2px; }
     .testimonial .author { font-weight: 600; color: #94A3B8; font-size: 0.85rem; margin-top: 0.3rem; }
-    .testimonial .author span { font-weight: 400; color: #64748B; font-size: 0.8rem; }
 
-    /* ===== ROADMAP ===== */
+    /* ============================================
+       TOKEN
+       ============================================ */
+    .token-box {
+      background: linear-gradient(145deg, #1E293B, #0F172A);
+      border: 2px solid #F59E0B;
+      border-radius: 1.2rem;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .token-box .icon { font-size: 3.5rem; color: #F59E0B; margin-bottom: 1rem; }
+    .token-box h3 { color: #F8FAFC; font-size: 2rem; margin-bottom: 0.5rem; }
+    .token-box .badge {
+      display: inline-block;
+      background: #78350F;
+      color: #FCD34D;
+      padding: 0.3rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .token-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 1.5rem 0;
+    }
+    .token-stats div { color: #94A3B8; }
+    .token-stats div strong { color: #FCD34D; font-size: 1.2rem; display: block; }
+
+    /* ============================================
+       ROADMAP
+       ============================================ */
     .roadmap-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem 2rem;
+      gap: 0.8rem 1.5rem;
       background: #0F172A;
-      padding: 1.5rem;
+      padding: 1.5rem 2rem;
       border-radius: 1.2rem;
       border: 1px solid #334155;
     }
@@ -387,33 +450,27 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #CBD5E1;
     }
     .roadmap-item .chip {
       background: #1E293B;
-      padding: 0.2rem 0.9rem;
+      padding: 0.2rem 1rem;
       border-radius: 30px;
       border: 1px solid #475569;
       font-size: 0.8rem;
       color: #94A3B8;
     }
-    .roadmap-item .highlight { color: #60A5FA; font-weight: 600; }
-    .roadmap-item .token-chip {
-      background: #78350F;
-      color: #FCD34D;
-      border-color: #B45309;
-    }
-    .roadmap-item .date {
-      color: #64748B;
-      font-size: 0.8rem;
-      margin-left: 0.3rem;
-    }
+    .roadmap-item .chip.highlight { color: #60A5FA; border-color: #60A5FA; }
+    .roadmap-item .chip.token { background: #78350F; color: #FCD34D; border-color: #B45309; }
+    .roadmap-item .date { color: #64748B; font-size: 0.8rem; }
 
-    /* ===== SEGURIDAD ===== */
+    /* ============================================
+       SECURITY
+       ============================================ */
     .security-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
     }
     .security-item {
@@ -422,30 +479,34 @@
       border-radius: 1rem;
       text-align: center;
       border: 1px solid #334155;
+      transition: all 0.3s;
     }
+    .security-item:hover { border-color: #34D399; transform: translateY(-2px); }
     .security-item i { font-size: 2.5rem; color: #34D399; margin-bottom: 0.5rem; }
     .security-item h4 { color: #F8FAFC; margin-bottom: 0.2rem; }
     .security-item p { color: #94A3B8; font-size: 0.9rem; }
 
-    /* ===== SOCIAL ===== */
+    /* ============================================
+       SOCIAL
+       ============================================ */
     .social-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
-      margin: 1rem 0;
+      gap: 1rem;
+      margin: 1.5rem 0;
     }
     .social-links a {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: #1E293B;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 40px;
       border: 1px solid #334155;
       color: #94A3B8;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: all 0.3s;
     }
     .social-links a:hover {
       background: #334155;
@@ -455,24 +516,26 @@
     }
     .social-links a i { font-size: 1.2rem; }
 
-    /* ===== FOOTER ===== */
+    /* ============================================
+       FOOTER
+       ============================================ */
     footer {
-      padding: 2rem 0 1.5rem;
+      padding: 3rem 0 1.5rem;
       border-top: 1px solid #1E293B;
       margin-top: 1rem;
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 2rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2rem;
     }
-    .footer-grid h4 { color: #F8FAFC; font-weight: 600; margin-bottom: 0.5rem; }
+    .footer-grid h4 { color: #F8FAFC; font-weight: 600; margin-bottom: 0.8rem; }
     .footer-grid a {
       display: block;
       color: #94A3B8;
       font-size: 0.9rem;
-      padding: 0.2rem 0;
+      padding: 0.3rem 0;
       transition: color 0.2s;
     }
     .footer-grid a:hover { color: #F8FAFC; }
@@ -484,36 +547,46 @@
       padding-top: 1.5rem;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
     @media (max-width: 768px) {
       .container { padding: 0 1.2rem; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero p { font-size: 1rem; }
+      .section-title { font-size: 1.8rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .hero-stats .stat-number { font-size: 1.5rem; }
       .nav-links { gap: 0.8rem; }
-      .lang-selector { margin-left: auto; }
+      .nav-links a { font-size: 0.8rem; }
       .header-inner { flex-direction: column; align-items: stretch; }
       .logo-group { justify-content: center; }
-      .nav-links { justify-content: center; }
-      .section-title { font-size: 1.8rem; }
-      .compare-table { font-size: 0.75rem; }
-      .compare-table th, .compare-table td { padding: 0.5rem; }
+      .nav-links { justify-content: center; flex-wrap: wrap; }
+      .compare-table { font-size: 0.7rem; }
+      .compare-table th, .compare-table td { padding: 0.4rem 0.6rem; }
+      .token-stats { gap: 1.5rem; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-features span { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
     }
 
-    /* ===== UTILIDADES BILINGÜES ===== */
-    .lang-es, .lang-en { display: none; }
-    .lang-es.active, .lang-en.active { display: block; }
-    .lang-es.inline, .lang-en.inline { display: inline; }
-    .lang-es.inline.active, .lang-en.inline.active { display: inline; }
-    .lang-es.flex, .lang-en.flex { display: none; }
-    .lang-es.flex.active, .lang-en.flex.active { display: flex; }
-    .lang-es.grid, .lang-en.grid { display: none; }
-    .lang-es.grid.active, .lang-en.grid.active { display: grid; }
-    .lang-es.table-row, .lang-en.table-row { display: none; }
-    .lang-es.table-row.active, .lang-en.table-row.active { display: table-row; }
+    /* ============================================
+       ANIMACIONES
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.8s ease forwards;
+    }
+    .fade-in-d1 { animation-delay: 0.1s; }
+    .fade-in-d2 { animation-delay: 0.2s; }
+    .fade-in-d3 { animation-delay: 0.3s; }
+    .fade-in-d4 { animation-delay: 0.4s; }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -532,85 +605,62 @@
       <a href="#roadmap">Roadmap</a>
       <a href="#token">$CARCH</a>
       <a href="#security">Security</a>
-      <a href="#howto">How to start</a>
-      <div class="lang-selector">
-        <button class="lang-btn active" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-      </div>
+      <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="nav-cta"><i class="fab fa-telegram-plane"></i> Try Now</a>
     </nav>
   </div>
 </header>
 
 <!-- ==================== HERO ==================== -->
 <section class="hero container">
-  <div class="hero-badge">
-    <span class="check">✔</span>
-    <span class="lang-es active">BETA ABIERTA · 100% GRATUITA</span>
-    <span class="lang-en">OPEN BETA · 100% FREE</span>
+  <div class="hero-badge fade-in">
+    <span class="pulse"></span>
+    <span>🚀 OPEN BETA · 100% FREE</span>
   </div>
-  <h1>CryptoArch Agent</h1>
-  <p class="lang-es active">El bot no custodio para Telegram con IA predictiva, scoring de tokens y análisis de sentimiento en X (Twitter).</p>
-  <p class="lang-en">The non‑custodial Telegram bot with predictive AI, token scoring, and sentiment analysis from X (Twitter).</p>
-  <div class="commission-badge">
-    <strong>Commission from 0.3%</strong> &nbsp;·&nbsp; <span style="font-weight:400; color:#D1D5DB;">No subscriptions</span>
+  <h1 class="fade-in fade-in-d1">Supera a los Gigantes<br>con IA de élite.</h1>
+  <p class="fade-in fade-in-d2">El bot no custodio para Telegram con <strong>IA predictiva</strong>, <strong>scoring de tokens</strong> y <strong>análisis de sentimiento</strong> en X (Twitter). Comisiones desde <strong>0.3%</strong>.</p>
+  <div class="commission-badge fade-in fade-in-d2">
+    <strong>🔥 Comisión desde 0.3%</strong> · Sin suscripciones
   </div>
-  <div class="hero-features">
-    <span><i class="fas fa-whale" style="color:#60A5FA;"></i> Whale AI alerts</span>
+  <div class="hero-features fade-in fade-in-d3">
+    <span><i class="fas fa-whale" style="color:#60A5FA;"></i> Whale AI Alerts</span>
     <span><i class="fas fa-shield-alt" style="color:#34D399;"></i> Anti‑MEV / Anti‑Rug</span>
     <span><i class="fas fa-robot" style="color:#A78BFA;"></i> Predictive AI</span>
     <span><i class="fas fa-copy" style="color:#FCD34D;"></i> Copy Trading</span>
     <span><i class="fas fa-chart-line" style="color:#F59E0B;"></i> Token Scoring</span>
     <span><i class="fas fa-twitter" style="color:#1DA1F2;"></i> Sentiment Analysis</span>
+    <span><i class="fas fa-bolt" style="color:#F472B6;"></i> <0.1s Speed</span>
   </div>
-  <div class="hero-actions">
-    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary"><i class="fab fa-telegram-plane"></i> <span class="lang-es active">Probar ahora</span><span class="lang-en">Try now</span></a>
-    <a href="#compare" class="btn-secondary"><i class="fas fa-chart-line"></i> <span class="lang-es active">Comparar</span><span class="lang-en">Compare</span></a>
+  <div class="hero-actions fade-in fade-in-d4">
+    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary"><i class="fab fa-telegram-plane"></i> Probar ahora</a>
+    <a href="#compare" class="btn-secondary"><i class="fas fa-chart-simple"></i> Ver comparativa</a>
   </div>
-  <div style="font-size:0.85rem; color:#64748B; margin-top:0.5rem;">
-    <span class="lang-es active">Sin registro · No custodio · Gratis · Comisiones reducidas por depósito</span>
-    <span class="lang-en">No sign‑up · Non‑custodial · Free · Reduced commissions by deposit</span>
-  </div>
-</section>
-
-<!-- ==================== CÓMO EMPEZAR ==================== -->
-<section id="howto" class="container">
-  <h2 class="section-title lang-es active">Cómo empezar en 3 pasos</h2>
-  <h2 class="section-title lang-en">How to start in 3 steps</h2>
-  <p class="section-sub lang-es active">Lanza el bot, acepta los términos y prueba las funciones clave.</p>
-  <p class="section-sub lang-en">Launch the bot, accept the terms and test the key features.</p>
-  <div class="steps">
-    <div class="step"><div class="num">1</div><p class="lang-es active">Abre el bot en Telegram: <strong>@CryptoArchTrading_bot</strong> y escribe <code>/start</code>.</p><p class="lang-en">Open the bot on Telegram: <strong>@CryptoArchTrading_bot</strong> and type <code>/start</code>.</p></div>
-    <div class="step"><div class="num">2</div><p class="lang-es active">Acepta los términos con <code>/accept</code> y cambia a español con <code>/Es</code>.</p><p class="lang-en">Accept terms with <code>/accept</code> and switch to Spanish with <code>/Es</code>.</p></div>
-    <div class="step"><div class="num">3</div><p class="lang-es active">Prueba los comandos estrella: <code>/whale</code>, <code>/predict</code>, <code>/status</code> y <code>/compare</code>.</p><p class="lang-en">Test the star commands: <code>/whale</code>, <code>/predict</code>, <code>/status</code> and <code>/compare</code>.</p></div>
-  </div>
-  <div style="text-align:center; margin-top:1.5rem;">
-    <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="btn-primary"><i class="fab fa-telegram-plane"></i> <span class="lang-es active">Probar ahora</span><span class="lang-en">Try now</span></a>
+  <div class="hero-stats fade-in fade-in-d4">
+    <div><div class="stat-number">8+</div><div class="stat-label">Cadenas soportadas</div></div>
+    <div><div class="stat-number">12</div><div class="stat-label">Agentes IA</div></div>
+    <div><div class="stat-number">0.3%</div><div class="stat-label">Comisión mínima</div></div>
+    <div><div class="stat-number">&lt;0.1s</div><div class="stat-label">Velocidad en Solana</div></div>
   </div>
 </section>
 
 <!-- ==================== FEATURES ==================== -->
 <section id="features" class="container">
-  <h2 class="section-title lang-es active">¿Qué hace nuestro bot?</h2>
-  <h2 class="section-title lang-en">What does our bot do?</h2>
-  <p class="section-sub lang-es active">Alertas en tiempo real, análisis profundo y total transparencia.</p>
-  <p class="section-sub lang-en">Real‑time alerts, deep analysis and total transparency.</p>
+  <h2 class="section-title fade-in">¿Qué hace <span class="highlight">CryptoArch Agent</span>?</h2>
+  <p class="section-sub fade-in">Alertas en tiempo real, análisis profundo y total transparencia. Todo en un solo bot de Telegram.</p>
   <div class="grid-2">
-    <div class="card"><div class="icon"><i class="fas fa-whale"></i></div><h3 class="lang-es active">Alertas de ballenas con IA</h3><h3 class="lang-en">AI Whale Alerts</h3><p class="lang-es active">Detección de grandes movimientos en BTC, ETH, SOL, MATIC, ARB y más.</p><p class="lang-en">Detection of large moves on BTC, ETH, SOL, MATIC, ARB and more.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-robot"></i></div><h3 class="lang-es active">IA Predictiva Avanzada</h3><h3 class="lang-en">Advanced Predictive AI</h3><p class="lang-es active">Modelo de Machine Learning que predice el crecimiento de tokens con hasta un 90% de precisión.</p><p class="lang-en">Machine Learning model predicting token growth with up to 90% accuracy.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-shield-alt"></i></div><h3 class="lang-es active">Anti‑MEV y Anti‑Rug</h3><h3 class="lang-en">Anti‑MEV & Anti‑Rug</h3><p class="lang-es active">Protección contra ataques sandwich y verificación de contratos (honeypot, liquidez) con GoPlusLabs.</p><p class="lang-en">Protection against sandwich attacks and contract verification with GoPlusLabs.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-copy"></i></div><h3 class="lang-es active">Copy Trading de Ballenas</h3><h3 class="lang-en">Whale Copy Trading</h3><p class="lang-es active">Copia automáticamente las operaciones de las ballenas con un solo clic. Modo follow o invert.</p><p class="lang-en">Automatically copy whale trades with one click. Follow or invert mode.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3 class="lang-es active">Scoring de Riesgo y Oportunidad</h3><h3 class="lang-en">Risk & Opportunity Scoring</h3><p class="lang-es active">Cada token recibe una puntuación de riesgo (0-100) y oportunidad (0-100). Sabrás si comprar o huir antes que nadie.</p><p class="lang-en">Each token gets a Risk (0-100) and Opportunity (0-100) score. Know whether to buy or run before anyone else.</p></div>
-    <div class="card"><div class="icon"><i class="fab fa-twitter"></i></div><h3 class="lang-es active">Análisis de Sentimiento en X</h3><h3 class="lang-en">Sentiment Analysis on X</h3><p class="lang-es active">Monitorea el sentimiento del mercado en tiempo real. Detecta "shilling" masivo y tendencias emergentes.</p><p class="lang-en">Real-time market sentiment monitoring. Detects mass "shilling" and emerging trends.</p></div>
+    <div class="card fade-in"><div class="icon"><i class="fas fa-whale"></i></div><h3>Alertas de ballenas con IA</h3><p>Detección de grandes movimientos en BTC, ETH, SOL, MATIC, ARB y más, con análisis predictivo.</p></div>
+    <div class="card fade-in"><div class="icon"><i class="fas fa-robot"></i></div><h3>IA Predictiva Avanzada</h3><p>Modelo de Machine Learning que predice el crecimiento de tokens con hasta un 90% de precisión.</p></div>
+    <div class="card fade-in"><div class="icon"><i class="fas fa-shield-alt"></i></div><h3>Anti‑MEV y Anti‑Rug</h3><p>Protección contra ataques sandwich y verificación de contratos con GoPlusLabs. <span class="tag">Seguridad</span></p></div>
+    <div class="card fade-in"><div class="icon"><i class="fas fa-copy"></i></div><h3>Copy Trading de Ballenas</h3><p>Copia automáticamente las operaciones de las ballenas con un solo clic. Modo follow o invert.</p></div>
+    <div class="card fade-in"><div class="icon"><i class="fas fa-chart-line"></i></div><h3>Scoring de Riesgo y Oportunidad</h3><p>Cada token recibe una puntuación de riesgo (0-100) y oportunidad (0-100). Sabrás si comprar o huir antes que nadie.</p></div>
+    <div class="card fade-in"><div class="icon"><i class="fab fa-twitter"></i></div><h3>Análisis de Sentimiento en X</h3><p>Monitorea el sentimiento del mercado en tiempo real. Detecta "shilling" masivo y tendencias emergentes.</p></div>
   </div>
 </section>
 
 <!-- ==================== COMPARATIVA ==================== -->
 <section id="compare" class="container">
-  <h2 class="section-title lang-es active">¿Por qué CryptoArch Agent?</h2>
-  <h2 class="section-title lang-en">Why CryptoArch Agent?</h2>
-  <p class="section-sub lang-es active">Comparativa frente a los gigantes del mercado.</p>
-  <p class="section-sub lang-en">Comparison against the market giants.</p>
-  <div style="overflow-x:auto;">
+  <h2 class="section-title fade-in">¿Por qué <span class="highlight">CryptoArch Agent</span>?</h2>
+  <p class="section-sub fade-in">Comparativa frente a los gigantes del mercado. Los números hablan por sí solos.</p>
+  <div class="compare-wrapper fade-in">
     <table class="compare-table">
       <thead>
         <tr>
@@ -618,61 +668,50 @@
           <th>Maestro</th>
           <th>Banana Gun</th>
           <th>Trojan</th>
-          <th><span style="color:#FCD34D;">CryptoArch Agent</span></th>
+          <th style="color:#FCD34D;">CryptoArch</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Commission</td><td>1%</td><td>1% / 0.5%</td><td>1%</td><td class="highlight">0.3% (by deposit)</td></tr>
-        <tr><td>Subscription</td><td>$200/mo</td><td>❌</td><td>❌</td><td class="highlight">Free</td></tr>
-        <tr><td>Whale Alerts</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ AI‑powered</td></tr>
-        <tr><td>Predictive AI</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ ML Model</td></tr>
-        <tr><td>Risk/Opportunity Scoring</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ 0-100 score</td></tr>
-        <tr><td>Sentiment Analysis (X)</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Real-time</td></tr>
-        <tr><td>Anti‑MEV / Anti‑Rug</td><td>✅</td><td>✅</td><td>✅ (MEV only)</td><td class="highlight">✅ GoPlusLabs</td></tr>
-        <tr><td>Copy Trading</td><td>✅</td><td>✅</td><td>✅</td><td class="highlight">✅ Whale copy</td></tr>
-        <tr><td>Multi‑Chain</td><td>14</td><td>4</td><td>1 (Solana)</td><td class="highlight">8 (growing)</td></tr>
-        <tr><td>Speed on Solana</td><td>0.15s</td><td>0.1s</td><td>0.15s</td><td class="highlight"><0.1s (Jito)</td></tr>
-        <tr><td>Sniper X</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Aggressive/Moderate/Safe</td></tr>
-        <tr><td>Panic Shield</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">✅ Emotional protection</td></tr>
-        <tr><td>Free Trial</td><td>❌</td><td>❌</td><td>❌</td><td class="highlight">Unlimited beta</td></tr>
-        <tr><td>Token Reward</td><td>❌</td><td>❌ (BANANA)</td><td>❌</td><td class="highlight">0.05% in $CARCH (Q4 2026)</td></tr>
-        <tr><td>Web Terminal</td><td>❌</td><td>✅</td><td>✅</td><td class="highlight">✅ Dashboard + API</td></tr>
+        <tr><td>Comisión</td><td>1%</td><td>1%</td><td>0.9%</td><td class="highlight">0.3%</td></tr>
+        <tr><td>Suscripción</td><td>$200/mo</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">Gratis</td></tr>
+        <tr><td>Alertas de ballenas</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">✅ IA</td></tr>
+        <tr><td>IA Predictiva</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">✅ ML</td></tr>
+        <tr><td>Scoring de Riesgo</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">✅ 0-100</td></tr>
+        <tr><td>Análisis de Sentimiento (X)</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">✅ Real-time</td></tr>
+        <tr><td>Anti‑MEV / Anti‑Rug</td><td class="check">✅</td><td class="check">✅</td><td>✅ MEV</td><td class="highlight">✅ GoPlus</td></tr>
+        <tr><td>Copy Trading</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="highlight">✅ IA</td></tr>
+        <tr><td>Velocidad Solana</td><td>0.15s</td><td>0.1s</td><td>0.15s</td><td class="highlight">&lt;0.1s</td></tr>
+        <tr><td>Shadow Ledger</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">✅ ÚNICO</td></tr>
+        <tr><td>Agentes IA</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td class="highlight">12</td></tr>
       </tbody>
     </table>
   </div>
-  <div style="margin-top:1.5rem; background:#1E293B; border-radius:1rem; padding:1.2rem; text-align:center; border:1px solid #334155;">
-    <p style="color:#E2E8F0; font-weight:600;">
-      <span class="lang-es active">💀 Matemáticas simples: ellos cobran 1%. Nosotros desde 0.3%. Ahorras hasta <strong style="color:#34D399;">$70/mes</strong> por cada $10,000 de volumen.</span>
-      <span class="lang-en">💀 Simple math: they charge 1%. We charge from 0.3%. You save up to <strong style="color:#34D399;">$70/month</strong> on $10,000 volume.</span>
+  <div class="compare-banner fade-in">
+    <p style="font-size:1.1rem; color:#E2E8F0;">
+      💀 Ellos cobran <strong style="color:#F87171;">1%</strong>. Nosotros cobramos <strong style="color:#34D399;">0.3%</strong>.<br>
+      Ahorras <strong style="color:#34D399;">$70/mes</strong> por cada $10,000 de volumen. <strong style="color:#FCD34D;">Elige bien.</strong>
     </p>
   </div>
 </section>
 
 <!-- ==================== TESTIMONIOS ==================== -->
 <section id="testimonials" class="container">
-  <h2 class="section-title lang-es active">Lo que dicen nuestros usuarios</h2>
-  <h2 class="section-title lang-en">What our users say</h2>
-  <p style="color:#64748B; font-size:0.9rem; margin-bottom:1.5rem;">
-    <span class="lang-es active">* Testimonios de usuarios reales de la beta. Los resultados pueden variar.</span>
-    <span class="lang-en">* Testimonials from real beta users. Results may vary.</span>
-  </p>
+  <h2 class="section-title fade-in">Lo que dicen <span class="highlight">nuestros usuarios</span></h2>
+  <p style="color:#64748B; font-size:0.9rem; margin-bottom:1.5rem;">* Testimonios de usuarios reales de la beta. Resultados pueden variar.</p>
   <div class="testimonial-grid">
-    <div class="testimonial">
+    <div class="testimonial fade-in">
       <div class="stars">★★★★★</div>
-      <blockquote class="lang-es active">Las alertas de ballenas son precisas y llegan antes que en cualquier otro bot. La IA predictiva me ha dado una ventaja brutal.</blockquote>
-      <blockquote class="lang-en">Whale alerts are accurate and arrive before any other bot. The predictive AI has given me a huge edge.</blockquote>
+      <blockquote>Las alertas de ballenas son precisas y llegan antes que en cualquier otro bot. La IA predictiva me ha dado una ventaja brutal.</blockquote>
       <div class="author">Carlos M. <span>· Trader, beta desde mayo 2026</span></div>
     </div>
-    <div class="testimonial">
+    <div class="testimonial fade-in">
       <div class="stars">★★★★★</div>
-      <blockquote class="lang-es active">El sistema de scoring de riesgo me ha salvado de varias estafas. Saber que un token tiene 85/100 de riesgo antes de comprar es oro puro.</blockquote>
-      <blockquote class="lang-en">The risk scoring system has saved me from several scams. Knowing a token has 85/100 risk before buying is pure gold.</blockquote>
+      <blockquote>El sistema de scoring de riesgo me ha salvado de varias estafas. Saber que un token tiene 85/100 de riesgo antes de comprar es oro puro.</blockquote>
       <div class="author">Laura G. <span>· Inversora, beta desde abril 2026</span></div>
     </div>
-    <div class="testimonial">
+    <div class="testimonial fade-in">
       <div class="stars">★★★★☆</div>
-      <blockquote class="lang-es active">El análisis de sentimiento de X me ayuda a saber si un token tiene hype real o es puro shilling. Nunca había visto algo así.</blockquote>
-      <blockquote class="lang-en">The X sentiment analysis helps me know if a token has real hype or is pure shilling. Never seen anything like it.</blockquote>
+      <blockquote>El análisis de sentimiento de X me ayuda a saber si un token tiene hype real o es puro shilling. Nunca había visto algo así.</blockquote>
       <div class="author">Javier R. <span>· Desarrollador, beta desde marzo 2026</span></div>
     </div>
   </div>
@@ -680,63 +719,55 @@
 
 <!-- ==================== TOKEN $CARCH ==================== -->
 <section id="token" class="container">
-  <div class="token-box">
+  <div class="token-box fade-in">
     <div class="icon"><i class="fas fa-coins"></i></div>
     <h3>$CARCH – Token de Gobernanza</h3>
-    <p class="sub lang-es active">El token nativo de CryptoArch Agent que recompensa a los usuarios Elite y Legendary.</p>
-    <p class="sub lang-en">The native token of CryptoArch Agent that rewards Elite and Legendary users.</p>
-    <div style="margin: 1.5rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
-      <div><span style="font-weight:700; color:#FCD34D;">0.05%</span> <span class="lang-es active">de todas las comisiones del bot</span><span class="lang-en">of all bot commissions</span></div>
-      <div><span style="font-weight:700; color:#FCD34D;">Q4 2026</span> <span class="lang-es active">lanzamiento estimado</span><span class="lang-en">estimated launch</span></div>
-      <div><span style="font-weight:700; color:#FCD34D;">Elite / Legendary</span> <span class="lang-es active">titulares elegibles</span><span class="lang-en">eligible holders</span></div>
+    <p style="color:#94A3B8; max-width:600px; margin:0 auto 1rem;">El token nativo que recompensa a los usuarios Elite y Legendary con un porcentaje de las comisiones del bot.</p>
+    <div class="token-stats">
+      <div><strong>0.05%</strong> de todas las comisiones</div>
+      <div><strong>Q4 2026</strong> lanzamiento estimado</div>
+      <div><strong>Elite / Legendary</strong> titulares elegibles</div>
     </div>
-    <div class="badge">🚀 <span class="lang-es active">En desarrollo activo</span><span class="lang-en">Active development</span></div>
-    <p style="margin-top:1rem; color:#94A3B8; font-size:0.9rem;">
-      <span class="lang-es active">Los titulares de $CARCH podrán votar nuevas funcionalidades y recibirán un porcentaje de las comisiones generadas por el bot. El lanzamiento está previsto para el último trimestre de 2026.</span>
-      <span class="lang-en">$CARCH holders will be able to vote on new features and receive a share of the bot's commissions. Launch is scheduled for Q4 2026.</span>
-    </p>
+    <div class="badge">🚀 En desarrollo activo</div>
+    <p style="margin-top:1rem; color:#94A3B8; font-size:0.9rem;">Los titulares de $CARCH podrán votar nuevas funcionalidades y recibirán un porcentaje de las comisiones generadas por el bot.</p>
   </div>
 </section>
 
 <!-- ==================== ROADMAP ==================== -->
 <section id="roadmap" class="container">
-  <h2 class="section-title lang-es active">Próximas fases 🚀</h2>
-  <h2 class="section-title lang-en">Upcoming phases 🚀</h2>
-  <div class="roadmap-list">
-    <div class="roadmap-item"><span class="chip"><span class="highlight">+BNB</span> y <span class="highlight">AVAX</span></span> <span class="lang-es active">nuevas cadenas</span><span class="lang-en">new chains</span> <span class="date">Jul 2026</span></div>
-    <div class="roadmap-item"><span class="chip">⚡ Alertas personalizables</span> <span class="lang-es active">por monto</span><span class="lang-en">by amount</span> <span class="date">Ago 2026</span></div>
-    <div class="roadmap-item"><span class="chip">📊 Dashboard web avanzado</span> <span class="lang-es active">con backtesting</span><span class="lang-en">with backtesting</span> <span class="date">Sep 2026</span></div>
-    <div class="roadmap-item"><span class="chip token-chip">🪙 $CARCH token</span> <span class="lang-es active">lanzamiento</span><span class="lang-en">launch</span> <span class="date">Q4 2026</span></div>
-    <div class="roadmap-item"><span class="chip">🔗 Referidos 3 niveles</span> <span class="lang-es active">10% / 5% / 2.5%</span><span class="lang-en">10% / 5% / 2.5%</span> <span class="date">Oct 2026</span></div>
-    <div class="roadmap-item"><span class="chip">🏆 Gamificación</span> <span class="lang-es active">rankings y premios</span><span class="lang-en">rankings & prizes</span> <span class="date">Nov 2026</span></div>
+  <h2 class="section-title fade-in">Próximas fases <span class="highlight">🚀</span></h2>
+  <div class="roadmap-list fade-in">
+    <div class="roadmap-item"><span class="chip highlight">+BNB</span> y <span class="chip highlight">AVAX</span> <span class="date">Jul 2026</span></div>
+    <div class="roadmap-item"><span class="chip">⚡ Alertas personalizables</span> <span class="date">Ago 2026</span></div>
+    <div class="roadmap-item"><span class="chip">📊 Dashboard con backtesting</span> <span class="date">Sep 2026</span></div>
+    <div class="roadmap-item"><span class="chip token">🪙 $CARCH token</span> <span class="date">Q4 2026</span></div>
+    <div class="roadmap-item"><span class="chip">🔗 Referidos 3 niveles</span> <span class="date">Oct 2026</span></div>
+    <div class="roadmap-item"><span class="chip">🏆 Gamificación</span> <span class="date">Nov 2026</span></div>
   </div>
 </section>
 
 <!-- ==================== SEGURIDAD ==================== -->
 <section id="security" class="container">
-  <h2 class="section-title lang-es active">Seguridad y transparencia</h2>
-  <h2 class="section-title lang-en">Security & transparency</h2>
-  <p class="section-sub lang-es active">Tu información y tus fondos están siempre protegidos.</p>
-  <p class="section-sub lang-en">Your information and funds are always protected.</p>
+  <h2 class="section-title fade-in">Seguridad y <span class="highlight">transparencia</span></h2>
+  <p class="section-sub fade-in">Tu información y tus fondos están siempre protegidos.</p>
   <div class="security-grid">
-    <div class="security-item"><i class="fas fa-shield-alt"></i><h4 class="lang-es active">No custodio</h4><h4 class="lang-en">Non‑custodial</h4><p class="lang-es active">Nunca accedemos a tus claves privadas.</p><p class="lang-en">We never access your private keys.</p></div>
-    <div class="security-item"><i class="fas fa-shield-halved"></i><h4 class="lang-es active">Anti‑MEV / Anti‑Rug</h4><h4 class="lang-en">Anti‑MEV / Anti‑Rug</h4><p class="lang-es active">Protección contra ataques sandwich y contratos maliciosos.</p><p class="lang-en">Protection against sandwich attacks and malicious contracts.</p></div>
-    <div class="security-item"><i class="fas fa-lock"></i><h4 class="lang-es active">Cifrado end‑to‑end</h4><h4 class="lang-en">End‑to‑end encryption</h4><p class="lang-es active">Todas las comunicaciones están cifradas.</p><p class="lang-en">All communications are encrypted.</p></div>
-    <div class="security-item"><i class="fas fa-user-secret"></i><h4 class="lang-es active">Sin registro</h4><h4 class="lang-en">No sign‑up</h4><p class="lang-es active">No guardamos datos personales ni historial.</p><p class="lang-en">We don't store personal data or history.</p></div>
-    <div class="security-item"><i class="fas fa-file-contract"></i><h4 class="lang-es active">Código abierto</h4><h4 class="lang-en">Open source</h4><p class="lang-es active">Puedes auditar nuestro código en <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank">GitHub</a>.</p><p class="lang-en">You can audit our code on <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank">GitHub</a>.</p></div>
+    <div class="security-item fade-in"><i class="fas fa-shield-alt"></i><h4>No custodio</h4><p>Nunca accedemos a tus claves privadas.</p></div>
+    <div class="security-item fade-in"><i class="fas fa-shield-halved"></i><h4>Anti‑MEV / Anti‑Rug</h4><p>Protección contra ataques sandwich y contratos maliciosos.</p></div>
+    <div class="security-item fade-in"><i class="fas fa-lock"></i><h4>Cifrado end‑to‑end</h4><p>Todas las comunicaciones están cifradas.</p></div>
+    <div class="security-item fade-in"><i class="fas fa-user-secret"></i><h4>Sin registro</h4><p>No guardamos datos personales ni historial.</p></div>
+    <div class="security-item fade-in"><i class="fas fa-file-contract"></i><h4>Código abierto</h4><p>Audita nuestro código en <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank">GitHub</a>.</p></div>
   </div>
 </section>
 
 <!-- ==================== SOCIAL ==================== -->
-<section class="container" style="padding: 1.5rem 0;">
-  <h3 class="text-center lang-es active" style="color:#F8FAFC; text-align:center;">Síguenos en redes</h3>
-  <h3 class="text-center lang-en" style="color:#F8FAFC; text-align:center;">Follow us on social</h3>
+<section class="container" style="padding: 2rem 0;">
+  <h3 style="text-align:center; color:#F8FAFC; font-size:1.5rem; margin-bottom:0.5rem;">Síguenos en redes</h3>
   <div class="social-links">
     <a href="https://x.com/CryptoArc_Es" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+    <a href="https://x.com/CryptoArc_Es" target="_blank"><i class="fab fa-twitter"></i> Twitter (Español)</a>
     <a href="https://t.me/CryptoArchTrading_bot" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
-    <a href="#" target="_blank"><i class="fab fa-discord"></i> Discord <span style="color:#64748B; font-size:0.7rem;">(coming soon)</span></a>
-    <a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube <span style="color:#64748B; font-size:0.7rem;">(coming soon)</span></a>
     <a href="https://github.com/Zeurumai/cryptoarchagent-bot" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="#" target="_blank"><i class="fab fa-tiktok"></i> TikTok <span style="color:#64748B; font-size:0.7rem;">(pronto)</span></a>
   </div>
 </section>
 
@@ -744,54 +775,30 @@
 <footer class="container">
   <div class="footer-grid">
     <div>
-      <h4 class="lang-es active">CryptoArch Agent</h4><h4 class="lang-en">CryptoArch Agent</h4>
-      <p style="color:#94A3B8; font-size:0.9rem;">© 2026 CryptoArch. All rights reserved.</p>
+      <h4>CryptoArch Agent</h4>
+      <p style="color:#94A3B8; font-size:0.9rem;">© 2026 CryptoArch. Todos los derechos reservados.</p>
     </div>
     <div>
-      <h4 class="lang-es active">Legal</h4><h4 class="lang-en">Legal</h4>
-      <a href="/privacy" class="lang-es active">Política de privacidad</a><a href="/privacy" class="lang-en">Privacy policy</a>
-      <a href="/terms" class="lang-es active">Términos de servicio</a><a href="/terms" class="lang-en">Terms of service</a>
-      <a href="#" class="lang-es active">Política de cookies</a><a href="#" class="lang-en">Cookie policy</a>
+      <h4>Legal</h4>
+      <a href="/privacy">Política de privacidad</a>
+      <a href="/terms">Términos de servicio</a>
+      <a href="#">Política de cookies</a>
     </div>
     <div>
-      <h4 class="lang-es active">Contacto</h4><h4 class="lang-en">Contact</h4>
+      <h4>Contacto</h4>
       <a href="mailto:support@cryptoarchagent.com">support@cryptoarchagent.com</a>
-      <a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="lang-es active">Soporte en Telegram</a><a href="https://t.me/CryptoArchTrading_bot" target="_blank" class="lang-en">Telegram support</a>
+      <a href="https://t.me/CryptoArchTrading_bot" target="_blank">Soporte en Telegram</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="lang-es active">Este servicio es únicamente informativo. No constituye asesoramiento financiero. Invierte con responsabilidad.</span>
-    <span class="lang-en">This service is for informational purposes only. It does not constitute financial advice. Invest responsibly.</span>
+    ⚠️ Este servicio es únicamente informativo. No constituye asesoramiento financiero. Invierte con responsabilidad.
   </div>
 </footer>
 
 <!-- ==================== JAVASCRIPT ==================== -->
 <script>
   (function() {
-    // ===== SELECTOR DE IDIOMA =====
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const allLangElements = document.querySelectorAll('.lang-es, .lang-en');
-
-    function setLanguage(lang) {
-      langBtns.forEach(btn => btn.classList.remove('active'));
-      document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
-      allLangElements.forEach(el => {
-        if (el.classList.contains('lang-' + lang)) {
-          el.classList.add('active');
-        } else {
-          el.classList.remove('active');
-        }
-      });
-    }
-
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        const lang = this.dataset.lang;
-        setLanguage(lang);
-      });
-    });
-
-    // ===== SCROLL SUAVE =====
+    // Scroll suave para los enlaces de navegación
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -802,8 +809,20 @@
       });
     });
 
+    // Intersection Observer para las animaciones fade-in (mejora el rendimiento)
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
   })();
 </script>
 
 </body>
-        </html>
+</html>
