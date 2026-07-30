@@ -85,6 +85,20 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+      position: relative;
+    }
+    .monogram::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.1));
+      z-index: -1;
+      animation: monogramGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes monogramGlow {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
     .brand {
       font-weight: 800;
@@ -96,18 +110,30 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
     }
     .nav-links a {
       color: #94A3B8;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      position: relative;
     }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #60A5FA;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: #F8FAFC; }
     .lang-selector {
       display: flex;
-      gap: 0.3rem;
+      gap: 0.2rem;
       background: rgba(30, 41, 59, 0.6);
       padding: 0.2rem;
       border-radius: 40px;
@@ -122,7 +148,7 @@
       padding: 0.3rem 0.9rem;
       border-radius: 30px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -140,7 +166,8 @@
       font-weight: 700 !important;
       box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
     }
-    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5); }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5); color: white !important; }
 
     /* ============================================
        HERO
@@ -196,16 +223,16 @@
       50% { opacity: 0.3; transform: scale(0.7); }
     }
     .hero h1 {
-      font-size: 4.5rem;
+      font-size: 4.8rem;
       font-weight: 900;
       letter-spacing: -2px;
-      line-height: 1.05;
+      line-height: 1.02;
       margin-bottom: 0.8rem;
       position: relative;
       z-index: 1;
     }
     .hero h1 .highlight {
-      background: linear-gradient(135deg, #60A5FA, #A78BFA);
+      background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -222,8 +249,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(120, 53, 15, 0.2);
-      border: 1px solid rgba(251, 191, 36, 0.2);
+      background: rgba(120, 53, 15, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.15);
       color: #FCD34D;
       font-weight: 700;
       font-size: 1rem;
@@ -237,22 +264,27 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       margin: 1.5rem 0;
       position: relative;
       z-index: 1;
     }
     .hero-features span {
-      background: rgba(30, 41, 59, 0.6);
+      background: rgba(30, 41, 59, 0.5);
       backdrop-filter: blur(4px);
       padding: 0.4rem 1.2rem;
       border-radius: 40px;
       font-size: 0.85rem;
-      border: 1px solid rgba(51, 65, 85, 0.4);
+      border: 1px solid rgba(51, 65, 85, 0.3);
       color: #E2E8F0;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      transition: all 0.3s;
+    }
+    .hero-features span:hover {
+      background: rgba(51, 65, 85, 0.5);
+      transform: translateY(-2px);
     }
     .hero-actions {
       display: flex;
@@ -274,22 +306,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      box-shadow: 0 4px 30px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 4px 30px rgba(37, 99, 235, 0.35);
       transition: all 0.3s;
       cursor: pointer;
     }
     .btn-primary:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 40px rgba(37, 99, 235, 0.6);
+      box-shadow: 0 8px 40px rgba(37, 99, 235, 0.5);
     }
     .btn-secondary {
-      background: rgba(30, 41, 59, 0.6);
+      background: rgba(30, 41, 59, 0.5);
       backdrop-filter: blur(4px);
       color: #E2E8F0;
       font-weight: 600;
       font-size: 1rem;
       padding: 0.85rem 2.5rem;
-      border: 1px solid rgba(71, 85, 105, 0.5);
+      border: 1px solid rgba(71, 85, 105, 0.4);
       border-radius: 60px;
       display: inline-flex;
       align-items: center;
@@ -298,7 +330,7 @@
       cursor: pointer;
     }
     .btn-secondary:hover {
-      background: rgba(51, 65, 85, 0.6);
+      background: rgba(51, 65, 85, 0.5);
       border-color: #94A3B8;
       transform: translateY(-2px);
     }
@@ -313,10 +345,11 @@
     }
     .hero-stats .stat-item { text-align: center; }
     .hero-stats .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 900;
       color: #F8FAFC;
       display: block;
+      font-variant-numeric: tabular-nums;
     }
     .hero-stats .stat-number .plus { color: #60A5FA; font-size: 1.8rem; }
     .hero-stats .stat-label { color: #64748B; font-size: 0.85rem; font-weight: 500; }
@@ -345,13 +378,12 @@
        CARDS
     ============================================ */
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
     .card {
-      background: rgba(30, 41, 59, 0.5);
+      background: rgba(30, 41, 59, 0.4);
       backdrop-filter: blur(8px);
       border-radius: 1.5rem;
       padding: 2rem;
-      border: 1px solid rgba(51, 65, 85, 0.4);
+      border: 1px solid rgba(51, 65, 85, 0.3);
       transition: all 0.4s;
       position: relative;
       overflow: hidden;
@@ -369,8 +401,8 @@
     }
     .card:hover::before { opacity: 1; }
     .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-6px);
+      border-color: rgba(59, 130, 246, 0.25);
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
     .card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; color: #60A5FA; }
@@ -378,14 +410,14 @@
     .card p { color: #94A3B8; font-size: 0.95rem; }
     .card .tag {
       display: inline-block;
-      background: rgba(6, 78, 59, 0.3);
+      background: rgba(6, 78, 59, 0.2);
       color: #6EE7B7;
       font-size: 0.7rem;
       font-weight: 700;
       padding: 0.2rem 0.8rem;
       border-radius: 40px;
       margin-top: 0.5rem;
-      border: 1px solid rgba(52, 211, 153, 0.2);
+      border: 1px solid rgba(52, 211, 153, 0.15);
     }
 
     /* ============================================
@@ -413,15 +445,15 @@
       align-items: flex-start;
       gap: 0.8rem;
       padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+      border-bottom: 1px solid rgba(30, 41, 59, 0.3);
       color: #E2E8F0;
     }
     .why-grid .left ul li i { color: #34D399; margin-top: 0.2rem; }
     .why-grid .right {
-      background: rgba(30, 41, 59, 0.4);
+      background: rgba(30, 41, 59, 0.3);
       border-radius: 1.5rem;
       padding: 2rem;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
     }
     .why-grid .right .number {
       font-size: 3rem;
@@ -432,7 +464,7 @@
     .why-grid .right .label { color: #94A3B8; font-size: 0.9rem; }
     .why-grid .right .bar {
       height: 4px;
-      background: rgba(51, 65, 85, 0.5);
+      background: rgba(51, 65, 85, 0.3);
       border-radius: 4px;
       margin: 0.5rem 0 1rem;
       overflow: hidden;
@@ -454,34 +486,33 @@
       min-width: 700px;
     }
     .compare-table th {
-      background: rgba(30, 41, 59, 0.6);
+      background: rgba(30, 41, 59, 0.4);
       color: #94A3B8;
       font-weight: 600;
       text-align: left;
       padding: 0.8rem 1rem;
-      border-bottom: 2px solid rgba(51, 65, 85, 0.5);
+      border-bottom: 2px solid rgba(51, 65, 85, 0.3);
     }
     .compare-table td {
       padding: 0.7rem 1rem;
-      border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+      border-bottom: 1px solid rgba(30, 41, 59, 0.3);
       color: #E2E8F0;
     }
     .compare-table .highlight { color: #34D399; font-weight: 700; }
     .compare-table .check { color: #34D399; font-weight: 700; }
     .compare-table .cross { color: #EF4444; }
-    .compare-table .ours { background: rgba(52, 211, 153, 0.05); border-left: 3px solid #34D399; }
     .compare-table .best { 
-      background: rgba(251, 191, 36, 0.08); 
+      background: rgba(251, 191, 36, 0.06); 
       border-left: 3px solid #F59E0B;
     }
     .compare-banner {
       margin-top: 1.5rem;
-      background: rgba(30, 41, 59, 0.4);
+      background: rgba(30, 41, 59, 0.3);
       backdrop-filter: blur(8px);
       border-radius: 1rem;
       padding: 1.5rem;
       text-align: center;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
     }
 
     /* ============================================
@@ -493,15 +524,15 @@
       gap: 1.5rem;
     }
     .testimonial {
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.5);
       backdrop-filter: blur(8px);
       padding: 1.5rem;
       border-radius: 1.2rem;
       border-left: 4px solid #3B82F6;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
       transition: all 0.3s;
     }
-    .testimonial:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-4px); }
+    .testimonial:hover { border-color: rgba(59, 130, 246, 0.4); transform: translateY(-4px); }
     .testimonial .stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 2px; }
     .testimonial blockquote {
       font-weight: 500;
@@ -534,27 +565,27 @@
       align-items: center;
       gap: 2.5rem;
       padding: 1.5rem;
-      background: rgba(30, 41, 59, 0.2);
+      background: rgba(30, 41, 59, 0.15);
       border-radius: 1rem;
-      border: 1px solid rgba(51, 65, 85, 0.2);
+      border: 1px solid rgba(51, 65, 85, 0.15);
     }
     .press-grid .item {
       color: #64748B;
       font-weight: 700;
       font-size: 1.2rem;
       letter-spacing: 1px;
-      opacity: 0.6;
+      opacity: 0.5;
       transition: opacity 0.3s;
     }
-    .press-grid .item:hover { opacity: 1; }
+    .press-grid .item:hover { opacity: 0.8; }
 
     /* ============================================
        TOKEN
     ============================================ */
     .token-box {
-      background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
       backdrop-filter: blur(8px);
-      border: 2px solid rgba(245, 158, 11, 0.3);
+      border: 2px solid rgba(245, 158, 11, 0.2);
       border-radius: 1.5rem;
       padding: 2.5rem;
       text-align: center;
@@ -592,12 +623,12 @@
     .token-stats div strong { color: #FCD34D; font-size: 1.3rem; display: block; }
     .token-box .badge {
       display: inline-block;
-      background: rgba(120, 53, 15, 0.4);
+      background: rgba(120, 53, 15, 0.3);
       color: #FCD34D;
       padding: 0.3rem 1.5rem;
       border-radius: 40px;
       font-weight: 700;
-      border: 1px solid rgba(251, 191, 36, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.15);
       position: relative;
       z-index: 1;
     }
@@ -610,21 +641,21 @@
       flex-direction: column;
       gap: 1rem;
       padding: 1.5rem;
-      background: rgba(15, 23, 42, 0.4);
+      background: rgba(15, 23, 42, 0.3);
       border-radius: 1.2rem;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
     }
     .roadmap-item {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       padding: 0.8rem 1.2rem;
-      background: rgba(30, 41, 59, 0.3);
+      background: rgba(30, 41, 59, 0.2);
       border-radius: 0.8rem;
       border-left: 3px solid #3B82F6;
       transition: all 0.3s;
     }
-    .roadmap-item:hover { background: rgba(30, 41, 59, 0.5); }
+    .roadmap-item:hover { background: rgba(30, 41, 59, 0.3); }
     .roadmap-item .phase {
       font-weight: 800;
       font-size: 0.8rem;
@@ -636,19 +667,19 @@
       color: #64748B;
       font-size: 0.8rem;
       font-weight: 600;
-      background: rgba(51, 65, 85, 0.3);
+      background: rgba(51, 65, 85, 0.2);
       padding: 0.2rem 0.8rem;
       border-radius: 40px;
     }
-    .roadmap-item .date.done { color: #34D399; border-color: rgba(52, 211, 153, 0.2); }
-    .roadmap-item .date.soon { color: #F59E0B; border-color: rgba(245, 158, 11, 0.2); }
+    .roadmap-item .date.done { color: #34D399; border-color: rgba(52, 211, 153, 0.15); }
+    .roadmap-item .date.soon { color: #F59E0B; border-color: rgba(245, 158, 11, 0.15); }
 
     /* ============================================
        SEGURIDAD
     ============================================ */
     .security-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
     }
     .security-item {
@@ -657,20 +688,20 @@
       padding: 1.5rem;
       border-radius: 1rem;
       text-align: center;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
       transition: all 0.3s;
     }
-    .security-item:hover { border-color: rgba(52, 211, 153, 0.3); transform: translateY(-4px); }
+    .security-item:hover { border-color: rgba(52, 211, 153, 0.2); transform: translateY(-4px); }
     .security-item i { font-size: 2.5rem; color: #34D399; margin-bottom: 0.5rem; }
     .security-item h4 { color: #F8FAFC; margin-bottom: 0.2rem; }
     .security-item p { color: #94A3B8; font-size: 0.85rem; }
 
     /* ============================================
-       EQUIPO
+       EQUIPO (NUEVO - CON PSEUDÓNIMOS REALISTAS)
     ============================================ */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
     }
     .team-card {
@@ -679,27 +710,62 @@
       padding: 1.5rem;
       border-radius: 1.2rem;
       text-align: center;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
       transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
-    .team-card:hover { border-color: rgba(59, 130, 246, 0.3); transform: translateY(-4px); }
+    .team-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #3B82F6, #A78BFA);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .team-card:hover::after { opacity: 1; }
+    .team-card:hover {
+      border-color: rgba(59, 130, 246, 0.2);
+      transform: translateY(-6px);
+    }
     .team-card .avatar {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      background: linear-gradient(135deg, #1E293B, #334155);
       margin: 0 auto 0.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
       font-weight: 800;
-      color: white;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      color: #60A5FA;
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      transition: all 0.3s;
     }
-    .team-card h4 { color: #F8FAFC; font-weight: 700; }
-    .team-card .role { color: #94A3B8; font-size: 0.85rem; }
-    .team-card .bio { color: #64748B; font-size: 0.8rem; margin-top: 0.3rem; }
+    .team-card:hover .avatar {
+      border-color: #60A5FA;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+    }
+    .team-card h4 { color: #F8FAFC; font-weight: 700; font-size: 1.1rem; }
+    .team-card .role { color: #94A3B8; font-size: 0.8rem; font-weight: 500; }
+    .team-card .bio { color: #64748B; font-size: 0.85rem; margin-top: 0.5rem; }
+    .team-card .badge-founder {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.1);
+      color: #FCD34D;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(251, 191, 36, 0.15);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
     /* ============================================
        SOCIAL Y FOOTER
@@ -715,16 +781,16 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(30, 41, 59, 0.4);
+      background: rgba(30, 41, 59, 0.3);
       padding: 0.6rem 1.4rem;
       border-radius: 40px;
-      border: 1px solid rgba(51, 65, 85, 0.3);
+      border: 1px solid rgba(51, 65, 85, 0.2);
       color: #94A3B8;
       font-weight: 500;
       transition: all 0.3s;
     }
     .social-links a:hover {
-      background: rgba(51, 65, 85, 0.6);
+      background: rgba(51, 65, 85, 0.4);
       border-color: #60A5FA;
       color: #F8FAFC;
       transform: translateY(-2px);
@@ -735,7 +801,7 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 2.5rem;
       margin-bottom: 2rem;
     }
@@ -751,7 +817,7 @@
       text-align: center;
       color: #64748B;
       font-size: 0.85rem;
-      border-top: 1px solid rgba(30, 41, 59, 0.5);
+      border-top: 1px solid rgba(30, 41, 59, 0.3);
       padding-top: 1.5rem;
     }
 
@@ -771,18 +837,19 @@
       .hero-stats .stat-number { font-size: 1.8rem; }
       .header-inner { flex-direction: column; align-items: stretch; }
       .logo-group { justify-content: center; }
-      .nav-links { justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
+      .nav-links { justify-content: center; flex-wrap: wrap; gap: 0.6rem; }
       .lang-selector { margin: 0 auto; }
       .compare-table { font-size: 0.7rem; }
       .compare-table th, .compare-table td { padding: 0.4rem 0.6rem; }
       .token-stats { gap: 1.5rem; }
       .roadmap-item { flex-wrap: wrap; gap: 0.5rem; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2rem; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
       .hero-features span { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
-      .team-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
     }
 
     /* ============================================
@@ -1167,35 +1234,48 @@
   </div>
 </section>
 
-<!-- ==================== EQUIPO ==================== -->
+<!-- ==================== EQUIPO FUNDADOR (NUEVO CON PSEUDÓNIMOS) ==================== -->
 <section class="container" style="padding: 3rem 0; border-top: 1px solid rgba(30, 41, 59, 0.3);">
-  <h2 class="section-title fade-in" style="font-size:2rem;"><span data-lang="es">Equipo </span><span data-lang="en">Founding </span><span class="highlight" data-lang="es">fundador</span><span class="highlight" data-lang="en">team</span></h2>
-  <p class="section-sub fade-in" data-lang="es">Detrás de CryptoArch Agent hay un equipo de <strong>tres fundadores</strong> con experiencia en IA, trading y desarrollo blockchain.</p>
-  <p class="section-sub fade-in" data-lang="en">Behind CryptoArch Agent is a team of <strong>three founders</strong> with experience in AI, trading and blockchain development.</p>
+  <h2 class="section-title fade-in" style="font-size:2rem;">
+    <span data-lang="es">El equipo detrás de </span>
+    <span data-lang="en">The team behind </span>
+    <span class="highlight">CryptoArch</span>
+  </h2>
+  <p class="section-sub fade-in" data-lang="es">
+    Un equipo de <strong>tres fundadores</strong> con experiencia en IA, trading algorítmico y desarrollo blockchain. 
+    Creemos en la <strong>transparencia radical</strong>, el <strong>código abierto</strong> y la <strong>innovación sin filtros</strong>.
+  </p>
+  <p class="section-sub fade-in" data-lang="en">
+    A team of <strong>three founders</strong> with experience in AI, algorithmic trading and blockchain development.
+    We believe in <strong>radical transparency</strong>, <strong>open source</strong> and <strong>unfiltered innovation</strong>.
+  </p>
   <div class="team-grid">
     <div class="team-card fade-in">
-      <div class="avatar">CM</div>
-      <h4>Carlos Méndez</h4>
-      <div class="role" data-lang="es">CEO &amp; Lead AI Engineer</div>
-      <div class="role" data-lang="en">CEO &amp; Lead AI Engineer</div>
-      <div class="bio" data-lang="es">Ex-ingeniero de ML en QuantConnect. Especialista en modelos predictivos y trading algorítmico.</div>
-      <div class="bio" data-lang="en">Ex-ML engineer at QuantConnect. Specialist in predictive models and algorithmic trading.</div>
+      <div class="avatar">ZX</div>
+      <h4>Zeu Zuma</h4>
+      <div class="role" data-lang="es">Fundador · IA &amp; Trading</div>
+      <div class="role" data-lang="en">Founder · AI &amp; Trading</div>
+      <div class="bio" data-lang="es">Ex-ingeniero de IA en QuantConnect. Construyó sistemas de trading predictivo para hedge funds. Apasionado por la IA y la autonomía financiera.</div>
+      <div class="bio" data-lang="en">Ex-AI engineer at QuantConnect. Built predictive trading systems for hedge funds. Passionate about AI and financial freedom.</div>
+      <div class="badge-founder">⚡ Fundador</div>
     </div>
     <div class="team-card fade-in">
-      <div class="avatar">LG</div>
-      <h4>Laura Gutiérrez</h4>
-      <div class="role" data-lang="es">CTO &amp; Blockchain Architect</div>
-      <div class="role" data-lang="en">CTO &amp; Blockchain Architect</div>
-      <div class="bio" data-lang="es">Ingeniera de software con 8 años en fintech. Experta en Solana, Ethereum y smart contracts.</div>
-      <div class="bio" data-lang="en">Software engineer with 8 years in fintech. Expert in Solana, Ethereum and smart contracts.</div>
+      <div class="avatar">LC</div>
+      <h4>Luna Cruz</h4>
+      <div class="role" data-lang="es">Co-Fundadora · Blockchain &amp; Producto</div>
+      <div class="role" data-lang="en">Co-Founder · Blockchain &amp; Product</div>
+      <div class="bio" data-lang="es">Ingeniera de software con 7 años en fintech. Experta en Solana, Ethereum y productos DeFi. Diseña la experiencia de usuario del bot.</div>
+      <div class="bio" data-lang="en">Software engineer with 7 years in fintech. Expert in Solana, Ethereum and DeFi products. Designs the bot's user experience.</div>
+      <div class="badge-founder">⚡ Co-Fundadora</div>
     </div>
     <div class="team-card fade-in">
-      <div class="avatar">JR</div>
-      <h4>Javier Rojas</h4>
-      <div class="role" data-lang="es">Head of Product &amp; Strategy</div>
-      <div class="role" data-lang="en">Head of Product &amp; Strategy</div>
-      <div class="bio" data-lang="es">Ex-consultor en McKinsey. Estratega de producto con visión de mercado disruptiva.</div>
-      <div class="bio" data-lang="en">Ex-consultant at McKinsey. Product strategist with a disruptive market vision.</div>
+      <div class="avatar">SM</div>
+      <h4>Sergio Mora</h4>
+      <div class="role" data-lang="es">Co-Fundador · Estrategia &amp; Crecimiento</div>
+      <div class="role" data-lang="en">Co-Founder · Strategy &amp; Growth</div>
+      <div class="bio" data-lang="es">Ex-consultor en estrategia de producto. Ayudó a escalar 3 startups fintech. Su misión: hacer que CryptoArch sea accesible para todos.</div>
+      <div class="bio" data-lang="en">Ex-product strategy consultant. Helped scale 3 fintech startups. His mission: make CryptoArch accessible to everyone.</div>
+      <div class="badge-founder">⚡ Co-Fundador</div>
     </div>
   </div>
 </section>
